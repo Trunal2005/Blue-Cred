@@ -25,6 +25,44 @@ BlueCred resolves these structural bottlenecks by anchoring project provenance, 
 
 ---
 
+## 🖥️ Platform Interface & Live Application
+
+### 🏠 Decentralized Registry Homepage
+Interactive gateway for project developers, verifiers, and institutional carbon credit buyers with Web3 wallet connectivity and role selection.
+
+<p align="center">
+  <img src="assets/screenshots/homepage.png" alt="BlueCred Decentralized Registry Homepage" width="100%" />
+</p>
+
+### 🛒 Liquid Carbon Credit Marketplace
+Instant on-chain purchasing and trading of verified blue carbon tokens (BCT) with transparent pricing, available supply, and ecosystem filters.
+
+<p align="center">
+  <img src="assets/screenshots/marketplace.png" alt="BlueCred Marketplace" width="100%" />
+</p>
+
+<details>
+<summary><b>🔍 Expand to View Additional Modules (Impact Analytics & Supplier Onboarding)</b></summary>
+<br>
+
+### 📊 Real-Time Impact & Carbon Offset Analytics
+Tracking aggregate carbon credits issued, verified conservation acreage, and historical issuance trends rendered via Chart.js.
+
+<p align="center">
+  <img src="assets/screenshots/impact.png" alt="BlueCred Impact Dashboard" width="100%" />
+</p>
+
+### 📝 Conservation Project Submission Wizard
+Multi-step onboarding form for conservationists to register projects, input GIS coordinates, submit MRV documentation, and calculate potential carbon sequestration.
+
+<p align="center">
+  <img src="assets/screenshots/submit-project.png" alt="BlueCred Project Submission Wizard" width="100%" />
+</p>
+
+</details>
+
+---
+
 ## 🌿 Blue Carbon Asset Classes
 
 BlueCred specializes in tokenizing the three primary coastal blue carbon ecosystems:
@@ -156,8 +194,9 @@ The core protocol smart contract (`BlueCred.sol`) is built using **OpenZeppelin 
 
 ```
 .
-├── assets/                     # Protocol imagery & ecosystem media
-│   └── ecosystems/             # High-resolution habitat assets
+├── assets/                     # Protocol imagery, diagrams & screenshots
+│   ├── ecosystems/             # High-resolution coastal habitat media
+│   └── screenshots/            # Live application interface captures
 ├── contracts/                  # Solidity smart contracts
 │   └── BlueCred.sol            # Core ERC-1155 token contract
 ├── docs/                       # Engineering & architecture specifications
@@ -225,7 +264,7 @@ cp .env.example .env.local
 ```
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
-NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
+NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_APPWRITE_API_KEY=your_admin_api_key
 NEXT_PUBLIC_APPWRITE_DATABASE_ID=bluecred-db
 NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID=projects
