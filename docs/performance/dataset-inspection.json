@@ -1,0 +1,11 @@
+{
+  "archive_bytes": 62433280,
+  "sha256": "ef9dba6a18ec03217e233abf9652423612d8f42999d69637920aa31d1e2d3594",
+  "file_types": {
+    ".csv": 1,
+    ".geojson": 2000,
+    "(no extension)": 2000,
+    ".json": 2001
+  },
+  "paired_raster_count": 0
+}

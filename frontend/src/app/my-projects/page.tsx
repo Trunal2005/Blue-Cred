@@ -126,7 +126,7 @@ export default function MyProjects() {
                 <TreePine className="h-10 w-10 text-gray-300" />
               </div>
               <h3 className="text-xl font-bold text-dark mb-2">No Projects Found</h3>
-              <p className="text-gray-500 mb-6">You haven't submitted any ecosystem restoration projects yet.</p>
+              <p className="text-gray-500 mb-6">You haven&apos;t submitted any ecosystem restoration projects yet.</p>
               <Link href="/submit" className="inline-flex px-6 py-3 bg-mint text-forest font-bold rounded-xl hover:bg-forest hover:text-white transition-colors">
                 Start a Proposal
               </Link>

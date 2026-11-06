@@ -315,3 +315,10 @@ npm run start
 ## 📄 License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+
+## Local CNN pipeline and validation (6 November 2026)
+
+The optional local segmentation pipeline is implemented and software-tested, but genuine mangrove training is blocked by access to suitable paired imagery. No trained mangrove checkpoint or scientific accuracy is claimed. Marketplace listings are demonstration data and cannot create purchase records. Blockchain writes default to disabled; administrator controls require a server-controlled account label. Existing remote permissions and dependency advisories still need remediation before production use.
+
+See [final validation](docs/BLUECRED_FINAL_VALIDATION.md), [technical audit](docs/BLUECRED_TECHNICAL_AUDIT.md), [performance report](docs/BLUECRED_PERFORMANCE_REPORT.md), [training guide](docs/ml/TRAINING_GUIDE.md), [integration guide](docs/ml/INTEGRATION_GUIDE.md), and [zero-cost report](docs/BLUECRED_COST_REPORT.md). These verified reports qualify earlier architectural and security claims in this README. No production deployment or GitHub push was performed.

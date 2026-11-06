@@ -2,8 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Project } from "@/lib/mockData";
-import { account } from "@/lib/appwrite";
-import { Models } from "appwrite";
+import { account, appwriteConfigured } from "@/lib/appwrite";
 
 export type Role = "NGO" | "Company" | "Admin" | null;
 
@@ -12,6 +11,7 @@ interface UserProfile {
   name: string;
   email: string;
   role: Role;
+  isAdmin?: boolean;
 }
 
 interface GlobalState {
@@ -42,16 +42,19 @@ export const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ c
   // Load user session on mount
   useEffect(() => {
     const initUser = async () => {
+      if (!appwriteConfigured) { setIsLoading(false); return; }
       try {
         const session = await account.get();
         if (session) {
           // In a real app, role would come from account preferences or a user collection
           // For this demo, we can still use localStorage for the role or assume from email/metadata
-          const savedRole = localStorage.getItem("bluecred_role") as Role;
+          const selected = localStorage.getItem("bluecred_role");
+          const savedRole: Role = session.labels.includes("bluecred-admin") ? "Admin" : selected === "NGO" || selected === "Company" ? selected : null;
           setUser({
             id: session.$id,
             name: session.name,
             email: session.email,
+            isAdmin: session.labels.includes("bluecred-admin"),
             role: savedRole
           });
           if (savedRole) setUserRoleState(savedRole);

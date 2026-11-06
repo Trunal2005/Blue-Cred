@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { 
   Upload, 
@@ -32,6 +32,8 @@ import { ID } from "appwrite";
 import { useBlueCredContract } from "@/lib/useBlueCredContract";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
+const VegetationAnalysis = dynamic(() => import("@/app/components/VegetationAnalysis"));
+
 // Dynamically import the map (Leaflet can't run on server)
 const SubmitMap = dynamic(
   () => import("@/app/components/SubmitMap"),
@@ -50,6 +52,7 @@ const SubmitMap = dynamic(
 
 export default function SubmitProject() {
   const { addProject, user } = useGlobalState();
+  const blockchainWritesEnabled = process.env.NEXT_PUBLIC_ENABLE_TESTNET_WRITES === "true";
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { submitProjectOnChain, isConnected, isWritePending, lastTxHash } = useBlueCredContract();
@@ -59,6 +62,8 @@ export default function SubmitProject() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
+  const previewUrls = useRef(new Set<string>());
+  useEffect(() => () => { previewUrls.current.forEach(url => URL.revokeObjectURL(url)); }, []);
   const [onChainTxHash, setOnChainTxHash] = useState<string>("");
 
   // Form State
@@ -87,6 +92,7 @@ export default function SubmitProject() {
       setFiles(prev => [...prev, ...selectedFiles]);
       
       const newPreviews = selectedFiles.map(file => URL.createObjectURL(file));
+      newPreviews.forEach(url => previewUrls.current.add(url));
       setPreviews(prev => [...prev, ...newPreviews]);
     }
   };
@@ -94,6 +100,7 @@ export default function SubmitProject() {
   const removeFile = (index: number) => {
     setFiles(prev => prev.filter((_, i) => i !== index));
     URL.revokeObjectURL(previews[index]);
+    previewUrls.current.delete(previews[index]);
     setPreviews(prev => prev.filter((_, i) => i !== index));
   };
 
@@ -144,7 +151,7 @@ export default function SubmitProject() {
 
       // 3. Submit on-chain if wallet is connected
       let txHash = "";
-      if (isConnected) {
+      if (isConnected && blockchainWritesEnabled) {
         try {
           txHash = await submitProjectOnChain(
             formData.projectName,
@@ -175,7 +182,7 @@ export default function SubmitProject() {
         organizationType: formData.organizationType as any,
         date: projectDoc.createdAt.split('T')[0],
         image: fileIds.length > 0 ? storage.getFilePreview(BUCKET_ID, fileIds[0]).toString() : "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&h=250",
-        ipfsHash: "Qm" + Math.random().toString(36).substr(2, 10),
+        ipfsHash: "", // No IPFS upload has occurred.
         latitude: projectDoc.latitude,
         longitude: projectDoc.longitude
       });
@@ -219,7 +226,7 @@ export default function SubmitProject() {
             <div>
               <p className="font-bold text-dark text-sm">Blockchain Connection</p>
               <p className="text-xs text-gray-500">
-                {isConnected ? "Your wallet is connected. Projects will be submitted on-chain." : "Connect wallet to register projects on the blockchain."}
+                {!blockchainWritesEnabled ? "Blockchain writes are disabled in zero-cost local mode." : isConnected ? "Wallet connected. Test-network submission requires confirmation." : "Connect a test-network wallet for optional blockchain registration."}
               </p>
             </div>
           </div>
@@ -493,8 +500,10 @@ export default function SubmitProject() {
                     </div>
                   )}
 
+                  {user && <VegetationAnalysis />}
+
                   {/* On-chain status indicator */}
-                  {isConnected && (
+                  {isConnected && blockchainWritesEnabled && (
                     <div className="p-4 bg-mint/20 rounded-2xl border border-mint flex items-center space-x-3">
                       <LinkIcon className="h-5 w-5 text-forest" />
                       <span className="text-sm text-dark font-semibold">

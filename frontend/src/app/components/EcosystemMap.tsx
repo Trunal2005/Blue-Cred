@@ -20,40 +20,10 @@ const customIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
-// A small dictionary to map text locations to approximate lat/lng
-const getCoordinates = (location: string): [number, number] => {
-  const loc = (location || "").toLowerCase();
-  if (loc.includes("west bengal") || loc.includes("sundarbans")) return [21.8219, 88.8893];
-  if (loc.includes("florida")) return [24.5551, -81.7800];
-  if (loc.includes("gambia")) return [13.4432, -15.3101];
-  if (loc.includes("camargue") || loc.includes("france")) return [43.5263, 4.5458];
-  if (loc.includes("tamil nadu") || loc.includes("mannar")) return [9.1270, 79.4651];
-  if (loc.includes("andaman")) return [11.7401, 92.6586];
-  if (loc.includes("odisha") || loc.includes("chilika")) return [19.7042, 85.3400];
-  if (loc.includes("gujarat") || loc.includes("kutch")) return [23.7337, 69.8597];
-  
-  // Default fallback for user submitted projects
-  return [20.5937 + (Math.random() - 0.5) * 5, 78.9629 + (Math.random() - 0.5) * 5]; 
-};
-
-export default function EcosystemMap() {
-  const [allProjects, setAllProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const fetchProjects = async () => {
-    try {
-      const response = await databases.listDocuments(DATABASE_ID, PROJECTS_COLLECTION_ID);
-      setAllProjects(response.documents);
-    } catch (error) {
-      console.error("Error fetching map projects:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+// Reuse the parent dashboard snapshot; avoid a second Appwrite request.
+export default function EcosystemMap({ projects = [] }: { projects?: any[] }) {
+  const allProjects = projects;
+  const loading = false;
 
   if (loading) {
     return (
@@ -77,10 +47,10 @@ export default function EcosystemMap() {
         />
         
         {allProjects.map((project) => {
-          const position = (project.latitude && project.longitude) 
-            ? [project.latitude, project.longitude] 
-            : getCoordinates(project.locationName);
-            
+          const lat = project.latitude, lng = project.longitude;
+          if (typeof lat !== "number" || typeof lng !== "number" || !Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) return null;
+          const position: [number, number] = [lat, lng];
+
           return (
             <Marker 
               key={project.$id} 

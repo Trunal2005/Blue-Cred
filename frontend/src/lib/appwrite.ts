@@ -2,6 +2,7 @@ import { Client, Account, Databases, Storage } from 'appwrite';
 
 const endpoint = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://sgp.cloud.appwrite.io/v1';
 const projectId = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '';
+export const appwriteConfigured = Boolean(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT && projectId);
 
 const client = new Client();
 

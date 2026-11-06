@@ -116,6 +116,11 @@ export default function Marketplace() {
         return;
     }
 
+    if (selectedProject.$id.startsWith("demo-")) {
+      alert("This is a demonstration listing. No real credits or purchase records can be created from it.");
+      return;
+    }
+
     setIsPurchasing(true);
     try {
       const pricePerCredit = 25; // Default price if not in schema
@@ -184,6 +189,7 @@ export default function Marketplace() {
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-dark mb-4">Carbon Credit Marketplace</h1>
+          <p className="text-sm text-amber-700 mt-2" role="note">Demonstration listings. These sample projects cannot be purchased and do not represent issued credits.</p>
           <p className="text-gray-500 text-lg">Purchase verified blue carbon credits directly from coastal restoration projects.</p>
         </div>
 

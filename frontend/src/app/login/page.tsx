@@ -54,20 +54,22 @@ export default function Login() {
 
       // Get user details
       const session = await account.get();
+      const effectiveRole = session.labels.includes("bluecred-admin") ? "Admin" : selectedRole;
       setUser({
         id: session.$id,
         name: session.name,
         email: session.email,
-        role: selectedRole
+        isAdmin: session.labels.includes("bluecred-admin"),
+        role: effectiveRole
       });
-      setUserRole(selectedRole);
+      setUserRole(effectiveRole);
 
       const paths = {
         NGO: "/submit",
         Company: "/marketplace",
         Admin: "/admin"
       };
-      router.push(paths[selectedRole as keyof typeof paths]);
+      router.push(paths[effectiveRole as keyof typeof paths]);
 
     } catch (err: any) {
       setError(err.message || "Authentication failed. Please check your credentials.");

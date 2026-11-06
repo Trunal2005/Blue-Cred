@@ -23,6 +23,7 @@ import {
   PROJECTS_COLLECTION_ID 
 } from "@/lib/appwrite";
 import { Query } from "appwrite";
+import { useGlobalState } from "@/context/GlobalState";
 
 interface ProjectDoc {
   $id: string;
@@ -37,9 +38,11 @@ interface ProjectDoc {
   imageFileIds?: string[];
   createdAt: string;
   description?: string;
+  onChainProjectId?: number;
 }
 
 export default function VerifierDashboard() {
+  const { user } = useGlobalState();
   const [projects, setProjects] = useState<ProjectDoc[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<ProjectDoc | null>(null);
@@ -53,6 +56,7 @@ export default function VerifierDashboard() {
   // Fetch projects from Appwrite
   useEffect(() => {
     const fetchProjects = async () => {
+      if (!user?.isAdmin) { setLoading(false); return; }
       try {
         const response = await databases.listDocuments(
           DATABASE_ID,
@@ -66,53 +70,38 @@ export default function VerifierDashboard() {
       }
     };
     fetchProjects();
-  }, []);
+  }, [user?.isAdmin]);
 
   const updateStatus = async (id: string, status: string) => {
+    if (!user?.isAdmin) return;
     try {
       await databases.updateDocument(DATABASE_ID, PROJECTS_COLLECTION_ID, id, { status });
       setProjects(projects.map(p => p.$id === id ? { ...p, status } : p));
     } catch (error) {
       console.error("Update status failed:", error);
-      // Fallback: just update locally
-      setProjects(projects.map(p => p.$id === id ? { ...p, status } : p));
+      alert("Project update failed. No verification change was saved.");
     }
     setSelectedProject(null);
   };
 
   const handleMintCredits = async (project: ProjectDoc) => {
+    if (!user?.isAdmin) return;
     setIsMinting(true);
     setMintTxHash("");
 
     try {
-      if (isConnected && address) {
-        // Real on-chain minting
-        const projectIdOnChain = parseInt(project.$id.replace(/\D/g, '').slice(0, 3)) || 1;
-        const txHash = await mintCreditsOnChain(
-          projectIdOnChain,
-          address,
-          mintAmount
-        );
-        setMintTxHash(txHash);
-      } else {
-        // Simulated minting when no wallet connected
-        await new Promise(resolve => setTimeout(resolve, 2500));
-        setMintTxHash("0x" + Math.random().toString(36).substr(2, 15) + Math.random().toString(36).substr(2, 15));
-      }
-
+      if (!isConnected || !address) throw new Error("Connect a wallet on an explicitly enabled test network. Simulated minting is unavailable.");
+      if (!Number.isSafeInteger(project.onChainProjectId) || project.onChainProjectId! <= 0) throw new Error("This record has no verified on-chain project ID. Database IDs cannot be converted to contract IDs.");
+      if (!Number.isSafeInteger(mintAmount) || mintAmount <= 0) throw new Error("Enter a positive whole credit amount.");
+      const txHash = await mintCreditsOnChain(project.onChainProjectId!, address, mintAmount);
+      setMintTxHash(txHash);
+      // Hook resolves only after a successful receipt. Do not fabricate database success.
+      await databases.updateDocument(DATABASE_ID, PROJECTS_COLLECTION_ID, project.$id, {
+        status: "minted", creditsIssued: project.creditsIssued + mintAmount
+      });
+      setProjects(projects.map(p => p.$id === project.$id ? { ...p, status: "minted", creditsIssued: p.creditsIssued + mintAmount } : p));
       setMintSuccess(true);
-      
-      // Update project status to minted
-      try {
-        await databases.updateDocument(DATABASE_ID, PROJECTS_COLLECTION_ID, project.$id, { 
-          status: "minted",
-          creditsIssued: mintAmount
-        });
-      } catch (e) {
-        console.warn("Could not update Appwrite:", e);
-      }
-      
-      setProjects(projects.map(p => p.$id === project.$id ? { ...p, status: "minted", creditsIssued: mintAmount } : p));
+
     } catch (error: any) {
       console.error("Minting failed:", error);
       alert(`Minting failed: ${error.message || "Unknown error"}. Make sure you have the VERIFIER_ROLE.`);
@@ -130,6 +119,8 @@ export default function VerifierDashboard() {
       default: return "bg-gray-100 text-gray-600";
     }
   };
+
+  if (!user?.isAdmin) return <div className="p-12 text-center">Sign in with a registry administrator account to verify projects.</div>;
 
   if (loading) {
     return (

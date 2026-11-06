@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { 
@@ -8,8 +10,6 @@ import {
   FileBadge,
   Loader2
 } from "lucide-react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { databases, DATABASE_ID, TRANSACTIONS_COLLECTION_ID, PROJECTS_COLLECTION_ID } from "@/lib/appwrite";
@@ -57,6 +57,9 @@ export default function CertificatePage() {
     
     setIsDownloading(true);
     try {
+      const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+        import("html2canvas"), import("jspdf"),
+      ]);
       const canvas = await html2canvas(certificateRef.current, {
         scale: 2,
         useCORS: true,

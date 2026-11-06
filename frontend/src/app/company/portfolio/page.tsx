@@ -100,7 +100,7 @@ export default function Portfolio() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
           <div>
             <h1 className="text-4xl font-bold text-dark mb-4">Company Portfolio</h1>
-            <p className="text-gray-500 text-lg">Manage and track your company's blockchain-verified carbon credits.</p>
+            <p className="text-gray-500 text-lg">Manage and track your company&apos;s blockchain-verified carbon credits.</p>
           </div>
           <div className="flex items-center space-x-4">
             <div className="p-6 bg-forest text-white rounded-[2rem] shadow-xl flex items-center space-x-6">

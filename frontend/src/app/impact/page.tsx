@@ -49,6 +49,7 @@ ChartJS.register(
 const EcosystemMap = dynamic(() => import('@/app/components/EcosystemMap'), { ssr: false });
 
 export default function ImpactDashboard() {
+  const [mapProjects, setMapProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
     totalCredits: 0,
@@ -62,6 +63,7 @@ export default function ImpactDashboard() {
     try {
       const response = await databases.listDocuments(DATABASE_ID, PROJECTS_COLLECTION_ID);
       const docs = response.documents;
+      setMapProjects(docs);
       
       const approvedDocs = docs.filter(d => d.status === "approved" || d.status === "minted");
       

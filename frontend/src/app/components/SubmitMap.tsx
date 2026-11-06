@@ -1,127 +1,58 @@
 "use client";
-
 import { useEffect, useState, useRef } from "react";
+import type { Map as LeafletMap, Marker } from "leaflet";
 import { Map as MapIcon } from "lucide-react";
-
-interface SubmitMapProps {
-  latitude: number;
-  longitude: number;
-  onLocationSelect: (lat: number, lng: number) => void;
-}
-
-export default function SubmitMap({ latitude, longitude, onLocationSelect }: SubmitMapProps) {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const [mapInstance, setMapInstance] = useState<any>(null);
-  const [markerInstance, setMarkerInstance] = useState<any>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Initialize the map only on client side
+interface Props { latitude: number; longitude: number; onLocationSelect: (lat: number, lng: number) => void; }
+export default function SubmitMap({ latitude, longitude, onLocationSelect }: Props) {
+  const container = useRef<HTMLDivElement>(null);
+  const map = useRef<LeafletMap | null>(null);
+  const marker = useRef<Marker | null>(null);
+  const latest = useRef({ latitude, longitude, onLocationSelect });
+  latest.current = { latitude, longitude, onLocationSelect };
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
-    if (typeof window === "undefined" || !mapRef.current) return;
-
-    // Dynamically import Leaflet
-    const initMap = async () => {
+    let cancelled = false;
+    async function init() {
       const L = (await import("leaflet")).default;
-
-      // Fix default marker icons
-      const customIcon = L.icon({
-        iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-        shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
+      if (cancelled || !container.current) return;
+      const { latitude: lat, longitude: lng } = latest.current;
+      const hasLocation = (lat !== 0 || lng !== 0) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180;
+      const instance = L.map(container.current).setView(hasLocation ? [lat, lng] : [20.5937, 78.9629], hasLocation ? 10 : 4);
+      map.current = instance;
+      const icon = L.divIcon({ className: "", html: '<div style="width:20px;height:20px;background:#1f7a4d;border:3px solid white;border-radius:50%;box-shadow:0 1px 5px #555"></div>', iconSize: [20, 20], iconAnchor: [10, 10] });
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: '&copy; OpenStreetMap contributors' }).addTo(instance);
+      if (hasLocation) marker.current = L.marker([lat, lng], { icon }).addTo(instance);
+      instance.on("click", e => {
+        const lat = Number(e.latlng.lat.toFixed(6)), lng = Number(e.latlng.lng.toFixed(6));
+        if (marker.current) marker.current.setLatLng([lat, lng]);
+        else marker.current = L.marker([lat, lng], { icon }).addTo(instance);
+        latest.current.onLocationSelect(lat, lng);
       });
-
-      // Prevent re-initialization
-      if (mapRef.current && !mapInstance) {
-        const hasLocation = latitude !== 0 || longitude !== 0;
-        const center: [number, number] = hasLocation ? [latitude, longitude] : [20.5937, 78.9629];
-        const zoom = hasLocation ? 10 : 4;
-
-        const map = L.map(mapRef.current).setView(center, zoom);
-
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map);
-
-        // Add marker if we have a location
-        let marker: any = null;
-        if (hasLocation) {
-          marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(map);
-          setMarkerInstance(marker);
-        }
-
-        // Handle map clicks
-        map.on("click", (e: any) => {
-          const { lat, lng } = e.latlng;
-          const roundedLat = parseFloat(lat.toFixed(6));
-          const roundedLng = parseFloat(lng.toFixed(6));
-
-          if (marker) {
-            marker.setLatLng([roundedLat, roundedLng]);
-          } else {
-            marker = L.marker([roundedLat, roundedLng], { icon: customIcon }).addTo(map);
-            setMarkerInstance(marker);
-          }
-
-          onLocationSelect(roundedLat, roundedLng);
-        });
-
-        setMapInstance(map);
-        setIsLoaded(true);
-      }
-    };
-
-    initMap();
-
-    return () => {
-      if (mapInstance) {
-        mapInstance.remove();
-      }
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Update marker when lat/lng changes externally (e.g. from input fields)
+      setLoaded(true);
+    }
+    init().catch(() => { if (!cancelled) setFailed(true); });
+    return () => { cancelled = true; map.current?.remove(); map.current = null; marker.current = null; };
+  }, []);
   useEffect(() => {
-    if (!mapInstance || !isLoaded) return;
-    if (typeof window === "undefined") return;
-
-    const updateMarker = async () => {
-      const L = (await import("leaflet")).default;
-      const customIcon = L.icon({
-        iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-        shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41],
-      });
-
-      if (latitude !== 0 || longitude !== 0) {
-        if (markerInstance) {
-          markerInstance.setLatLng([latitude, longitude]);
-        } else {
-          const marker = L.marker([latitude, longitude], { icon: customIcon }).addTo(mapInstance);
-          setMarkerInstance(marker);
-        }
-        mapInstance.flyTo([latitude, longitude], 10, { duration: 1.2 });
+    if (!loaded || !map.current || !Number.isFinite(latitude) || !Number.isFinite(longitude) || Math.abs(latitude) > 90 || Math.abs(longitude) > 180) return;
+    let cancelled = false;
+    import("leaflet").then(({ default: L }) => {
+      if (cancelled || !map.current) return;
+      if (marker.current) marker.current.setLatLng([latitude, longitude]);
+      else if (latitude !== 0 || longitude !== 0) {
+        const icon = L.divIcon({ className: "", html: '<div style="width:20px;height:20px;background:#1f7a4d;border:3px solid white;border-radius:50%"></div>', iconSize: [20, 20] });
+        marker.current = L.marker([latitude, longitude], { icon }).addTo(map.current);
       }
-    };
-
-    updateMarker();
-  }, [latitude, longitude]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  return (
-    <div className="relative w-full rounded-2xl overflow-hidden border-2 border-mint" style={{ height: "400px" }}>
-      <div ref={mapRef} style={{ height: "100%", width: "100%", zIndex: 0 }} />
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-100 flex flex-col items-center justify-center">
-          <MapIcon className="h-12 w-12 text-forest mb-4 animate-pulse" />
-          <p className="font-bold text-dark">Loading Map...</p>
-          <p className="text-sm text-gray-500">Click on the map to place your project location</p>
-        </div>
-      )}
-    </div>
-  );
+      if (latitude !== 0 || longitude !== 0) map.current.flyTo([latitude, longitude], 10, { duration: 1.2 });
+    });
+    return () => { cancelled = true; };
+  }, [latitude, longitude, loaded]);
+  return <div className="relative w-full rounded-2xl overflow-hidden border-2 border-mint" style={{ height: "400px" }}>
+    <div ref={container} style={{ height: "100%", width: "100%", zIndex: 0 }} />
+    {!loaded && <div className="absolute inset-0 bg-gray-100 flex flex-col items-center justify-center" role="status">
+      <MapIcon className="h-12 w-12 text-forest mb-4" />
+      <p className="font-bold text-dark">{failed ? "Map unavailable. Enter coordinates below." : "Loading Map..."}</p>
+    </div>}
+  </div>;
 }

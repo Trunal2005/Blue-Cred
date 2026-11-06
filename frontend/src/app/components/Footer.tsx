@@ -47,7 +47,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} BlueCred — Hackathon Project. All rights reserved.
           </p>
           <p className="text-gray-400 text-xs italic">
-            "Building transparent infrastructure for the blue carbon economy."
+            &quot;Building transparent infrastructure for the blue carbon economy.&quot;
           </p>
         </div>
       </div>

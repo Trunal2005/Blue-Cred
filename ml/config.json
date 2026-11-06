@@ -1,0 +1,17 @@
+{
+  "size": 128,
+  "channels": 3,
+  "width": 8,
+  "bands": [4, 3, 2],
+  "scale": 10000.0,
+  "epochs": 20,
+  "batch_size": 2,
+  "learning_rate": 0.001,
+  "seed": 42,
+  "patience": 5,
+  "threads": 2,
+  "max_minutes": 20,
+  "label": "mangrove",
+  "input_kind": "sentinel2",
+  "version": "bluecred-unet-v1"
+}

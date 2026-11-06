@@ -1,0 +1,9 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0+cpu
+numpy>=2.2,<3
+Pillow>=11,<14
+rasterio>=1.4,<2
+fastapi>=0.115,<1
+uvicorn>=0.34,<1
+python-multipart>=0.0.22,<1
+httpx>=0.28,<1

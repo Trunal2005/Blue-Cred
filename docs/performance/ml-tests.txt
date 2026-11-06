@@ -1,0 +1,16 @@
+C:\projects\Carbon credit transfer system\bluecred\team-nitrix\ml\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_channel_and_mask_validation (test_pipeline.PipelineTests.test_channel_and_mask_validation) ... ok
+test_forward_loss_gradient_and_metrics (test_pipeline.PipelineTests.test_forward_loss_gradient_and_metrics) ... ok
+test_georeferencing (test_pipeline.PipelineTests.test_georeferencing) ... ok
+test_leakage_duplicates_and_traversal (test_pipeline.PipelineTests.test_leakage_duplicates_and_traversal) ... ok
+test_normalization_shapes_and_alignment (test_pipeline.PipelineTests.test_normalization_shapes_and_alignment) ... ok
+test_training_cli_checkpoint_fresh_process_inference_and_resume (test_pipeline.PipelineTests.test_training_cli_checkpoint_fresh_process_inference_and_resume) ... ok
+test_untrained_checkpoint_rejected (test_pipeline.PipelineTests.test_untrained_checkpoint_rejected) ... ok
+test_auth_and_missing_model (test_pipeline.ServiceTests.test_auth_and_missing_model) ... ok
+test_payload_validation_busy_and_corruption (test_pipeline.ServiceTests.test_payload_validation_busy_and_corruption) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 11.407s
+
+OK

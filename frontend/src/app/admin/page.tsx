@@ -27,14 +27,13 @@ export default function AdminPanel() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [adminPassword, setAdminPassword] = useState("");
 
   const handleAdminAuth = (e: React.FormEvent) => {
     e.preventDefault();
-    if (adminPassword === "admin123") {
+    if (user?.isAdmin) {
       setIsAdminAuthenticated(true);
     } else {
-      alert("Invalid Admin Password");
+      alert("An administrator account with the bluecred-admin label is required.");
     }
   };
 
@@ -51,10 +50,12 @@ export default function AdminPanel() {
   };
 
   useEffect(() => {
-    fetchProjects();
-  }, []);
+    if (user?.isAdmin) fetchProjects();
+    else setLoading(false);
+  }, [user?.isAdmin]);
 
   const handleAction = async (id: string, status: string, msg: string) => {
+    if (!user?.isAdmin) { alert("Administrator account required."); return; }
     setIsProcessing(true);
     try {
       const updateData: any = { status };
@@ -92,7 +93,7 @@ export default function AdminPanel() {
     );
   }
 
-  if (!isAdminAuthenticated) {
+  if (!isAdminAuthenticated || !user?.isAdmin) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 text-center">
         <motion.div 
@@ -104,21 +105,10 @@ export default function AdminPanel() {
             <ShieldCheck size={40} />
           </div>
           <h1 className="text-3xl font-bold text-dark mb-2">Admin Access</h1>
-          <p className="text-gray-500 mb-8">Enter registry access key to continue.</p>
+          <p className="text-gray-500 mb-8">Sign in with an administrator account to continue.</p>
           <form onSubmit={handleAdminAuth} className="space-y-4">
-            <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-              <input 
-                type="password"
-                required
-                value={adminPassword}
-                onChange={(e) => setAdminPassword(e.target.value)}
-                placeholder="Access Key"
-                className="w-full pl-12 pr-6 py-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-forest/20 outline-none font-bold"
-              />
-            </div>
             <button type="submit" className="w-full py-4 bg-forest text-white rounded-full font-bold hover:shadow-lg transition-all">
-              Verify Access Key
+              Verify Administrator Session
             </button>
           </form>
         </motion.div>

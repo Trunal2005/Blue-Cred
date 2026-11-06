@@ -1,0 +1,11 @@
+{
+  "source": "REPLACE: original dataset URL and version",
+  "license": "REPLACE: verified dataset license and attribution",
+  "label_definition": "REPLACE: foreground, background and excluded/nodata rules",
+  "split_method": "REPLACE: country/site-disjoint groups; verify no spatial overlap",
+  "samples": [
+    {"image": "train/image01.tif", "mask": "train/mask01.tif", "split": "train", "group": "country-site-A"},
+    {"image": "validation/image02.tif", "mask": "validation/mask02.tif", "split": "validation", "group": "country-site-B"},
+    {"image": "test/image03.tif", "mask": "test/mask03.tif", "split": "test", "group": "country-site-C"}
+  ]
+}

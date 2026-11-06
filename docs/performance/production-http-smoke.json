@@ -1,0 +1,173 @@
+{
+  "methodology": "Local Next production server, sequential HTTP GET, 5 samples per route; no browser rendering, no external integration; headers timing includes localhost transport.",
+  "results": [
+    {
+      "route": "/",
+      "expected_status": 200,
+      "median_headers_ms": 6.169100000000071,
+      "samples_headers_ms": [
+        11.39059999999995,
+        6.169100000000071,
+        5.504099999999994,
+        5.237700000000018,
+        6.460699999999974
+      ]
+    },
+    {
+      "route": "/login",
+      "expected_status": 200,
+      "median_headers_ms": 4.6825000000000045,
+      "samples_headers_ms": [
+        11.7179000000001,
+        4.246399999999994,
+        4.6825000000000045,
+        4.368399999999951,
+        5.012399999999957
+      ]
+    },
+    {
+      "route": "/submit",
+      "expected_status": 200,
+      "median_headers_ms": 3.3553000000000566,
+      "samples_headers_ms": [
+        13.22359999999992,
+        3.914700000000039,
+        3.3553000000000566,
+        3.178099999999972,
+        3.251800000000003
+      ]
+    },
+    {
+      "route": "/projects",
+      "expected_status": 200,
+      "median_headers_ms": 2.894200000000069,
+      "samples_headers_ms": [
+        9.80880000000002,
+        2.894200000000069,
+        2.726199999999949,
+        3.259300000000053,
+        2.8275999999999613
+      ]
+    },
+    {
+      "route": "/projects/smoke",
+      "expected_status": 200,
+      "median_headers_ms": 54.238399999999956,
+      "samples_headers_ms": [
+        145.59140000000014,
+        34.340599999999995,
+        42.26379999999995,
+        54.238399999999956,
+        58.19659999999999
+      ]
+    },
+    {
+      "route": "/my-projects",
+      "expected_status": 200,
+      "median_headers_ms": 3.8034000000000106,
+      "samples_headers_ms": [
+        12.737499999999955,
+        7.010700000000043,
+        3.8034000000000106,
+        2.783300000000054,
+        2.4830000000001746
+      ]
+    },
+    {
+      "route": "/impact",
+      "expected_status": 200,
+      "median_headers_ms": 2.4846000000000004,
+      "samples_headers_ms": [
+        16.08550000000014,
+        2.739699999999857,
+        2.3885999999999967,
+        2.4846000000000004,
+        2.236900000000105
+      ]
+    },
+    {
+      "route": "/marketplace",
+      "expected_status": 200,
+      "median_headers_ms": 2.3392999999998665,
+      "samples_headers_ms": [
+        9.492899999999963,
+        2.2523000000001048,
+        2.149800000000141,
+        2.3392999999998665,
+        2.816300000000183
+      ]
+    },
+    {
+      "route": "/verifier",
+      "expected_status": 200,
+      "median_headers_ms": 2.174199999999928,
+      "samples_headers_ms": [
+        8.597099999999955,
+        2.4187999999999192,
+        2.054700000000139,
+        2.174199999999928,
+        2.171199999999999
+      ]
+    },
+    {
+      "route": "/admin",
+      "expected_status": 200,
+      "median_headers_ms": 2.4958999999998923,
+      "samples_headers_ms": [
+        9.758199999999988,
+        2.667599999999993,
+        2.4958999999998923,
+        2.471900000000005,
+        2.1245000000001255
+      ]
+    },
+    {
+      "route": "/company/portfolio",
+      "expected_status": 200,
+      "median_headers_ms": 2.2368000000001302,
+      "samples_headers_ms": [
+        9.032200000000103,
+        2.2368000000001302,
+        2.1188999999999396,
+        2.2644000000000233,
+        2.0799999999999272
+      ]
+    },
+    {
+      "route": "/company/transactions",
+      "expected_status": 200,
+      "median_headers_ms": 2.1287999999999556,
+      "samples_headers_ms": [
+        8.481699999999819,
+        2.086599999999862,
+        2.1287999999999556,
+        2.0253000000000156,
+        2.1602000000000317
+      ]
+    },
+    {
+      "route": "/certificate/smoke",
+      "expected_status": 200,
+      "median_headers_ms": 54.73530000000005,
+      "samples_headers_ms": [
+        63.27279999999996,
+        54.73530000000005,
+        44.672199999999975,
+        43.09680000000003,
+        70.0523999999998
+      ]
+    },
+    {
+      "route": "/api/analysis",
+      "expected_status": 503,
+      "median_headers_ms": 2.3251999999999953,
+      "samples_headers_ms": [
+        29.050300000000107,
+        3.3740999999999985,
+        2.2012999999999465,
+        2.144900000000007,
+        2.3251999999999953
+      ]
+    }
+  ]
+}
