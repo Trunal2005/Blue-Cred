@@ -10,6 +10,9 @@ interface Result {
   overlay_png: string;
   mask_png: string;
   inference_ms: number;
+  input_description?: string;
+  validation_precision?: number;
+  validation_iou?: number;
   limitations: string;
 }
 
@@ -44,7 +47,7 @@ export default function VegetationAnalysis() {
 
   return <section className="mt-8 p-6 rounded-2xl border border-mint bg-mint/10 space-y-4" aria-labelledby="analysis-title">
     <h3 id="analysis-title" className="text-xl font-bold text-dark">Coastal vegetation analysis</h3>
-    <p className="text-sm text-gray-600">Optional local CNN estimate. Use imagery matching the trained model: Sentinel-2 GeoTIFF for the default configuration. Analysis stays in memory and does not change your project, certification or credits.</p>
+    <p className="text-sm text-gray-600">Optional local CNN estimate. Use imagery matching the installed model and its band order. The GMW 2020 model requires a four-band WorldCover 2020 annual-composite GeoTIFF (B02, B03, B04, B08). Analysis does not change your project, certification or credits.</p>
     <label className="block text-sm font-bold" htmlFor="analysis-image">Image for local analysis (maximum 8 MiB)</label>
     <input id="analysis-image" type="file" accept=".tif,.tiff,image/png,image/jpeg" disabled={busy} onChange={event => {
       setResult(null); setMessage(""); const selected = event.target.files?.[0] || null;
@@ -54,6 +57,7 @@ export default function VegetationAnalysis() {
     <button type="button" onClick={analyze} disabled={!file || busy} className="px-6 py-3 rounded-full bg-forest text-white font-bold disabled:opacity-50">{busy ? "Processing…" : "Analyze locally"}</button>
     <p role="status" aria-live="polite" className="text-sm text-gray-600">{message}</p>
     {result && <div className="space-y-4">
+      {typeof result.validation_precision === 'number' && result.validation_precision < 0.6 && <p role="note" className="text-sm font-bold text-amber-800">Research prototype with low validation precision and substantial false positives. This mask cannot verify a project or establish mangrove area reliably.</p>}
       <p className="font-bold">Predicted {result.label} coverage: {result.coverage_percent.toFixed(2)}%</p>
       <p className="text-sm">{result.area_hectares === null ? "Area unavailable: no supported metre-based georeferencing. Coverage percentage only." : `Estimated projected grid area: ${result.area_hectares.toFixed(3)} hectares.`}</p>
       <div className="grid sm:grid-cols-2 gap-4">
@@ -61,6 +65,8 @@ export default function VegetationAnalysis() {
         <img src={`data:image/png;base64,${result.mask_png}`} alt="Binary predicted vegetation mask" className="w-full rounded-xl" />
       </div>
       <p className="text-xs text-gray-600">Model: {result.model_version}. Local inference: {result.inference_ms.toFixed(0)} ms.</p>
+      {typeof result.validation_iou === 'number' && <p className="text-xs text-gray-600">Model validation IoU: {(result.validation_iou * 100).toFixed(1)}%. This is a dataset score, not accuracy for this uploaded image.</p>}
+      {result.input_description && <p className="text-xs text-gray-600">Input: {result.input_description}</p>}
       <p className="text-sm text-gray-600">{result.limitations}</p>
     </div>}
   </section>;

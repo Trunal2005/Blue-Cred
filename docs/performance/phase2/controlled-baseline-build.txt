@@ -1,0 +1,128 @@
+
+> bluecred-frontend@0.1.0 build
+> next build
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\projects\Carbon credit transfer system\bluecred\team-nitrix\package-lock.json as the root directory.
+ To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
+ Detected additional lockfiles: 
+   * C:\projects\Carbon credit transfer system\bluecred\team-nitrix\.local-validation\baseline\frontend\package-lock.json
+   * C:\projects\Carbon credit transfer system\bluecred\team-nitrix\.local-validation\baseline\package-lock.json
+
+   ▲ Next.js 15.5.29
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 118s
+
+../../../frontend/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js
+Module not found: Can't resolve '@react-native-async-storage/async-storage' in 'C:\projects\Carbon credit transfer system\bluecred\team-nitrix\frontend\node_modules\@metamask\sdk\dist\browser\es'
+
+Import trace for requested module:
+../../../frontend/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/metaMask.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+../../../frontend/node_modules/wagmi/dist/esm/exports/connectors.js
+../../../frontend/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/app/submit/page.tsx
+
+../../../frontend/node_modules/pino/lib/tools.js
+Module not found: Can't resolve 'pino-pretty' in 'C:\projects\Carbon credit transfer system\bluecred\team-nitrix\frontend\node_modules\pino\lib'
+
+Import trace for requested module:
+../../../frontend/node_modules/pino/lib/tools.js
+../../../frontend/node_modules/pino/pino.js
+../../../frontend/node_modules/@walletconnect/logger/dist/index.es.js
+../../../frontend/node_modules/@walletconnect/universal-provider/dist/index.es.js
+../../../frontend/node_modules/@walletconnect/ethereum-provider/dist/index.es.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/walletConnect.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+../../../frontend/node_modules/wagmi/dist/esm/exports/connectors.js
+../../../frontend/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/app/submit/page.tsx
+
+Browserslist: browsers data (caniuse-lite) is 9 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ⚠ Compiled with warnings in 83s
+
+../../../frontend/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js
+Module not found: Can't resolve '@react-native-async-storage/async-storage' in 'C:\projects\Carbon credit transfer system\bluecred\team-nitrix\frontend\node_modules\@metamask\sdk\dist\browser\es'
+
+Import trace for requested module:
+../../../frontend/node_modules/@metamask/sdk/dist/browser/es/metamask-sdk.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/metaMask.js
+../../../frontend/node_modules/@wagmi/connectors/dist/esm/exports/index.js
+../../../frontend/node_modules/wagmi/dist/esm/exports/connectors.js
+../../../frontend/node_modules/@rainbow-me/rainbowkit/dist/index.js
+./src/app/components/Web3Provider.tsx
+
+ ✓ Compiled successfully in 3.4min
+   Linting and checking validity of types ...
+
+./src/app/admin/page.tsx
+173:29  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/company/portfolio/page.tsx
+70:6  Warning: React Hook useEffect has a missing dependency: 'fetchPortfolio'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+148:25  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/components/EcosystemMap.tsx
+64:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/components/VegetationAnalysis.tsx
+60:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+61:9  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/marketplace/page.tsx
+236:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/my-projects/page.tsx
+145:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/projects/page.tsx
+90:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+96:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/projects/[id]/page.tsx
+78:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+116:21  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+./src/app/submit/page.tsx
+490:27  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/14) ...
+   Generating static pages (3/14) 
+   Generating static pages (6/14) 
+   Generating static pages (10/14) 
+ ✓ Generating static pages (14/14)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    5.22 kB         150 kB
+├ ○ /_not-found                            995 B         107 kB
+├ ○ /admin                               5.61 kB         174 kB
+├ ƒ /api/analysis                          126 B         106 kB
+├ ƒ /certificate/[id]                    3.27 kB         171 kB
+├ ○ /company/portfolio                   4.01 kB         176 kB
+├ ○ /company/transactions                2.93 kB         139 kB
+├ ○ /impact                              71.9 kB         240 kB
+├ ○ /login                               5.08 kB         173 kB
+├ ○ /marketplace                         7.39 kB         176 kB
+├ ○ /my-projects                         3.83 kB         175 kB
+├ ○ /projects                             2.8 kB         174 kB
+├ ƒ /projects/[id]                       3.75 kB         140 kB
+├ ○ /submit                              6.29 kB         387 kB
+└ ○ /verifier                            4.61 kB         385 kB
++ First Load JS shared by all             106 kB
+  ├ chunks/8efd6a95-f17cfdbcadb2ed73.js  54.2 kB
+  ├ chunks/908-41fbccaad2cb15ab.js       46.5 kB
+  └ other shared chunks (total)          5.17 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

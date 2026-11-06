@@ -19,7 +19,8 @@ def image_array(path, config):
         if path.suffix.lower() not in ('.tif', '.tiff'):
             raise ValueError('This model requires Sentinel-2 GeoTIFF; RGB screenshots are unsupported')
         with rasterio.open(path) as src:
-            if src.width * src.height > MAX_PIXELS or src.count < max(config['bands']):
+            required_bands = config['bands'] + config.get('ndvi_bands', [])
+            if src.driver != 'GTiff' or src.width * src.height > MAX_PIXELS or src.count < max(required_bands):
                 raise ValueError('Unsupported raster dimensions or bands')
             a = src.read(config['bands']).astype('float32')
             if not src.read_masks(config['bands']).all():

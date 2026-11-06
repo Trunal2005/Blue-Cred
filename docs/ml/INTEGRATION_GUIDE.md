@@ -1,52 +1,55 @@
-# Optional local inference
+# Real local CNN integration
 
-The existing `/submit` workflow has a lazy-loaded coastal vegetation analysis panel in evidence-upload step 3, shown to a signed-in user. It uses a **separate image selection** from Appwrite evidence uploads. Analysis never uploads to Appwrite, saves a project record, changes verification or mints credits. Existing project routes work when ML is missing. Authenticated project persistence is intentionally not added: existing remote authorization/schema cannot be verified within the zero-cost restriction.
+Current model: `bluecred-gmw2020-unet-v1`, genuine trained checkpoint `ml/artifacts/run1/best.pt`. It is a **low-precision research prototype**, not reliable project verification. Read MODEL_CARD.md. The existing `/submit` evidence step lazily shows analysis to a signed-in user. Analysis has a separate file input from Appwrite evidence uploads, is stateless, saves no project/credit record and makes no blockchain call.
 
-## Startup in Windows PowerShell
+## Exact PowerShell startup
 
-Start the ordinary frontend from `team-nitrix/frontend` with `npm run dev`. No ML service is required.
-
-For optional analysis, choose the same random local token (at least 24 characters) in both service and frontend terminal environments. Do not commit it or use a privileged cloud key. The following placeholder must be replaced locally; it is not a service credential.
+From `C:/projects/Carbon credit transfer system/bluecred/team-nitrix`:
 
 ```powershell
-# Terminal 1, repository root. A real best.pt must already exist for readiness.
-$env:BLUECRED_ML_TOKEN='<same-random-local-token-at-least-24-characters>'
+# Existing frontend alone; CNN not required.
+npm --prefix frontend run dev -- --hostname 127.0.0.1
+# Or start the real local model plus existing frontend, sharing an ephemeral random token.
+./scripts/start-local-ml.ps1
+```
+
+The helper checks checkpoint/environment, refuses to replace an existing service on port 8765, generates a process-local random token without printing it, binds Python and frontend to 127.0.0.1, verifies actual readiness, then starts the frontend. Ctrl+C/finally stops only its own Python process and restores prior process environment values. No production .env file is read/copied/edited by this helper. The frontend still follows its ordinary existing authentication configuration; this helper does not create a fake account or change Appwrite permissions.
+
+Manual two-terminal setup is also possible (use the same locally chosen random ≥24-character token in both; no privileged cloud key):
+
+```powershell
+# Terminal 1: repository root
+$env:BLUECRED_ML_TOKEN='<same-local-random-token-in-both-terminals>'
 $env:BLUECRED_ML_CHECKPOINT='ml/artifacts/run1/best.pt'
 ml/.venv/Scripts/python -m uvicorn ml.service:app --host 127.0.0.1 --port 8765
-
-# Terminal 2, frontend directory
-$env:BLUECRED_ML_TOKEN='<same-random-local-token-at-least-24-characters>'
+# Terminal 2: repository root
+$env:BLUECRED_ML_TOKEN='<same-local-random-token-in-both-terminals>'
 $env:BLUECRED_ML_ENABLED='true'
-npm run dev
+npm --prefix frontend run dev -- --hostname 127.0.0.1
 ```
 
-Use `http://localhost:3000`. A public/non-loopback Host is rejected by the Next API. Without opt-in, token, service or valid checkpoint, it returns a non-destructive unavailable state; no predictions are synthesized. The default service reports `ready: false` in the current workspace because no genuine checkpoint exists. Do not expose either development server to a network or deploy this local bridge publicly.
+Do not expose this local bridge publicly. `BLUECRED_ML_ENABLED` is server-side, false by default. Existing production auth/storage usage is not exercised by this work. If using a real external account, separately verify its existing permissions and zero-cost quota before performing any cloud operation. No new plan or billing is required by local inference.
 
-## API
-
-Next `GET /api/analysis` proxies readiness. Next `POST /api/analysis` accepts raw image bytes and exactly `image/png`, `image/jpeg` or `image/tiff`, maximum 8 MiB. The bridge uses a fixed loopback destination `127.0.0.1:8765`, server-only shared token, no redirects, 5-second readiness / 60-second analysis timeout and no caching. Cross-origin requests and non-local Hosts are rejected. Browser never receives the token. Stateless local access is not production project-scoped authorization.
-
-Python `GET /health` returns service/readiness/reason/model version. `POST /analyze` accepts the same bytes, verifies local token and loopback caller, decodes content, validates dimensions/channels/range, rejects unsupported inputs, bounds inference to one worker and returns 429 when busy. Returns 401 unauthorized, 400 empty, 413 oversized, 415 unsupported format, 422 invalid image, 503 missing model and sanitized 500 failures. FastAPI validation errors use `detail`; bridge errors use `error`.
-
-Response includes label/model version, coverage percentage, foreground/total pixels, nullable area hectares, base64 PNG preview mask/overlay, measured inference milliseconds and limitations. No filesystem paths, input images or tokens are logged by the service. Input uses a temporary local directory removed after analysis. Only trusted local checkpoints load via `weights_only=True`; executable or user-uploaded model files are not accepted. No model loads in the browser or the Next process.
-
-Input **must match the checkpoint's sensor/preprocessing**. The default configuration requires multiband Sentinel-2 TIFF; a JPEG screenshot fails that contract. Projected affine metre grids may return grid-area hectares; unknown/geographic degree CRS returns percentage only. Original-grid coverage uses interpolated logits from the model grid; this does not restore fine-scale scientific precision. Raster areas are unvalidated estimates, never carbon estimates.
-
-## Other local safeguards
-
-Blockchain writes are disabled unless explicitly opted into test networks through `NEXT_PUBLIC_ENABLE_TESTNET_WRITES=true`; mainnet is rejected. RPC defaults point at loopback. No write was executed in this session, including on testnets. The wallet default uses injected browser wallets to avoid automatic WalletConnect relay requests. Script-only Appwrite key name is `APPWRITE_API_KEY` (never `NEXT_PUBLIC_...`); migrate any existing local secret manually and rotate any key previously exposed. No production env file was edited. Administrator UI now requires the server-controlled Appwrite account label `bluecred-admin`; client-side labels/roles do not replace database permissions. Provisioning script is gated and must not be run without separate permission/cost review; existing remote broad grants remain unverified.
-
-## Local verification
+## Verified offline browser demonstration
 
 ```powershell
-# Repository root: actual HTTP readiness with missing checkpoint; stops server afterward.
-ml/.venv/Scripts/python -m ml.tests.http_smoke
-# frontend directory: explicit SDK/transport mocks and safe transaction failures
-node tests/local-regression.cjs
-npx --no-install tsc --noEmit
-npm run lint
+Set-Location frontend
 npm run build
-node tests/production-smoke.cjs
+node tests/browser-validation.cjs e2e final
 ```
 
-No production deployment, cloud account activation, Appwrite initialization or blockchain transaction is part of these commands. `next/font` may download the existing open-source Inter font at build time if uncached. Browser interactions, authenticated external flows and real mangrove inference remain unverified.
+This launches a temporary local production server and actual Python service, opens isolated real Chrome, uses an actual held-out TIFF, verifies readiness and genuine mask/overlay output, captures a screenshot, stops the service to verify failure handling, checks charts/maps/mobile/PDFs and cleans up the test-owned processes. **Appwrite account/record and remote tile requests are explicit browser fixtures; the CNN/Next/Python path is real and unmocked.** No project is submitted, no record is written and no production endpoint is contacted. Do not confuse the mock login with external authentication validation. The test needs the existing Chrome install and local model/data artifacts.
+
+The actual screenshot and response summaries are `docs/performance/phase2/real-cnn-inference.png` and `browser-e2e-final.json`. Generated fixture PDF is deliberately in ignored `ml/artifacts/browser/`, clearly not a real certificate. Pure production HTTP route smoke: `node tests/production-smoke.cjs`. Mocked API/transaction regressions: `node tests/local-regression.cjs`. Ordinary frontend must remain usable with missing/unavailable ML.
+
+## API and security boundaries
+
+Next `GET /api/analysis` → local `/health`; Next `POST /api/analysis` → local `/analyze`. Raw image bytes, exact MIME PNG/JPEG/TIFF, maximum 8 MiB. Public/nonlocal Host and mismatched Origin are rejected; opt-in and server-only token required. Fixed loopback destination, no user-supplied URL/path, no redirects, no response caching, 5-second readiness / 60-second inference timeout. Python accepts only loopback and constant-time token authentication. No project-scoped persistence/authorization was added; this is a stateless local service, not a deployable production authorization layer.
+
+Python loads one trusted local provenance-bearing checkpoint per process, `weights_only=True`, eval/inference mode, two CPU threads, one concurrent prediction. Inputs decode from temporary files removed afterward; original image dimensions are bounded at 4 million pixels, content/driver/channels/range/nodata are checked. No executable model uploads accepted. Errors: 401 unauthorized, 400 empty, 413 too large, 415 MIME unsupported, 422 invalid raster/image, 429 busy, 503 no trained model, sanitized 500 inference failure. No token/image/private filesystem path is logged in responses.
+
+Readiness includes model version, label and expected input description. Analysis returns model version, reference-label name, checkpoint epoch, validation IoU/precision, inference milliseconds, mask/overlay previews, original-grid pixel counts/coverage, nullable area and limitations. The UI prominently warns on low validation precision and identifies validation scores as dataset scores, not accuracy for an upload.
+
+**Current model requires four-band WorldCover 2020 annual-median TIFFs ordered B02/B03/B04/B08.** CNN uses RGB 3/2/1 /10000; NIR is retained for evaluation. A screenshot/JPEG or wrong-band raster is not a valid model input. Display-only gain/gamma makes reflectance visible and does not change inference. EPSG:4326 data return percentage only, no fake hectares. Projected metre-grid area uses affine determinant but is still unvalidated, distortion-prone model-derived grid area.
+
+Blockchain writes remain disabled by default; only explicitly enabled local/test chain IDs pass the hook, and successful receipts are required. No live chain operation was tested. Administrator UI requires server-controlled `bluecred-admin` label, but deployed Appwrite grants remain unknown. Do not run the gated legacy provisioning script: its broad grants require separate remediation/review. Never use NEXT_PUBLIC_ for a privileged Appwrite key or rotate/print a secret in logs.

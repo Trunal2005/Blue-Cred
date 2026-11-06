@@ -1,0 +1,21 @@
+{
+  "size": 128,
+  "channels": 3,
+  "width": 8,
+  "bands": [3, 2, 1],
+  "scale": 10000.0,
+  "epochs": 30,
+  "batch_size": 4,
+  "learning_rate": 0.001,
+  "seed": 42,
+  "patience": 6,
+  "threads": 2,
+  "max_minutes": 20,
+  "label": "mangrove reference extent (GMW 2020)",
+  "input_kind": "sentinel2",
+  "input_description": "WorldCover 2020 Sentinel-2 annual median GeoTIFF; four bands B02/B03/B04/B08; RGB channels 3/2/1 divided by 10000",
+  "limitations": "Experimental replication of GMW 2020 map-derived mangrove reference labels on a small site-disjoint sample. Not independent field ground truth. Two training sites only; domain shift, residual cloud/composite artefacts and reference-map errors remain. Use matching 2020 annual-composite inputs. No carbon, certification or credit issuance claim.",
+  "ndvi_bands": [4, 3],
+  "ndvi_threshold": 0.3,
+  "version": "bluecred-gmw2020-unet-v1"
+}

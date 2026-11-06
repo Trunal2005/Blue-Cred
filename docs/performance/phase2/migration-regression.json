@@ -1,0 +1,10 @@
+{
+  "impact_mock_project_list_calls": {
+    "baseline": 2,
+    "final": 1,
+    "reduction_percent": 50
+  },
+  "api_checks_passed": 6,
+  "mocked_transaction_checks_passed": 4,
+  "scope": "Actual component effects and API handlers with mocked SDK/transport. No page timing or external integration claim."
+}

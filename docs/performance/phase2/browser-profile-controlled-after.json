@@ -1,0 +1,300 @@
+{
+  "scope": "Production app in isolated real Chrome; 5 fresh contexts per route, 1440x1000, no CPU/network throttle, 2.5s observation; Appwrite/remote images/map tiles mocked, all other external traffic blocked. Commit times are hydration proxies, not direct hydration duration. Event samples are lab interactions, not field INP.",
+  "results": [
+    {
+      "route": "/",
+      "repeat": 0,
+      "lcp": 1056,
+      "cls": 0.002301932749807099,
+      "longTasks": [
+        {
+          "start": 334.5,
+          "duration": 50
+        },
+        {
+          "start": 402.69999999925494,
+          "duration": 69
+        }
+      ],
+      "events": [],
+      "commits": [
+        552.6000000014901,
+        568.5,
+        570.6999999992549,
+        572.5,
+        573.1999999992549,
+        573.6999999992549,
+        1058.4000000022352
+      ],
+      "navigation": {
+        "ttfb_ms": 35.80000000074506,
+        "dom_content_loaded_ms": 329.80000000074506,
+        "load_ms": 482.69999999925494
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 119,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 552.6000000014901,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 430.7046,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 56,
+          "interactionId": 1299
+        },
+        {
+          "name": "pointerup",
+          "duration": 56,
+          "interactionId": 1299
+        },
+        {
+          "name": "click",
+          "duration": 56,
+          "interactionId": 1299
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 1,
+      "lcp": 636,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 374.0999999977648,
+          "duration": 61
+        },
+        {
+          "start": 462.80000000074506,
+          "duration": 68
+        },
+        {
+          "start": 531.3999999985099,
+          "duration": 51
+        }
+      ],
+      "events": [],
+      "commits": [
+        629,
+        652.1999999992549,
+        655.3000000007451,
+        657.5,
+        682.6999999992549,
+        684.5,
+        1149.199999999255
+      ],
+      "navigation": {
+        "ttfb_ms": 43.399999998509884,
+        "dom_content_loaded_ms": 369.30000000074506,
+        "load_ms": 532
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 180,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 629,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 233.3104999999996,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 24,
+          "interactionId": 6009
+        },
+        {
+          "name": "pointerup",
+          "duration": 24,
+          "interactionId": 6009
+        },
+        {
+          "name": "click",
+          "duration": 24,
+          "interactionId": 6009
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 2,
+      "lcp": 460,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 221.89999999850988,
+          "duration": 51
+        },
+        {
+          "start": 289.8999999985099,
+          "duration": 66
+        }
+      ],
+      "events": [],
+      "commits": [
+        451.5,
+        469,
+        471.29999999701977,
+        473,
+        490.5,
+        493.19999999925494,
+        961.0999999977648
+      ],
+      "navigation": {
+        "ttfb_ms": 21.299999997019768,
+        "dom_content_loaded_ms": 220.19999999925494,
+        "load_ms": 370.69999999925494
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 117,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 451.5,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 226.04139999999825,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 40,
+          "interactionId": 6689
+        },
+        {
+          "name": "pointerup",
+          "duration": 40,
+          "interactionId": 6689
+        },
+        {
+          "name": "click",
+          "duration": 40,
+          "interactionId": 6689
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 3,
+      "lcp": 428,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 264.69999999925494,
+          "duration": 66
+        }
+      ],
+      "events": [],
+      "commits": [
+        423.80000000074506,
+        443.30000000074506,
+        447.69999999925494,
+        449.3999999985099,
+        462.5999999977648,
+        471.30000000074506,
+        944.3000000007451
+      ],
+      "navigation": {
+        "ttfb_ms": 17.099999997764826,
+        "dom_content_loaded_ms": 195.80000000074506,
+        "load_ms": 343.69999999925494
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 66,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 423.80000000074506,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 207.3633000000009,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 40,
+          "interactionId": 908
+        },
+        {
+          "name": "pointerup",
+          "duration": 40,
+          "interactionId": 908
+        },
+        {
+          "name": "click",
+          "duration": 40,
+          "interactionId": 908
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 4,
+      "lcp": 440,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 280.70000000298023,
+          "duration": 62
+        }
+      ],
+      "events": [],
+      "commits": [
+        429.80000000074506,
+        448.80000000074506,
+        451.5,
+        453.20000000298023,
+        472.20000000298023,
+        473.5,
+        941.4000000022352
+      ],
+      "navigation": {
+        "ttfb_ms": 18,
+        "dom_content_loaded_ms": 213.60000000149012,
+        "load_ms": 355.30000000074506
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 62,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 429.80000000074506,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 194.91400000000067,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 24,
+          "interactionId": 114
+        },
+        {
+          "name": "pointerup",
+          "duration": 24,
+          "interactionId": 114
+        },
+        {
+          "name": "click",
+          "duration": 24,
+          "interactionId": 114
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "chrome": "156.0.8078.80",
+  "phase": "controlled-after"
+}

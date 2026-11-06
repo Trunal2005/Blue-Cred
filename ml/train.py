@@ -37,6 +37,8 @@ def evaluate(model, loader, device):
     start = time.perf_counter()
     # RGB excess-green baseline, fixed threshold; no test-set tuning.
     baseline = np.zeros(4, dtype='int64')
+    ndvi_counts = np.zeros(4, dtype='int64')
+    seen = 0
     for x, y in loader:
         x, y = x.to(device), y.to(device)
         z = model(x)
@@ -44,10 +46,20 @@ def evaluate(model, loader, device):
         b = y.bool()
         for out, dest in ((z.sigmoid() >= .5, counts), ((2*x[:, 1:2]-x[:, 0:1]-x[:, 2:3]) > .05, baseline)):
             dest += np.array([int((out & b).sum()), int((out & ~b).sum()), int((~out & b).sum()), int((~out & ~b).sum())])
+        if loader.dataset.config.get('ndvi_bands'):
+            import rasterio
+            for index, target in enumerate(b):
+                with rasterio.open(loader.dataset.samples[seen+index]['image']) as src:
+                    nir, red = src.read(loader.dataset.config['ndvi_bands']).astype('float32')
+                ndvi = (nir-red)/(nir+red+1e-6)
+                out = F.interpolate(torch.from_numpy(ndvi)[None,None], size=target.shape[-2:], mode='bilinear', align_corners=False)[0].to(device) >= loader.dataset.config['ndvi_threshold']
+                ndvi_counts += np.array([int((out & target).sum()), int((out & ~target).sum()), int((~out & target).sum()), int((~out & ~target).sum())])
+        seen += len(x)
     if device == 'cuda':
         torch.cuda.synchronize()
     return {**metrics(counts), 'loss': float(np.mean(losses)),
             'seconds_per_image_including_loading': (time.perf_counter()-start)/len(loader.dataset),
+            'ndvi_baseline': metrics(ndvi_counts) if loader.dataset.config.get('ndvi_bands') else None,
             'excess_green_baseline': metrics(baseline)}
 
 
@@ -70,6 +82,7 @@ def main():
     ap.add_argument('--resume')
     ap.add_argument('--device', choices=['cpu', 'cuda'], default='cpu')
     ap.add_argument('--evaluate-only', action='store_true')
+    ap.add_argument('--skip-test', action='store_true', help='Smoke training without opening held-out test imagery')
     ap.add_argument('--epochs', type=int)
     ap.add_argument('--batch-size', type=int)
     ap.add_argument('--learning-rate', type=float)
@@ -90,6 +103,8 @@ def main():
     manifest = load_manifest(args.manifest)
     data_hash = digest(args.manifest)
     out = Path(args.output); out.mkdir(parents=True, exist_ok=True)
+    if not args.resume and any((out/name).exists() for name in ('best.pt','last.pt')):
+        raise ValueError('Training output already contains weights; choose a fresh directory or explicitly resume')
     train = DataLoader(Pairs(manifest, 'train', c), batch_size=c['batch_size'], shuffle=True)
     val = DataLoader(Pairs(manifest, 'validation', c), batch_size=c['batch_size'])
     model = UNet(c['channels'], c['width']).to(args.device)
@@ -139,6 +154,10 @@ def main():
             if stale >= c['patience']:
                 break
     checkpoint = Path(args.resume) if args.evaluate_only and args.resume else out/'best.pt'
+    (out/'config.json').write_text(json.dumps(c, indent=2))
+    if args.skip_test:
+        print(json.dumps({'heldout_test': 'not_opened', 'checkpoint': str(checkpoint)}), flush=True)
+        return
     model, ck = load_checkpoint(checkpoint)
     # Test images are opened only after best validation checkpoint selection.
     test = DataLoader(Pairs(manifest, 'test', c), batch_size=1)

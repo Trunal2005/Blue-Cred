@@ -85,7 +85,7 @@ flowchart TD
         A["🔍 Public Auditors<br>(Transparency Observers)"]
     end
 
-    subgraph CLIENT["💻 Application Layer (Next.js 14)"]
+    subgraph CLIENT["💻 Application Layer (Next.js 15)"]
         UI["Web3 DApp Interface"]
         MAP["GIS Geospatial Mapping<br>(Leaflet / OpenStreetMap)"]
         WALLET["Wallet Connect<br>(RainbowKit / Wagmi v2)"]
@@ -203,7 +203,7 @@ The core protocol smart contract (`BlueCred.sol`) is built using **OpenZeppelin 
 │   ├── backend-setup.md        # Hardhat & Appwrite configuration
 │   ├── frontend-setup.md       # Client application build guide
 │   └── local-setup.md          # End-to-end integration manual
-├── frontend/                   # Next.js 14 web client & dApp
+├── frontend/                   # Next.js 15 web client & dApp
 │   ├── src/app/                # App Router pages & API routes
 │   │   ├── admin/              # Verifier & administrative portal
 │   │   ├── certificate/        # Certificate viewer & PDF export
@@ -265,7 +265,7 @@ cp .env.example .env.local
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_APPWRITE_API_KEY=your_admin_api_key
+APPWRITE_API_KEY=your_admin_api_key
 NEXT_PUBLIC_APPWRITE_DATABASE_ID=bluecred-db
 NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID=projects
 NEXT_PUBLIC_APPWRITE_TRANSACTIONS_COLLECTION_ID=transactions
@@ -314,11 +314,13 @@ npm run start
 
 ## 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details. Source code remains MIT; derived satellite-data figures/screenshots require the CC BY 4.0 attribution documented in [the dataset card](docs/ml/DATASET_CARD.md).
 
 
-## Local CNN pipeline and validation (6 November 2026)
+## Local CNN training and validation (6 November 2026)
 
-The optional local segmentation pipeline is implemented and software-tested, but genuine mangrove training is blocked by access to suitable paired imagery. No trained mangrove checkpoint or scientific accuracy is claimed. Marketplace listings are demonstration data and cannot create purchase records. Blockchain writes default to disabled; administrator controls require a server-controlled account label. Existing remote permissions and dependency advisories still need remediation before production use.
+The existing submission workflow now runs genuine local PyTorch inference from `ml/artifacts/run1/best.pt`. Training used 144 real GMW/WorldCover 2020 reference pairs across disjoint sites (96 train / 24 validation / 24 test), completed 7 epochs and selected epoch 1. **Model quality is limited: held-out IoU 0.292, below fixed NDVI 0.321, with substantial false positives. It is not a validated mangrove-area, carbon or certification system.**
 
-See [final validation](docs/BLUECRED_FINAL_VALIDATION.md), [technical audit](docs/BLUECRED_TECHNICAL_AUDIT.md), [performance report](docs/BLUECRED_PERFORMANCE_REPORT.md), [training guide](docs/ml/TRAINING_GUIDE.md), [integration guide](docs/ml/INTEGRATION_GUIDE.md), and [zero-cost report](docs/BLUECRED_COST_REPORT.md). These verified reports qualify earlier architectural and security claims in this README. No production deployment or GitHub push was performed.
+Next.js migrated to the supported 15.5.29 security release while preserving React 18. The npm audit has zero critical advisories, but high/moderate/low issues and unknown deployed Appwrite permissions remain. Real Chrome tests verify local CNN upload/overlay and service failure behavior; external account/record/tile interactions use explicit fixtures, not production validation. Marketplace listings remain disclosed demonstrations, and blockchain writes default to disabled.
+
+See [final validation](docs/BLUECRED_FINAL_VALIDATION.md), [technical audit](docs/BLUECRED_TECHNICAL_AUDIT.md), [browser performance report](docs/BLUECRED_PERFORMANCE_REPORT.md), [training guide](docs/ml/TRAINING_GUIDE.md), [integration/startup guide](docs/ml/INTEGRATION_GUIDE.md), and [zero-cost report](docs/BLUECRED_COST_REPORT.md). These verified reports qualify earlier architectural/security claims in this README. Additional spend remains ₹0; no billable resources, production deployment, transactions or GitHub push were introduced.

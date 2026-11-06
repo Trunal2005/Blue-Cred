@@ -45,29 +45,20 @@ export default function Home() {
               <Zap className="h-4 w-4" />
               <span>Next-Generation Carbon Registry</span>
             </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold text-dark tracking-tight mb-8"
+            <h1
+              className="hero-enter text-5xl md:text-7xl font-bold text-dark tracking-tight mb-8"
             >
               BlueCred — <span className="gradient-text">Decentralized</span> <br />
               Blue Carbon Registry
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed"
+            </h1>
+            <p
+              className="hero-enter hero-intro text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed"
             >
               Transforming coastal ecosystem data into trusted blockchain-verified carbon credits. 
               Accelerating blue carbon markets with transparency and scale.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4"
+            </p>
+            <div
+              className="hero-enter hero-actions flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4"
             >
               <Link
                 href="/projects"
@@ -82,7 +73,7 @@ export default function Home() {
               >
                 Submit Carbon Project
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
 

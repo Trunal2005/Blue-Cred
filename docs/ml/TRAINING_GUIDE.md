@@ -1,31 +1,46 @@
-# Windows local training
+# Reproduce local GMW2020 training (Windows PowerShell)
 
-Run these in PowerShell from the `team-nitrix` repository root. No system-wide installation, paid service, API key, GPU rental or billing activation is needed. The project-local CPU environment has already been created in this workspace.
+Run from `C:/projects/Carbon credit transfer system/bluecred/team-nitrix`. All tools/data are free; no GPU rental, account, API key or cloud compute. The genuine trained checkpoint and paired data already exist locally in this workspace. They are ignored by Git; a Git checkout alone does not contain them.
+
+## Environment and genuine source data
 
 ```powershell
-python -m venv ml/.venv
-ml/.venv/Scripts/python -m pip install -r ml/requirements.txt
+# Create only if missing; preserve the existing local environment.
+if (!(Test-Path ml/.venv/Scripts/python.exe)) { python -m venv ml/.venv }
+ml/.venv/Scripts/python -m pip install -r docs/ml-environment-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
+# Verify the existing GMW archive, or download this one public CC BY 4.0 file with a 185 MB cap.
+ml/.venv/Scripts/python -m ml.download_gmw
+# Only when no prepared dataset exists. Existing nonempty output is protected.
+ml/.venv/Scripts/python -m ml.prepare_gmw --archive ml/data/gmw2020/source.zip --output ml/data/gmw2020/pairs
+```
+
+The archive checksum must match the publisher. Preparation reads small anonymous WorldCover COG windows for four fixed sites, not whole satellite tiles. No AWS SDK/account/billing is used; the official bucket is non-Requester-Pays and documented free. The exact URLs, permissions, attribution, year, masks and sampling caveats are in DATASET_CARD.md. Never bypass gated MANGO access or accept terms automatically. The Norway Parquet fallback was inspected, not used in this model.
+
+Preparation verifies footprint bounds despite opposite tile-name conventions, reprojects GMW masks to the imagery affine grid, excludes nodata and saves genuine aligned 128px four-band TIFFs plus masks. `manifest.json` records provenance, exact windows and site splits. The training loader checks hashes, duplicate content, shape/channel/range/CRS/affine alignment and split groups. Human provenance/footprint review still matters; group strings do not themselves prove geographic independence for arbitrary supplied datasets.
+
+## Commands actually executed
+
+```powershell
+# Genuine smoke training; held-out evaluation deliberately skipped.
+ml/.venv/Scripts/python -m ml.train --manifest ml/data/gmw2020/pairs/manifest.json --config ml/gmw-config.json --output ml/artifacts/gmw-smoke --epochs 1 --skip-test
+# Final frozen experiment: 7 epochs executed / best validation epoch 1 / early stopping.
+ml/.venv/Scripts/python -m ml.train --manifest ml/data/gmw2020/pairs/manifest.json --config ml/gmw-config.json --output ml/artifacts/run1
+# Fresh-process checkpoint/inference verification and CPU benchmark.
+ml/.venv/Scripts/python -m ml.validate_model
+```
+
+**Do not rerun these output paths to overwrite evidence.** The CLI refuses an output containing weights unless resume is explicitly requested. To reproduce a new run, use a fresh directory such as `ml/artifacts/run2`. Configuration: seed 42, width 8, 128px input, RGB bands 3/2/1 divided by 10000, two CPU threads, batch 4, AdamW 0.001, BCE+Dice, gradient clipping 1, plateau scheduler, patience 6, maximum 30 epochs and 20 minutes per invocation. No scientific accuracy target was imposed. The current model's poor test precision is an actual result, not a reason to fabricate better scores.
+
+For an interrupted **new** experiment (same manifest/config and same output directory):
+
+```powershell
+ml/.venv/Scripts/python -m ml.train --manifest ml/data/gmw2020/pairs/manifest.json --config ml/gmw-config.json --output ml/artifacts/run2 --resume ml/artifacts/run2/last.pt
+ml/.venv/Scripts/python -m ml.train --manifest ml/data/gmw2020/pairs/manifest.json --config ml/gmw-config.json --output ml/artifacts/run2 --resume ml/artifacts/run2/best.pt --evaluate-only
+# Example actual held-out TIFF; directory/filename comes from the frozen manifest.
+ml/.venv/Scripts/python -m ml.inference --checkpoint ml/artifacts/run1/best.pt --image ml/data/gmw2020/pairs/images/indonesia-sumatra-11776-6784.tif --output ml/artifacts/example-prediction
 ml/.venv/Scripts/python -m unittest discover -s ml/tests -v
 ```
 
-Exact resolved package versions for this session are recorded in `docs/ml-environment-lock.txt` (use with the CPU index in requirements for exact recreation). Windows sandboxing may block asyncio's internal loopback socket pair; run the same tests in a normal local PowerShell terminal. No external API is part of the tests.
+Outputs: best.pt, last.pt, history.json, config.json, test_metrics.json; inference exports actual PNG mask/overlay and JSON statistics. Resume restores optimizer, scheduler and CPU RNG; changed config/manifest/content is rejected. Exact CUDA resume reproducibility is not established. Final test is for evaluation only; do not tune the frozen experiment on its published test metrics. A scientifically improved future model needs broader labeled training and a fresh independent holdout.
 
-## Prepare legitimate data
-
-There is currently no suitable local paired dataset. Read DATASET_CARD.md first. Do not run a real experiment with the downloaded annotation-only tar. Obtain image/mask pairs, inspect licenses, labels, footprints, spectral scaling and geographic splits, then adapt `ml/manifest.example.json` into `ml/data/manifest.json`. Paths must resolve under the manifest directory. Supply real source/license/label definitions and geographic groups. The code never downloads datasets automatically and does not accept dataset instructions as executable code.
-
-The default config expects Sentinel-2 TIFF reflectance, RGB bands 4/3/2 and scale 10,000. For a legitimately sourced RGB dataset, create a distinct config with `input_kind: "rgb"`, `bands: [1,2,3]`, `scale: 255` and an accurate `label`; use only true RGB PNG/JPEG imagery. Do not present that model as mangrove-specific unless the labels support it. Tiles are bounded to 4 million pixels; masks must align exactly. Mixed/nodata/ignore masks are rejected; documented preprocessing is required before use.
-
-```powershell
-# Run only after valid data is supplied and inspected.
-ml/.venv/Scripts/python -m ml.train --manifest ml/data/manifest.json --config ml/config.json --output ml/artifacts/run1 --device cpu --epochs 20 --batch-size 2 --learning-rate 0.001 --seed 42
-# Keep the same config and CLI overrides when resuming.
-ml/.venv/Scripts/python -m ml.train --manifest ml/data/manifest.json --config ml/config.json --output ml/artifacts/run1 --resume ml/artifacts/run1/last.pt
-# Evaluate the already selected best checkpoint; do not tune on the test set.
-ml/.venv/Scripts/python -m ml.train --manifest ml/data/manifest.json --config ml/config.json --output ml/artifacts/run1 --resume ml/artifacts/run1/best.pt --evaluate-only
-ml/.venv/Scripts/python -m ml.inference --checkpoint ml/artifacts/run1/best.pt --image ml/data/test/image03.tif --output ml/artifacts/prediction
-```
-
-Outputs: `best.pt`, `last.pt`, `history.json`, `config.json`, `test_metrics.json`; inference exports mask, overlay and result JSON. They are ignored by Git. Interrupted/time-limited runs retain previous completed checkpoints. Test results are computed after best selection. Use a separate experiment directory per dataset/config and preserve the final test set.
-
-Local hardware: 16 CPU threads, 16.83 GB RAM with ~3.56 GB available at baseline, RTX 3050 4 GB. This session installs CPU PyTorch to keep the environment small; CUDA is unavailable in that wheel. No GPU performance claim is made. Start with a one-epoch smoke experiment on real training/validation tiles; reduce size/width if memory becomes tight. Existing system PostgreSQL PROJ settings conflicted with Rasterio; the ML package now selects Rasterio's bundled PROJ data only in its own process.
+Hardware: 16 CPU threads, 16.83 GB RAM total, ~3.38 GB available at Phase 2 inspection, RTX 3050 4 GB present. The existing CPU PyTorch wheel sufficed; no CUDA install or GPU charge. Two-thread bounded training completed in about 96 seconds of recorded training-loop time. Rasterio uses its bundled PROJ data within the ML process to avoid the system PostgreSQL conflict; no system configuration was changed. Windows sandbox restrictions can block asyncio loopback sockets: normal local PowerShell supports the actual HTTP tests.

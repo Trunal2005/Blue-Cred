@@ -69,12 +69,14 @@ export default function CertificatePage() {
       
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
+        compress: true,
         orientation: 'landscape',
         unit: 'px',
         format: [canvas.width / 2, canvas.height / 2]
       });
       
-      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2);
+      // Lossless PNG stream compression preserves the existing raster quality.
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / 2, canvas.height / 2, undefined, 'FAST');
       pdf.save(`BlueCred-Certificate-${data?.credit?.tokenId || 'BCT'}.pdf`);
     } catch (error) {
       console.error("Failed to generate PDF", error);
@@ -91,7 +93,13 @@ export default function CertificatePage() {
     );
   }
 
-  const { credit, project } = data || {};
+  if (!data) return <div className="min-h-screen bg-gray-50 p-12 text-center">
+    <h1 className="text-2xl font-bold text-dark mb-4">Certificate record unavailable</h1>
+    <p className="text-gray-500 mb-6">The record could not be loaded. No certificate or verification claim has been generated.</p>
+    <Link href="/projects" className="text-forest font-bold">Return to projects</Link>
+  </div>;
+
+  const { credit, project } = data;
 
   return (
     <div className="bg-gray-50 min-h-screen pt-12 pb-24">
@@ -150,13 +158,13 @@ export default function CertificatePage() {
                     <span className="text-2xl font-black text-dark tracking-tighter">BlueCred</span>
                   </div>
                   <p className="text-sm font-bold text-gray-400 uppercase tracking-widest border-l-2 border-forest pl-2 ml-1">
-                    Verified Carbon Offset
+                    Carbon Credit Record
                   </p>
                 </div>
                 <div className="text-right">
                   <div className="inline-flex items-center space-x-1 px-3 py-1 bg-forest/10 rounded-full text-forest text-[10px] font-bold uppercase tracking-wider mb-2 border border-forest/20">
                     <ShieldCheck className="h-3 w-3" />
-                    <span>Blockchain Verified</span>
+                    <span>Registry Record</span>
                   </div>
                   <p className="font-mono text-xs text-gray-400">ID: {credit.tokenId}</p>
                 </div>
@@ -164,19 +172,19 @@ export default function CertificatePage() {
 
               {/* Cert Body */}
               <div className="text-center max-w-2xl mx-auto mb-16">
-                <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-4">This Certificate confirms that</p>
+                <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-4">This registry record is associated with</p>
                   <h2 className="text-4xl font-bold text-dark mb-4 border-b pb-4 border-gray-100 italic">
-                    {credit?.buyerUserId || "Verified Company"}
+                    {credit?.buyerUserId || "Company record"}
                   </h2>
-                  <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-8 mt-6">has permanently retired</p>
+                  <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-8 mt-6">Recorded credit quantity</p>
                   
                   <div className="inline-block px-12 py-6 bg-mint/30 rounded-3xl border border-mint mb-8">
                     <p className="text-6xl font-black text-forest mb-2">{credit?.creditAmount?.toLocaleString()}</p>
-                    <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Tons of CO2e</p>
+                    <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Credits recorded</p>
                   </div>
 
                   <p className="text-gray-500 leading-relaxed max-w-xl mx-auto">
-                    Derived from verifiable ecological restoration activities conducted within the <span className="font-bold text-dark">{project?.projectName}</span> project at <span className="font-bold text-dark">{project?.locationName}</span>.
+                    Project information recorded for the <span className="font-bold text-dark">{project?.projectName}</span> project at <span className="font-bold text-dark">{project?.locationName}</span>. This record does not establish blockchain retirement or carbon certification.
                   </p>
                 </div>
 
@@ -187,12 +195,12 @@ export default function CertificatePage() {
                     <p className="font-bold text-dark text-sm">{project?.ecosystemType}</p>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Retirement Date</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Record Date</p>
                     <p className="font-bold text-dark text-sm">{credit?.transactionDate?.split('T')[0]}</p>
                   </div>
                 <div>
                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Network</p>
-                  <p className="font-bold text-dark text-sm">Polygon Mainnet</p>
+                  <p className="font-bold text-dark text-sm">Unverified</p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="h-12 w-12 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200 shrink-0">
@@ -204,8 +212,8 @@ export default function CertificatePage() {
                     </div>
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Registry Explorer</p>
-                    <p className="text-[10px] font-mono text-dark">0x4a9b...7c2e</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Verification</p>
+                    <p className="text-[10px] font-mono text-dark">No verified transaction</p>
                   </div>
                 </div>
               </div>

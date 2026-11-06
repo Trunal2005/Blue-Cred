@@ -1,0 +1,48 @@
+{
+  "checks": [
+    "landing",
+    "login with explicit mocked Appwrite session",
+    "real Leaflet interaction, tiles mocked",
+    "REAL held-out TIFF upload \u00e2\u2020\u2019 Next API \u00e2\u2020\u2019 Python trained CNN \u00e2\u2020\u2019 mask/overlay",
+    "real service unavailable state; submission remains usable",
+    "dashboard and charts with Appwrite fixture",
+    "marketplace demo disclosure",
+    "unauthorized verifier state",
+    "real PDF generation using explicitly mocked certificate records"
+  ],
+  "realInferenceUiMs": 1814.602499999999,
+  "resultText": "Coastal vegetation analysis\n\nOptional local CNN estimate. Use imagery matching the installed model and its band order. The GMW 2020 model requires a four-band WorldCover 2020 annual-composite GeoTIFF (B02, B03, B04, B08). Analysis does not change your project, certification or credits.\n\nImage for local analysis (maximum 8 MiB)\nAnalyze locally\n\nAnalysis complete. Review the limitations below.\n\nPredicted mangrove reference extent (GMW 2020) coverage: 87.45%\n\nArea unavailable: no supported metre-based georeferencing. Coverage percentage only.\n\nModel: bluecred-gmw2020-unet-v1. Local inference: 838 ms.\n\nInput: WorldCover 2020 Sentinel-2 annual median GeoTIFF; four bands B02/B03/B04/B08; RGB channels 3/2/1 divided by 10000\n\nExperimental replication of GMW 2020 map-derived mangrove reference labels on a small site-disjoint sample. Not independent field ground truth. Two training sites only; domain shift, residual cloud/composite artefacts and reference-map errors remain. Use matching 2020 annual-composite inputs. No carbon, certification or credit issuance claim. Projected grid area only when metre CRS exists; projection distortion and model uncertainty remain. Input sensor and preprocessing must match training.",
+  "heldout_image": "images/indonesia-sumatra-11776-6784.tif",
+  "pdfGenerationMs": 1739.5393000000004,
+  "mobile": [
+    {
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "route": "/login",
+      "overflow": false
+    },
+    {
+      "route": "/submit",
+      "overflow": false
+    },
+    {
+      "route": "/marketplace",
+      "overflow": false
+    },
+    {
+      "route": "/impact",
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "mockedAccountRequests": 2,
+  "mockedDatabaseRequests": 4,
+  "mockedImageRequests": 52,
+  "blockedExternal": [],
+  "scope": "Real browser and trained CNN/Next/Python path. Authentication, project/certificate records and remote tiles are explicit fixtures, not production integrations. No project was submitted.",
+  "chrome": "156.0.8078.80",
+  "phase": "before-pdf-compression",
+  "pdfBytes": 9154121
+}

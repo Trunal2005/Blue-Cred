@@ -50,7 +50,12 @@ class Predictor:
         mask = F.interpolate(logits.sigmoid(), size=a.shape[1:], mode='bilinear', align_corners=False)[0, 0].numpy() >= .5
         coverage = float(mask.mean())
         pixel_area = projected_pixel_area(path)
-        preview = np.uint8(np.clip(x.numpy().transpose(1, 2, 0), 0, 1) * 255)
+        validation = self.metadata.get('history', [{}])[-1].get('validation', {})
+        display = x.numpy().transpose(1, 2, 0)
+        # Display stretch only; model tensors, mask and coverage remain unchanged.
+        if self.config['input_kind'] == 'sentinel2':
+            display = np.clip(display * 3, 0, 1) ** (1/2.2)
+        preview = np.uint8(np.clip(display, 0, 1) * 255)
         small_mask = logits.sigmoid()[0, 0].numpy() >= .5
         overlay = preview.copy()
         overlay[small_mask] = (preview[small_mask] * .5 + np.array([31, 180, 77]) * .5).astype('uint8')
@@ -58,8 +63,13 @@ class Predictor:
                 'coverage_percent': coverage * 100, 'foreground_pixels': int(mask.sum()),
                 'total_pixels': int(mask.size), 'area_hectares': float(mask.sum() * pixel_area / 10000) if pixel_area else None,
                 'mask_png': png(small_mask.astype('uint8') * 255), 'overlay_png': png(overlay),
+                'input_description': self.config.get('input_description', 'Input must match training preprocessing'),
+                'validation_precision': validation.get('precision'),
+                'validation_iou': validation.get('foreground_iou'),
+                'checkpoint_epoch': self.metadata['epochs_completed'],
+                'preview_display': 'Sentinel reflectance display: gain 3 and gamma 1/2.2; no effect on inference' if self.config['input_kind'] == 'sentinel2' else 'RGB display without reflectance stretch',
                 'inference_ms': (time.perf_counter()-start)*1000,
-                'limitations': 'Experimental AI estimate. Projected grid area only when metre CRS exists; projection distortion and model uncertainty remain. Vegetation coverage is not carbon storage, certification or credit issuance. Input sensor and preprocessing must match training.'}
+                'limitations': self.config.get('limitations', 'Experimental AI estimate. Vegetation coverage is not carbon storage, certification or credit issuance.') + ' Projected grid area only when metre CRS exists; projection distortion and model uncertainty remain. Input sensor and preprocessing must match training.'}
 
 
 def main():

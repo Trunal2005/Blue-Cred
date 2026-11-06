@@ -1,0 +1,71 @@
+{
+  "checks": [
+    "landing",
+    "login with explicit mocked Appwrite session",
+    "real Leaflet interaction, tiles mocked",
+    "REAL held-out TIFF upload → Next API → Python trained CNN → mask/overlay",
+    "real service unavailable state; submission remains usable",
+    "dashboard and charts with Appwrite fixture",
+    "marketplace demo disclosure",
+    "unauthorized verifier state",
+    "real PDF generation using explicitly mocked certificate records",
+    "missing certificate record: safe unavailable state without false verification claim"
+  ],
+  "realInferenceUiMs": 1711.7073999999993,
+  "readiness": {
+    "service": "ok",
+    "ready": true,
+    "reason": null,
+    "model_version": "bluecred-gmw2020-unet-v1",
+    "label": "mangrove reference extent (GMW 2020)",
+    "input_description": "WorldCover 2020 Sentinel-2 annual median GeoTIFF; four bands B02/B03/B04/B08; RGB channels 3/2/1 divided by 10000"
+  },
+  "prediction": {
+    "model_version": "bluecred-gmw2020-unet-v1",
+    "coverage_percent": 87.445068359375,
+    "foreground_pixels": 14327,
+    "total_pixels": 16384,
+    "area_hectares": null,
+    "inference_ms": 852.8549000002386,
+    "validation_precision": 0.4323703542977589
+  },
+  "resultText": "Coastal vegetation analysis\n\nOptional local CNN estimate. Use imagery matching the installed model and its band order. The GMW 2020 model requires a four-band WorldCover 2020 annual-composite GeoTIFF (B02, B03, B04, B08). Analysis does not change your project, certification or credits.\n\nImage for local analysis (maximum 8 MiB)\nAnalyze locally\n\nAnalysis complete. Review the limitations below.\n\nResearch prototype with low validation precision and substantial false positives. This mask cannot verify a project or establish mangrove area reliably.\n\nPredicted mangrove reference extent (GMW 2020) coverage: 87.45%\n\nArea unavailable: no supported metre-based georeferencing. Coverage percentage only.\n\nModel: bluecred-gmw2020-unet-v1. Local inference: 853 ms.\n\nModel validation IoU: 42.7%. This is a dataset score, not accuracy for this uploaded image.\n\nInput: WorldCover 2020 Sentinel-2 annual median GeoTIFF; four bands B02/B03/B04/B08; RGB channels 3/2/1 divided by 10000\n\nExperimental replication of GMW 2020 map-derived mangrove reference labels on a small site-disjoint sample. Not independent field ground truth. Two training sites only; domain shift, residual cloud/composite artefacts and reference-map errors remain. Use matching 2020 annual-composite inputs. No carbon, certification or credit issuance claim. Projected grid area only when metre CRS exists; projection distortion and model uncertainty remain. Input sensor and preprocessing must match training.",
+  "heldout_image": "images/indonesia-sumatra-11776-6784.tif",
+  "pdfGenerationMs": 3452.469100000002,
+  "pdfBytes": 157655,
+  "mobile": [
+    {
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "route": "/login",
+      "overflow": false
+    },
+    {
+      "route": "/submit",
+      "overflow": false
+    },
+    {
+      "route": "/marketplace",
+      "overflow": false
+    },
+    {
+      "route": "/impact",
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Error fetching certificate data: AppwriteException: Explicit missing-record fixture\n    at U.<anonymous> (http://127.0.0.1:13087/_next/static/chunks/087072f9-fb3c5724bb9c6d8a.js:1:12438)\n    at Generator.next (<anonymous>)\n    at o (http://127.0.0.1:13087/_next/static/chunks/087072f9-fb3c5724bb9c6d8a.js:1:291)"
+  ],
+  "mockedAccountRequests": 2,
+  "mockedDatabaseRequests": 5,
+  "mockedImageRequests": 56,
+  "blockedExternal": [],
+  "scope": "Real browser and trained CNN/Next/Python path. Authentication, project/certificate records and remote tiles are explicit fixtures, not production integrations. No project was submitted.",
+  "chrome": "156.0.8078.80",
+  "phase": "final"
+}

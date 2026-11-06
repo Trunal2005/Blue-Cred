@@ -1,0 +1,27 @@
+{
+  "baseline": {
+    "pdf_bytes": 9154121,
+    "pages": 1,
+    "image_dimensions": [
+      1916,
+      1592
+    ],
+    "decoded_image_sha256": "84c1bf9a158d591e54e7ee640d3fae2fd10f266304f9016024ba1edc46fc1d64"
+  },
+  "final": {
+    "pdf_bytes": 148746,
+    "pages": 1,
+    "image_dimensions": [
+      1916,
+      1592
+    ],
+    "decoded_image_sha256": "84c1bf9a158d591e54e7ee640d3fae2fd10f266304f9016024ba1edc46fc1d64"
+  },
+  "decoded_pixels_identical": true,
+  "comparison_scope": "Same-content original versus compression-only export, preserved as initial-fixture-certificate.pdf and compression-comparison.pdf under ignored ml/artifacts/browser. Later safety-label changes intentionally alter rendered text.",
+  "final_safety_record": {
+    "pdf_bytes": 157655,
+    "pages": 1,
+    "visual_review": "Rendered and inspected: registry record, recorded quantity, unverified network, no retirement/certification proof claim."
+  }
+}

@@ -87,6 +87,22 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(projected_pixel_area(p), expected)
         self.assertIsNone(projected_pixel_area(self.root/'0.png'))
 
+    def test_sentinel_band_contract_and_nodata(self):
+        config = dict(self.config, input_kind='sentinel2', scale=10000., bands=[3,2,1], ndvi_bands=[4,3])
+        p = self.root/'satellite.tif'
+        profile = dict(driver='GTiff', width=16, height=16, count=3, dtype='uint16',
+                       crs='EPSG:4326', transform=from_origin(88,22,.0001,.0001))
+        with rasterio.open(p,'w',**profile) as dst:
+            dst.write(np.full((3,16,16),1000,dtype='uint16'))
+        with self.assertRaises(ValueError): image_array(p,config)
+        profile.update(count=4,nodata=0)
+        with rasterio.open(p,'w',**profile) as dst:
+            a=np.full((4,16,16),1000,dtype='uint16'); a[:,0,0]=0; dst.write(a)
+        with self.assertRaises(ValueError): image_array(p,config)
+        with rasterio.open(p,'w',**profile) as dst:
+            dst.write(np.full((4,16,16),1000,dtype='uint16'))
+        self.assertEqual(image_array(p,config).shape,(3,16,16))
+
     def test_training_cli_checkpoint_fresh_process_inference_and_resume(self):
         config = self.root/'config.json'; config.write_text(json.dumps(self.config))
         out = self.root/'artifacts'
@@ -95,6 +111,9 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
         model, ck = load_checkpoint(out/'best.pt')
         self.assertGreaterEqual(ck['epochs_completed'], 1)
+        refused = subprocess.run(command, capture_output=True, text=True, timeout=60)
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn('already contains weights', refused.stderr)
         result = Predictor(out/'best.pt').predict(self.root/'3.png')
         self.assertEqual(result['total_pixels'], 1024); self.assertIsNone(result['area_hectares'])
         self.assertTrue(result['mask_png']); self.assertTrue(result['overlay_png'])
@@ -108,6 +127,13 @@ class PipelineTests(unittest.TestCase):
     def test_untrained_checkpoint_rejected(self):
         p = self.root/'untrained.pt'; torch.save({'model': UNet().state_dict()}, p)
         with self.assertRaises(ValueError): load_checkpoint(p)
+
+    def test_preparation_preserves_existing_data(self):
+        from ml.prepare_gmw import prepare
+        original = (self.root/'0.png').read_bytes()
+        with self.assertRaises(FileExistsError):
+            prepare(self.root/'not-downloaded.zip', self.root)
+        self.assertEqual((self.root/'0.png').read_bytes(), original)
 
 
 class ServiceTests(unittest.TestCase):

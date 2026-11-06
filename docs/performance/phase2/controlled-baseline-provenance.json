@@ -1,0 +1,10 @@
+{
+  "commit": "ffa8911",
+  "source_matches_commit": true,
+  "homepage_source_sha256": "55e75b356f3b8a3b1a9ad814c9c3cdb2c9df8ad5bb742d2ae7fa3c6317bb7cf7",
+  "next": "15.5.29",
+  "react": "18.3.1",
+  "dependencies": "junction to the same installed frontend/node_modules; no extra installation",
+  "jobs": "No training, data preparation or build jobs active during controlled-before/after browser trials",
+  "worktree": ".local-validation/baseline (ignored, detached, retained for reproducibility)"
+}

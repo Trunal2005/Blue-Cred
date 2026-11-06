@@ -1,0 +1,1 @@
+{"loopback_http": "passed", "readiness": {"service": "ok", "ready": false, "reason": "checkpoint_missing", "model_version": null, "label": null, "input_description": null}}

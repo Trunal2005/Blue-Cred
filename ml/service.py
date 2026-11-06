@@ -57,7 +57,9 @@ async def boundary(request: Request, call_next):
 @app.get('/health')
 def health():
     return {'service': 'ok', 'ready': predictor is not None, 'reason': None if predictor else load_error or 'checkpoint_missing',
-            'model_version': predictor.config['version'] if predictor else None}
+            'model_version': predictor.config['version'] if predictor else None,
+            'label': predictor.config['label'] if predictor else None,
+            'input_description': predictor.config.get('input_description') if predictor else None}
 
 
 def run_prediction(content, suffix):

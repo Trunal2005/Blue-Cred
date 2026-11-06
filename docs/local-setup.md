@@ -1,5 +1,7 @@
 # Local Setup Guide
 
+> Current zero-cost workflow: see [validated local integration guide](ml/INTEGRATION_GUIDE.md) and [final validation](BLUECRED_FINAL_VALIDATION.md). No wallet private key, cloud provisioning or contract deployment is needed for local CNN inference. External setup/deployment sections below are legacy reference, not steps authorized by the ₹0 local workflow. Do not run provisioning: its broad permissions are gated pending separate review. `APPWRITE_API_KEY` is script-only and must never have a `NEXT_PUBLIC_` prefix.
+
 This guide provides a step-by-step process to set up the entire BlueCred project locally from scratch.
 
 ## 1. Prerequisites
@@ -40,7 +42,7 @@ Create a `.env.local` file in the `frontend` folder:
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_APPWRITE_API_KEY=your_admin_api_key
+APPWRITE_API_KEY=your_admin_api_key
 NEXT_PUBLIC_APPWRITE_DATABASE_ID=bluecred-db
 NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID=projects
 NEXT_PUBLIC_APPWRITE_TRANSACTIONS_COLLECTION_ID=transactions

@@ -1,12 +1,14 @@
 # Frontend Setup Guide
 
+> Current zero-cost workflow: see [validated local integration guide](ml/INTEGRATION_GUIDE.md) and [final validation](BLUECRED_FINAL_VALIDATION.md). No wallet private key, cloud provisioning or contract deployment is needed for local CNN inference. External setup/deployment sections below are legacy reference, not steps authorized by the ₹0 local workflow. Do not run provisioning: its broad permissions are gated pending separate review. `APPWRITE_API_KEY` is script-only and must never have a `NEXT_PUBLIC_` prefix.
+
 This document details how to install dependencies, configure environment variables, and run the **BlueCred** Next.js web application.
 
 ---
 
 ## 1. Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 15.5.29 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Web3**: Wagmi v2, Viem v2, RainbowKit v2, Ethers v6
@@ -50,14 +52,14 @@ Populate the required keys:
 # Appwrite Settings
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://sgp.cloud.appwrite.io/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_appwrite_project_id
-NEXT_PUBLIC_APPWRITE_API_KEY=your_appwrite_api_key_for_scripts
+APPWRITE_API_KEY=your_appwrite_api_key_for_scripts
 NEXT_PUBLIC_APPWRITE_DATABASE_ID=bluecred-db
 NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID=projects
 NEXT_PUBLIC_APPWRITE_TRANSACTIONS_COLLECTION_ID=transactions
 NEXT_PUBLIC_APPWRITE_BUCKET_ID=project-images
 
 # Web3 Configuration
-NEXT_PUBLIC_SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/your_alchemy_api_key
+NEXT_PUBLIC_SEPOLIA_RPC_URL=http://127.0.0.1:8545
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_walletconnect_project_id
 ```
 
@@ -90,10 +92,10 @@ The Next.js development interface runs on your designated dev port.
 
 ## 7. Appwrite Setup & Provisioning
 
-Before submitting projects or purchasing credits, provision your Appwrite collections:
+Remote provisioning is disabled pending a permission/cost review. It is not part of ordinary local frontend or CNN startup:
 
 ```bash
-node src/scripts/init-appwrite.js
+# Provisioning is disabled pending review; use the current local integration guide.
 ```
 
 This ensures the `projects` and `transactions` collections and the `project-images` storage bucket exist with all required schema attributes.

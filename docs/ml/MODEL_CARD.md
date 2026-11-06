@@ -1,17 +1,43 @@
-# Blue-Cred U-Net v1 — untrained pipeline
+# Blue-Cred GMW2020 U-Net v1 — trained research prototype
 
-**No genuine mangrove checkpoint exists. Not scientifically validated or production ready.**
+**Real training and held-out evaluation completed. Model quality is insufficient for project verification or reliable mangrove-area estimation.** The trained CNN underperforms a fixed NDVI baseline on the test site.
 
-Architecture: PyTorch encoder-decoder CNN, two encoder stages, bottleneck, bilinear decoder and skip connections; GroupNorm/ReLU; binary logit head. Default 3 RGB reflectance channels, base width 8, 30,081 parameters and 128×128 model grid. Uses fixed preprocessing shared by training/inference. Image resizing loses fine spatial detail and is a limitation, not a validated tiling strategy.
+## Architecture and provenance
 
-Training configuration: `ml/config.json`; CPU, two threads, batch 2, AdamW 0.001, BCE-with-logits plus Dice loss, ReduceLROnPlateau, clipping norm 1, seed 42, horizontal-flip augmentation only for training, validation-loss best-checkpoint selection, patience 5, maximum 20 epochs / 20 minutes per invocation. Default trainable weights are about 120 KB float32 before metadata/optimizer; no real checkpoint size is reported. Resume restores optimizer, scheduler and CPU Torch RNG and rejects changed manifest/config/content. CUDA CLI exists but the installed wheel is CPU-only; GPU path and exact CUDA-resume reproducibility are unverified.
+Existing PyTorch U-Net reused: two encoder stages, bottleneck, bilinear decoder, skip connections, GroupNorm/ReLU, binary logits. Width 8, three RGB reflectance inputs, 128×128 grid, **30,081 parameters**. No pretrained weights, paid endpoint, synthetic scientific data or fabricated results.
 
-Real epochs completed: **0**. Best epoch, validation IoU/Dice/precision/recall/F1/loss, held-out test metrics, real inference latency and model checkpoint size: **not available**. Expected future checkpoint: `ml/artifacts/run1/best.pt`; **does not currently exist**. No random weights are exposed as trained predictions.
+Dataset: 144 real GMW 2020/WorldCover image-map pairs; 96 train (India/Myanmar), 24 validation (Thailand), 24 held-out test (Indonesia). Read DATASET_CARD.md for map-label, sample-selection, cloud and spatial limitations. Sensor B02/B03/B04/B08; CNN channels 3/2/1 / 10000; foreground is **GMW mapped mangrove reference extent**, not independently established mangrove presence.
 
-The nine software tests include a two-epoch run on tiny synthetic fixtures, checkpoint loading, resume and fresh-process prediction. These fixtures and artifacts are temporary and removed; their scores are not scientific results. No synthetic checkpoint is delivered or installed in the service.
+Checkpoint: `ml/artifacts/run1/best.pt` — **exists locally**, 496,608 bytes including optimizer/provenance. SHA256 `774e78749f2bdd608076625138be1d4abd6046141b8a2e4e2be0b5267b86ff45`. Weights/data are ignored by Git; retain them separately if moving the workspace. `last.pt`, full history, config and final test metrics exist alongside it. Selected checkpoint was loaded in a fresh process and in the actual local FastAPI service.
 
-Evaluation code aggregates foreground confusion counts, IoU, Dice/F1, precision, recall, background IoU, loss, loading-inclusive seconds/image and a fixed RGB excess-green baseline. Undefined zero-denominator metrics are null. The baseline is not NDVI or a validated mangrove discriminator. Test evaluation does not tune thresholds. Checkpoints record source, license, file hashes, package version, config, selected epoch and actual session runtime. Repeated resume commands can extend the per-invocation time budget; keep experiments bounded deliberately.
+## Training actually performed
 
-Inference loads a locally trusted, provenance-bearing checkpoint once, runs evaluation with `torch.inference_mode`, and returns a preview mask/overlay, original-grid pixel coverage and model version. Hectares are omitted unless projected metre CRS/affine pixel area is available; determinant handles rotated grids. Grid area is not necessarily geodesic ground area (projection distortion remains). No uncertainty calibration, cross-region validation, cloud model, species verification or carbon estimation is available.
+A separate genuine-data smoke run completed 1 epoch with `--skip-test`; it did not evaluate the test split. Final experiment executed **7 epochs**, selecting **epoch 1** by minimum validation loss, then stopping after six unimproved epochs. Maximum configured 30 epochs / 20 minutes; actual recorded training-loop runtime **96.177 seconds** (excludes preparation/import/preflight). CPU, two threads, batch 4, seed 42; AdamW 0.001; BCE-with-logits + Dice; plateau scheduler, clipping norm 1; horizontal flips only for training. No test-driven retraining or threshold adjustment occurred.
 
-**Not appropriate for automated project verification, carbon-credit certification, carbon sequestration estimation or token minting.** Human review and independent scientific validation are required before any such downstream use.
+Environment: Python 3.13.5, Torch 2.15.0+cpu, Windows, 16 logical CPU threads / ~16.83 GB total RAM, local RTX 3050 4 GB present but unused. Installed Torch is CPU-only; GPU training/inference latency is **not measured**. Exact free packages are in `docs/ml-environment-lock.txt`.
+
+## Actual scores (foreground, global pixel counts)
+
+| Metric | Best validation (24 Thailand tiles) | Held-out test (24 Indonesia tiles) |
+| --- | --- | --- |
+| IoU | 0.426927 | 0.291602 |
+| Dice / F1 | 0.598387 | 0.451535 |
+| Precision | 0.432370 | 0.296220 |
+| Recall | 0.971358 | 0.949253 |
+| Loss | 1.219472 | 1.462316 |
+| Background IoU | 0.262063 | 0.254123 |
+| Fixed NDVI >0.3 baseline IoU | 0.450987 | 0.320630 |
+
+Test confusion: TP 92,369, FP 219,457, FN 4,938, TN 76,452. Threshold 0.5 for CNN probabilities and 0.3 for NDVI were fixed before evaluation. NDVI detects vegetation generally; it is not a mangrove classifier. The CNN's high recall/low precision and growing later validation loss show substantial false positives/overfitting. The best checkpoint is epoch 1, not the last model. Results from one sampled test site are not confidence-bounded regional performance estimates. No accuracy target is claimed achieved.
+
+## CPU inference and actual integration
+
+Standalone benchmark: one real 128px held-out TIFF, two CPU threads, five warmups / 30 repeats, local file cache. Median full pipeline **35.440 ms**, p95 **39.274 ms**; model-forward median **13.662 ms**. Checkpoint load excluding Python import **104.383 ms**. Full samples are in `docs/performance/phase2/model-validation.json`. These are local sequential latencies, not concurrent throughput. Browser/API cold-request latency is recorded separately in the browser E2E JSON.
+
+Real browser test uploads an actual held-out TIFF through the existing `/submit` evidence step → Next `/api/analysis` → real FastAPI/PyTorch model → actual mask and overlay. Readiness is real, not mocked. Appwrite authentication/records and remote map tiles in that test are explicitly mocked, not external integration validation. The UI warns about low validation precision; it does not treat the output as certification. Public screenshot and four held-out RGB/reference/prediction diagnostics are under `docs/performance/phase2/`.
+
+Raw reflectance is unchanged for inference. Preview alone uses gain 3 and gamma 1/2.2 to make dark satellite reflectance visible; the display stretch does not change masks or statistics. All acquired data use EPSG:4326, so actual demo area is null and pixel coverage is shown. Projected metre-grid area code is unit-tested, but field ground area remains unvalidated.
+
+## Prohibited interpretations
+
+Not appropriate for automatic project verification, reliable mapped area, species identification, change detection, carbon storage/sequestration estimation, carbon-credit certification or token minting. No uncertainty calibration or independent field validation. Human scientific review and broader independently labeled geographic data are required. Current model is a reproducible engineering baseline, not a production mangrove detector.

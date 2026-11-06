@@ -1,0 +1,14 @@
+{
+  "token_restored": true,
+  "local_model_startup": "passed",
+  "frontend_launch": "npm command captured by explicit test stub",
+  "frontend_arguments": [
+    "--prefix",
+    "C:\\projects\\Carbon credit transfer system\\bluecred\\team-nitrix\\frontend",
+    "run",
+    "dev",
+    "--",
+    "--hostname",
+    "127.0.0.1"
+  ]
+}

@@ -1,74 +1,57 @@
-# Blue-Cred performance report — 6 November 2026
+# Blue-Cred performance report — Phase 2, 6 November 2026
 
-## Method and constraints
+## Genuine browser methodology
 
-Same existing Windows laptop (16 CPU threads, 16.83 GB RAM, local SSD) and project. No Appwrite/RPC/hosted-inference traffic generated for benchmarks. Original clean baseline is commit 357f05f, Next 14.2.3. Original production build fails on missing certificate client directive and font DNS; original TypeScript fails on Leaflet types, so there is no valid baseline production bundle or browser comparison. Do not infer loading improvement from a repaired build.
+Actual production Next.js 15.5.29 in isolated **Chrome 156.0.8078.80**, existing Windows laptop (16 CPU threads, 16.83 GB RAM; RTX3050 unused by ML), 1440×1000 viewport, no CPU/network throttle. All Appwrite account/document requests and remote images/map tiles are explicit fixtures; other external traffic blocked. This measures local app rendering/interaction, not real cloud latency or geographically accurate map tiles.
 
-Local production HTTP benchmark uses `frontend/tests/production-smoke.cjs`, loopback port 13087, five sequential GETs per route and median elapsed time to response headers. It does not render browser JavaScript or measure LCP, INP, CLS, hydration, real navigation, maps, PDFs or external data requests. The temporary server is stopped afterward. Full samples are in `performance/production-http-smoke.json`. Network conditions differ between initial font fetch and later cached builds; build-duration comparisons are not valid.
+A controlled homepage comparison uses a separate detached worktree at **ffa8911** (supported Next migration, original Framer hero entrance) and the final build (same fade/movement durations in CSS). The baseline source was byte-checked against its commit. The worktree uses a junction to the same installed free dependencies; main source was not swapped/overwritten. Both builds completed before measurement; **no data preparation, training or build jobs ran during the ten controlled browser trials**. Five fresh browser contexts per version, identical 2.5-second observation window and real click to project registry. See controlled-baseline-provenance.json and browser-profile-controlled-before/after.json.
 
-## Verified before / after
+Earlier three-context full-route samples remain as raw evidence. The original Phase 1 Next14 build failed, so it is not a usable production-browser baseline. Earlier preliminary root medians varied (including 1460→380 and 1460→784 ms); **these are not the final claimed comparison**. Five-trial controlled results below supersede them. Background OS load/caches and small sample size still limit inference; no field Core Web Vitals or universal speed guarantee.
 
-| Measurement | Baseline | Final | Interpretation |
-| --- | --- | --- | --- |
-| Production build | Fails | Exit 0, 38.106 seconds on final cached-font run | Repaired build; no speedup claim |
-| TypeScript | TS7016 Leaflet errors | Pass, no diagnostics | Compatibility repair |
-| Impact project-list requests | 2 | 1 | 50% reduction in mocked component-effect request count |
-| Production first-load bundle | Unavailable: failed build | See build output below | No percentage reduction claim |
-| HTTP route readiness | Baseline unavailable | 13 pages return 200, disabled API returns 503 | Server response smoke only |
-| Certificate PDF library load | Eager imports | Dynamic imports in download handler | Deferred work verified by source/build; no measured PDF/browser time claim |
-| Map lifecycle | Cleanup captures null state | Ref lifetime / cancelled import cleanup | Correctness fix; no measured frame-rate claim |
-| Real CNN latency | No model | No model | Not measured; no fabricated numbers |
-| Live Appwrite / RPC latency | Not tested | Not tested | Avoid unknown usage charges |
+## Controlled homepage results
 
-The query-count harness transpiles and executes the original impact/map components from `git show 357f05f` and final source with a mocked SDK, then invokes their effects. It asserts two vs one database calls and makes no real cloud calls. It does not simulate or assert a page-speed gain. Chart/Map/PDF client CPU profiling remains unmeasured.
-
-## Final localhost route measurements
-
-| Route | Status | Median headers ms (5 samples) |
+| Metric (5-context median) | Before | Final |
 | --- | --- | --- |
-| `/` | 200 | 6.169 |
-| `/login` | 200 | 4.683 |
-| `/submit` | 200 | 3.355 |
-| `/projects` | 200 | 2.894 |
-| `/projects/smoke` | 200 | 54.238 |
-| `/my-projects` | 200 | 3.803 |
-| `/impact` | 200 | 2.485 |
-| `/marketplace` | 200 | 2.339 |
-| `/verifier` | 200 | 2.174 |
-| `/admin` | 200 | 2.496 |
-| `/company/portfolio` | 200 | 2.237 |
-| `/company/transactions` | 200 | 2.129 |
-| `/certificate/smoke` | 200 | 54.735 |
-| `/api/analysis` | 503 | 2.325 |
+| LCP, ms | 712.000 | 460.000 |
+| Observed long-task time (>50ms tasks), ms | 127.000 | 117.000 |
+| First React root commit, ms (hydration proxy) | 554.100 | 451.500 |
+| React root commits observed | 7 | 7 |
+| Script ResourceTiming transfer bytes | 492842 | 492064 |
+| Click → registry heading, ms | 228.739 | 226.041 |
 
-## Final Next production build sizes
+**Homepage LCP median is 35.4% lower in this controlled local lab sample.** The code change starts the same 0.8s hero fade/20px movement and 0.2/0.3s intro/action delays from CSS/first paint instead of waiting for React hydration. Reduced-motion users skip that CSS entrance. Layout/content/branding remain. No claim of equal improvements on other routes or external services.
 
-```text
-┌ ○ /                                    5.19 kB         140 kB
-├ ○ /_not-found                          880 B          91.5 kB
-├ ○ /admin                               5.63 kB         159 kB
-├ ƒ /api/analysis                        0 B                0 B
-├ ƒ /certificate/[id]                    3.29 kB         157 kB
-├ ○ /company/portfolio                   4.03 kB         167 kB
-├ ○ /company/transactions                2.95 kB         130 kB
-├ ○ /impact                              72 kB           226 kB
-├ ○ /login                               5.11 kB         159 kB
-├ ○ /marketplace                         7.39 kB         161 kB
-├ ○ /my-projects                         3.84 kB         166 kB
-├ ○ /projects                            2.82 kB         165 kB
-├ ƒ /projects/[id]                       3.76 kB         131 kB
-├ ○ /submit                              6.18 kB         366 kB
-└ ○ /verifier                            4.59 kB         364 kB
-+ First Load JS shared by all            90.6 kB
-  ├ chunks/2117-0c2919f6fb137799.js      31.9 kB
-  ├ chunks/fd9d1056-5bd29454b8b8b5b5.js  53.6 kB
-  └ other shared chunks (total)          5.07 kB
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
-```
+Before LCP samples: `[1936, 712, 484, 612, 1404]` ms. Final samples: `[1056, 636, 460, 428, 440]` ms. Ranges overlap and first-context/caching effects are visible. Individual component render duration/exact hydration cost is not measured; root commit callbacks are only a proxy. EventTiming samples after real navigation are in raw JSON: lab interaction events are **not field INP**.
 
-Source optimizations preserve existing page routes/theme/layout: duplicate dashboard/map query removed, certificate PDF libraries deferred, evidence object URLs cleaned up, Leaflet instance cleanup corrected, optional analysis panel loaded only on the evidence step and model kept out of JavaScript. No Appwrite pagination expansion, unsafe transaction cache or new RPC polling was introduced.
+## Other final production browser observations
 
-## Remaining bottlenecks
+Three fresh contexts per route; median observed values, 2.5-second window. These final route measurements are not claimed as controlled before/after improvements.
 
-Submit/verifier retain sizeable wallet bundles; impact retains Chart.js. Optional connector warnings and existing React-hook/img warnings remain. A broad wallet/chart rewrite was not justified by measured browser data. Default Appwrite pagination limits summaries, and live query plans/indexes are unverified. LCP/INP/CLS, mobile responsiveness, browser interactions, external service latency and memory profiling require a separately isolated browser/session with approved free data access. No arbitrary performance target is reported as met.
+| Route | LCP ms | Load-event ms | Long-task ms | Script transfer bytes | Root commits |
+| --- | --- | --- | --- | --- | --- |
+| `/` | 784.000 | 655.000 | 289.000 | 492064 | 7 |
+| `/certificate/browser-fixture-transaction` | 816.000 | 355.100 | 61.000 | 483185 | 8 |
+| `/impact` | 924.000 | 531.700 | 423.000 | 479479 | 8 |
+| `/login` | 276.000 | 532.700 | 220.000 | 479479 | 7 |
+| `/marketplace` | 792.000 | 496.900 | 355.000 | 487205 | 7 |
+| `/submit` | 284.000 | 516.700 | 239.000 | 492064 | 7 |
+
+All full-route and controlled profiles have zero unhandled page errors / console errors. CLS samples and navigation timings are preserved in JSON; observation-window CLS is not field CLS. Root wallet/chart code remains significant; script transfer figures include visible-link prefetch/async work and are not equivalent to the build's First Load JS total.
+
+## Actual end-to-end / PDF / ML timings
+
+- Real held-out image file → existing UI → Next bridge → actual Python checkpoint → decoded displayed overlay: **1711.707 ms** in final E2E. Actual Python-reported request pipeline: **852.855 ms**. These are one real cold-worker browser example, not throughput or per-site accuracy.
+- Standalone sequential CPU pipeline: median **35.440 ms**, p95 **39.274 ms**, 30 warmed repeats / 2 CPU threads; model-forward median **13.662 ms**. No GPU benchmark. Model quality is poor (test IoU 0.292 vs fixed NDVI 0.321), independent of latency.
+- Same-content PDF compression A/B: **9,154,121→148,746 bytes**, 98.38% smaller. Both decode to identical 1916×1592 RGB pixels and SHA256, proving lossless compression. The PNG capture scale/quality was retained. Initial 1.740s vs compression-only 2.014s export samples did **not** show a latency improvement, so none is claimed.
+- After separately correcting unsupported certificate claims, final exported registry-record PDF is **157,655 bytes**, measured generation/download **3452.469 ms** in the final idle-system E2E. Content changed deliberately; this is not the same-content pixel comparison. Its final rendering was visually checked. All certificate inputs are explicit local fixtures, not real credits.
+- Map initialization/click and chart canvas rendering were executed in Chrome with fixture data/tiles. No separate frame-rate, marker-scale or exact chart drawing duration claim. Five mobile routes at 390×844 showed no horizontal overflow.
+
+## Build / HTTP / request evidence
+
+Final TypeScript, lint (warnings), production build, mocked API/transaction tests and 14-route local production HTTP smoke pass. Raw final build sizes: `phase2/final-build.txt`. Migration baseline sizes: `phase2/migration-build.txt`. These are asset/bundle counts, not browser hydration time. The final build duration is in final-build-time.json; cold/warm caches and filesystem escalation differ, so no build-speed improvement is claimed.
+
+Earlier impact/map request count 2→1 is retained and still asserted by the actual component-effect harness with mocked SDK; it is not a measured cloud-speed improvement. Actual fixture-backed dashboard browser requests are captured in the browser JSON. Live Appwrite/RPC/API quota/latency, cloud indexes/permissions and genuine wallet transactions remain untested to protect the ₹0 budget and production data.
+
+## Reproduce
+
+From frontend: `node tests/browser-validation.cjs profile final`; `node tests/browser-validation.cjs e2e final`; `node tests/production-smoke.cjs`. Controlled homepage-only mode uses `BLUECRED_PROFILE_HOME_ONLY=true`; baseline app directory is `BLUECRED_BROWSER_APP_DIR` pointing to the preserved isolated worktree's frontend. Clear the app-dir override for final build measurement. Fixed same Chrome/viewport/fixture/data/observation conditions and idle other jobs are required. Data/model artifacts must exist for E2E. No hosted browser, paid profiler, deployment or production database write.

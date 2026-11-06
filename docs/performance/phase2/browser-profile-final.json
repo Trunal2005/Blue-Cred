@@ -1,0 +1,851 @@
+{
+  "scope": "Production app in isolated real Chrome; 3 fresh contexts per route, 1440x1000, no CPU/network throttle, 2.5s observation; Appwrite/remote images/map tiles mocked, all other external traffic blocked. Commit times are hydration proxies, not direct hydration duration. Event samples are lab interactions, not field INP.",
+  "results": [
+    {
+      "route": "/",
+      "repeat": 0,
+      "lcp": 1752,
+      "cls": 0.002301932749807099,
+      "longTasks": [
+        {
+          "start": 505.3999999985099,
+          "duration": 79
+        },
+        {
+          "start": 612.1999999992549,
+          "duration": 130
+        },
+        {
+          "start": 763.6999999992549,
+          "duration": 80
+        }
+      ],
+      "events": [],
+      "commits": [
+        907.6999999992549,
+        937.8000000007451,
+        941.8999999985099,
+        944.8000000007451,
+        946.5,
+        947.1999999992549,
+        1556
+      ],
+      "navigation": {
+        "ttfb_ms": 77.89999999850988,
+        "dom_content_loaded_ms": 502.5,
+        "load_ms": 764.5
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 289,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 907.6999999992549,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 255.01729999999952,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 32,
+          "interactionId": 3865
+        },
+        {
+          "name": "pointerup",
+          "duration": 32,
+          "interactionId": 3865
+        },
+        {
+          "name": "click",
+          "duration": 32,
+          "interactionId": 3865
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 1,
+      "lcp": 784,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 348.19999999925494,
+          "duration": 110
+        },
+        {
+          "start": 495.19999999925494,
+          "duration": 141
+        },
+        {
+          "start": 653.8999999985099,
+          "duration": 91
+        }
+      ],
+      "events": [],
+      "commits": [
+        841.6999999992549,
+        880.8000000007451,
+        885.1999999992549,
+        888.8999999985099,
+        914.6999999992549,
+        929.5,
+        1359.199999999255
+      ],
+      "navigation": {
+        "ttfb_ms": 20.800000000745058,
+        "dom_content_loaded_ms": 638.8000000007451,
+        "load_ms": 655
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 342,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 841.6999999992549,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 373.52880000000005,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 48,
+          "interactionId": 8396
+        },
+        {
+          "name": "pointerup",
+          "duration": 48,
+          "interactionId": 8396
+        },
+        {
+          "name": "click",
+          "duration": 48,
+          "interactionId": 8396
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/",
+      "repeat": 2,
+      "lcp": 768,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 410.19999999925494,
+          "duration": 79
+        },
+        {
+          "start": 517.8999999985099,
+          "duration": 110
+        },
+        {
+          "start": 651.6999999992549,
+          "duration": 65
+        }
+      ],
+      "events": [],
+      "commits": [
+        774.6000000014901,
+        807.1999999992549,
+        811.1999999992549,
+        814,
+        842.3999999985099,
+        847.1000000014901,
+        1299.6000000014901
+      ],
+      "navigation": {
+        "ttfb_ms": 44.899999998509884,
+        "dom_content_loaded_ms": 407.19999999925494,
+        "load_ms": 652.5
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 254,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 774.6000000014901,
+      "horizontal_overflow": false,
+      "navigation_to_registry_ms": 205.50080000000162,
+      "navigation_lab_event_timing": [
+        {
+          "name": "pointerdown",
+          "duration": 24,
+          "interactionId": 1134
+        },
+        {
+          "name": "pointerup",
+          "duration": 24,
+          "interactionId": 1134
+        },
+        {
+          "name": "click",
+          "duration": 24,
+          "interactionId": 1134
+        }
+      ],
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 1,
+      "blockedExternal": []
+    },
+    {
+      "route": "/login",
+      "repeat": 0,
+      "lcp": 320,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 248,
+          "duration": 108
+        },
+        {
+          "start": 398.69999999925494,
+          "duration": 112
+        }
+      ],
+      "events": [],
+      "commits": [
+        627.6999999992549,
+        664.8000000007451,
+        671.3999999985099,
+        675.0999999977648,
+        697.5,
+        707.8000000007451,
+        1142.199999999255
+      ],
+      "navigation": {
+        "ttfb_ms": 16.399999998509884,
+        "dom_content_loaded_ms": 512,
+        "load_ms": 537.3000000007451
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 220,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 627.6999999992549,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/login",
+      "repeat": 1,
+      "lcp": 252,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 225.40000000223517,
+          "duration": 94
+        },
+        {
+          "start": 358.30000000074506,
+          "duration": 104
+        }
+      ],
+      "events": [],
+      "commits": [
+        563.9000000022352,
+        599.6000000014901,
+        605.6999999992549,
+        609.6999999992549,
+        635.8000000007451,
+        640.1000000014901,
+        1077.9000000022352
+      ],
+      "navigation": {
+        "ttfb_ms": 21.300000000745058,
+        "dom_content_loaded_ms": 222.19999999925494,
+        "load_ms": 484.9000000022352
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 198,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 563.9000000022352,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/login",
+      "repeat": 2,
+      "lcp": 276,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 242.39999999850988,
+          "duration": 107
+        },
+        {
+          "start": 391.3999999985099,
+          "duration": 117
+        }
+      ],
+      "events": [],
+      "commits": [
+        609.8000000007451,
+        643.3999999985099,
+        649.5,
+        653.6000000014901,
+        674.3999999985099,
+        684.5,
+        1132.5
+      ],
+      "navigation": {
+        "ttfb_ms": 17.100000001490116,
+        "dom_content_loaded_ms": 239.10000000149012,
+        "load_ms": 532.6999999992549
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 224,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 609.8000000007451,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/impact",
+      "repeat": 0,
+      "lcp": 1104,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 226.59999999776483,
+          "duration": 96
+        },
+        {
+          "start": 329.19999999925494,
+          "duration": 67
+        },
+        {
+          "start": 396.80000000074506,
+          "duration": 124
+        },
+        {
+          "start": 750,
+          "duration": 155
+        }
+      ],
+      "events": [],
+      "commits": [
+        652.5,
+        683.8000000007451,
+        689.3000000007451,
+        693.0999999977648,
+        712.5,
+        723,
+        748.0999999977648,
+        1176.8999999985099
+      ],
+      "navigation": {
+        "ttfb_ms": 18,
+        "dom_content_loaded_ms": 223.39999999850988,
+        "load_ms": 550.5
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 442,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 652.5,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/impact",
+      "repeat": 1,
+      "lcp": 820,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 220.70000000298023,
+          "duration": 101
+        },
+        {
+          "start": 326.6000000014901,
+          "duration": 67
+        },
+        {
+          "start": 393.9000000022352,
+          "duration": 112
+        },
+        {
+          "start": 794,
+          "duration": 76
+        }
+      ],
+      "events": [],
+      "commits": [
+        636.4000000022352,
+        666.5,
+        671.2000000029802,
+        674.1000000014901,
+        694.7000000029802,
+        706.6000000014901,
+        732.8000000007451,
+        1153.9000000022352
+      ],
+      "navigation": {
+        "ttfb_ms": 17,
+        "dom_content_loaded_ms": 507.80000000074506,
+        "load_ms": 531.7000000029802
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 356,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 636.4000000022352,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/impact",
+      "repeat": 2,
+      "lcp": 924,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 220.80000000074506,
+          "duration": 105
+        },
+        {
+          "start": 331.5,
+          "duration": 64
+        },
+        {
+          "start": 395.5999999977648,
+          "duration": 110
+        },
+        {
+          "start": 719.5999999977648,
+          "duration": 144
+        }
+      ],
+      "events": [],
+      "commits": [
+        625.5999999977648,
+        655.8999999985099,
+        661.5,
+        664.1999999992549,
+        680.6999999992549,
+        691.0999999977648,
+        717.3999999985099,
+        1143.300000000745
+      ],
+      "navigation": {
+        "ttfb_ms": 17.399999998509884,
+        "dom_content_loaded_ms": 218.69999999925494,
+        "load_ms": 529
+      },
+      "script_transfer_bytes": 479479,
+      "script_resources": 19,
+      "total_long_task_ms": 423,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 625.5999999977648,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 1,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/submit",
+      "repeat": 0,
+      "lcp": 308,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 75.69999999925494,
+          "duration": 152
+        },
+        {
+          "start": 242.30000000074506,
+          "duration": 95
+        },
+        {
+          "start": 342.19999999925494,
+          "duration": 155
+        }
+      ],
+      "events": [],
+      "commits": [
+        622.6000000014901,
+        662.1000000014901,
+        669.6999999992549,
+        673.9000000022352,
+        707.4000000022352,
+        712.9000000022352,
+        1136.6000000014901
+      ],
+      "navigation": {
+        "ttfb_ms": 19.300000000745058,
+        "dom_content_loaded_ms": 75.90000000223517,
+        "load_ms": 516.6999999992549
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 402,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 622.6000000014901,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/submit",
+      "repeat": 1,
+      "lcp": 260,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 241.69999999925494,
+          "duration": 88
+        },
+        {
+          "start": 332.6000000014901,
+          "duration": 145
+        }
+      ],
+      "events": [],
+      "commits": [
+        593.1999999992549,
+        627.6000000014901,
+        635,
+        639,
+        670,
+        676.9000000022352,
+        1107.300000000745
+      ],
+      "navigation": {
+        "ttfb_ms": 19.100000001490116,
+        "dom_content_loaded_ms": 235,
+        "load_ms": 502.9000000022352
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 233,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 593.1999999992549,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/submit",
+      "repeat": 2,
+      "lcp": 284,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 260.5,
+          "duration": 93
+        },
+        {
+          "start": 357.70000000298023,
+          "duration": 146
+        }
+      ],
+      "events": [],
+      "commits": [
+        625.2000000029802,
+        657.8000000007451,
+        665.2000000029802,
+        669.6000000014901,
+        700.4000000022352,
+        705.4000000022352,
+        1145.2000000029802
+      ],
+      "navigation": {
+        "ttfb_ms": 15.200000002980232,
+        "dom_content_loaded_ms": 505,
+        "load_ms": 533.8000000007451
+      },
+      "script_transfer_bytes": 492064,
+      "script_resources": 22,
+      "total_long_task_ms": 239,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 625.2000000029802,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/marketplace",
+      "repeat": 0,
+      "lcp": 1008,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 244.70000000298023,
+          "duration": 103
+        },
+        {
+          "start": 388.80000000074506,
+          "duration": 115
+        },
+        {
+          "start": 595.9000000022352,
+          "duration": 90
+        },
+        {
+          "start": 685.9000000022352,
+          "duration": 70
+        }
+      ],
+      "events": [],
+      "commits": [
+        595.5,
+        664.1000000014901,
+        675.4000000022352,
+        685.6000000014901,
+        768,
+        783.8000000007451,
+        1109.800000000745
+      ],
+      "navigation": {
+        "ttfb_ms": 51.5,
+        "dom_content_loaded_ms": 240.10000000149012,
+        "load_ms": 529.1000000014901
+      },
+      "script_transfer_bytes": 487205,
+      "script_resources": 20,
+      "total_long_task_ms": 378,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 595.5,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/marketplace",
+      "repeat": 1,
+      "lcp": 792,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 220.5,
+          "duration": 94
+        },
+        {
+          "start": 358.8999999985099,
+          "duration": 113
+        },
+        {
+          "start": 560,
+          "duration": 82
+        },
+        {
+          "start": 642.8999999985099,
+          "duration": 66
+        }
+      ],
+      "events": [],
+      "commits": [
+        559.6999999992549,
+        622.3999999985099,
+        632.8999999985099,
+        642.1999999992549,
+        722,
+        737.3999999985099,
+        1074.699999999255
+      ],
+      "navigation": {
+        "ttfb_ms": 17.899999998509884,
+        "dom_content_loaded_ms": 218.39999999850988,
+        "load_ms": 496.8999999985099
+      },
+      "script_transfer_bytes": 487205,
+      "script_resources": 20,
+      "total_long_task_ms": 355,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 559.6999999992549,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/marketplace",
+      "repeat": 2,
+      "lcp": 492,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 240.90000000223517,
+          "duration": 63
+        },
+        {
+          "start": 347.1000000014901,
+          "duration": 52
+        }
+      ],
+      "events": [],
+      "commits": [
+        346.9000000022352,
+        386.9000000022352,
+        394.1000000014901,
+        399.9000000022352,
+        436.80000000074506,
+        454.1000000014901,
+        858.4000000022352
+      ],
+      "navigation": {
+        "ttfb_ms": 18.900000002235174,
+        "dom_content_loaded_ms": 169.80000000074506,
+        "load_ms": 305.1000000014901
+      },
+      "script_transfer_bytes": 487205,
+      "script_resources": 20,
+      "total_long_task_ms": 115,
+      "react_commits_observed": 7,
+      "first_react_commit_ms": 346.9000000022352,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 0,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/certificate/browser-fixture-transaction",
+      "repeat": 0,
+      "lcp": 892,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 403.8999999985099,
+          "duration": 62
+        }
+      ],
+      "events": [],
+      "commits": [
+        521.1000000014901,
+        538.8000000007451,
+        541,
+        542.6999999992549,
+        553.3999999985099,
+        559.3999999985099,
+        601.1000000014901,
+        1036.8999999985099
+      ],
+      "navigation": {
+        "ttfb_ms": 178.10000000149012,
+        "dom_content_loaded_ms": 333.80000000074506,
+        "load_ms": 479.30000000074506
+      },
+      "script_transfer_bytes": 483185,
+      "script_resources": 20,
+      "total_long_task_ms": 62,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 521.1000000014901,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 2,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/certificate/browser-fixture-transaction",
+      "repeat": 1,
+      "lcp": 544,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 281.6000000014901,
+          "duration": 61
+        }
+      ],
+      "events": [],
+      "commits": [
+        392.19999999925494,
+        410.30000000074506,
+        413.19999999925494,
+        415,
+        423.69999999925494,
+        429.69999999925494,
+        470.69999999925494,
+        904
+      ],
+      "navigation": {
+        "ttfb_ms": 54.80000000074506,
+        "dom_content_loaded_ms": 211.39999999850988,
+        "load_ms": 355.1000000014901
+      },
+      "script_transfer_bytes": 483185,
+      "script_resources": 20,
+      "total_long_task_ms": 61,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 392.19999999925494,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 2,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    },
+    {
+      "route": "/certificate/browser-fixture-transaction",
+      "repeat": 2,
+      "lcp": 816,
+      "cls": 0.002270118634259259,
+      "longTasks": [
+        {
+          "start": 257.20000000298023,
+          "duration": 58
+        }
+      ],
+      "events": [],
+      "commits": [
+        366,
+        383.4000000022352,
+        386.6000000014901,
+        388.9000000022352,
+        398.30000000074506,
+        407.30000000074506,
+        448.5,
+        885.2000000029802
+      ],
+      "navigation": {
+        "ttfb_ms": 53.20000000298023,
+        "dom_content_loaded_ms": 187.90000000223517,
+        "load_ms": 328.1000000014901
+      },
+      "script_transfer_bytes": 483185,
+      "script_resources": 20,
+      "total_long_task_ms": 58,
+      "react_commits_observed": 8,
+      "first_react_commit_ms": 366,
+      "horizontal_overflow": false,
+      "mockedAccountRequests": 0,
+      "mockedDatabaseRequests": 2,
+      "mockedImageRequests": 0,
+      "blockedExternal": []
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "chrome": "156.0.8078.80",
+  "phase": "final"
+}

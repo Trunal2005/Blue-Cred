@@ -1,5 +1,7 @@
 # Backend Setup Guide
 
+> Current zero-cost workflow: see [validated local integration guide](ml/INTEGRATION_GUIDE.md) and [final validation](BLUECRED_FINAL_VALIDATION.md). No wallet private key, cloud provisioning or contract deployment is needed for local CNN inference. External setup/deployment sections below are legacy reference, not steps authorized by the ₹0 local workflow. Do not run provisioning: its broad permissions are gated pending separate review. `APPWRITE_API_KEY` is script-only and must never have a `NEXT_PUBLIC_` prefix.
+
 This document provides instructions for setting up the backend services for BlueCred, including the blockchain layer and the Appwrite database/authentication layer.
 
 ## Architecture Overview
@@ -32,7 +34,7 @@ SEPOLIA_RPC_URL=your_rpc_endpoint_url
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT=https://cloud.appwrite.io/v1
 NEXT_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
-NEXT_PUBLIC_APPWRITE_API_KEY=your_admin_api_key
+APPWRITE_API_KEY=your_admin_api_key
 NEXT_PUBLIC_APPWRITE_DATABASE_ID=bluecred-db
 NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID=projects
 NEXT_PUBLIC_APPWRITE_TRANSACTIONS_COLLECTION_ID=transactions
@@ -94,5 +96,5 @@ While the blockchain resides on a testnet, you can simulate local interactions i
 ## Troubleshooting
 
 - **Provider Error**: Ensure your RPC URL is valid and the network matches (Sepolia/Amoy).
-- **Appwrite Permission Denied**: Check that your `NEXT_PUBLIC_APPWRITE_API_KEY` has sufficient scopes (Database, Collections, Attributes, Buckets).
+- **Appwrite Permission Denied**: Check that your `APPWRITE_API_KEY` has sufficient scopes (Database, Collections, Attributes, Buckets).
 - **Contract Not Found**: Run `npx hardhat compile` to regenerate the artifacts.
