@@ -1,0 +1,150 @@
+[
+  {
+    "site": "india-sundarbans",
+    "tile": "N21E088",
+    "split": "train",
+    "samples": 48,
+    "strata": {
+      "foreground": 36,
+      "background": 12
+    },
+    "image_reads": 48,
+    "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N21/ESA_WorldCover_10m_2020_v100_N21E088_S2RGBNIR.tif",
+    "label_member": "GMW_N22E088_v4019_mng.tif",
+    "crs": "EPSG:4326",
+    "source_transform": [
+      8.333333333333333e-05,
+      0.0,
+      88.0,
+      0.0,
+      -8.333333333333333e-05,
+      22.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "source_bounds": [
+      88.0,
+      21.0,
+      89.0,
+      22.0
+    ],
+    "source_band_order": [
+      "B02",
+      "B03",
+      "B04",
+      "B08"
+    ]
+  },
+  {
+    "site": "myanmar-ayeyarwady",
+    "tile": "N15E095",
+    "split": "train",
+    "samples": 48,
+    "strata": {
+      "background": 12,
+      "foreground": 36
+    },
+    "image_reads": 48,
+    "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N15/ESA_WorldCover_10m_2020_v100_N15E095_S2RGBNIR.tif",
+    "label_member": "GMW_N16E095_v4019_mng.tif",
+    "crs": "EPSG:4326",
+    "source_transform": [
+      8.333333333333333e-05,
+      0.0,
+      95.0,
+      0.0,
+      -8.333333333333333e-05,
+      16.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "source_bounds": [
+      95.0,
+      15.0,
+      96.0,
+      16.0
+    ],
+    "source_band_order": [
+      "B02",
+      "B03",
+      "B04",
+      "B08"
+    ]
+  },
+  {
+    "site": "thailand-phangnga",
+    "tile": "N08E098",
+    "split": "validation",
+    "samples": 24,
+    "strata": {
+      "foreground": 18,
+      "background": 6
+    },
+    "image_reads": 25,
+    "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N08/ESA_WorldCover_10m_2020_v100_N08E098_S2RGBNIR.tif",
+    "label_member": "GMW_N09E098_v4019_mng.tif",
+    "crs": "EPSG:4326",
+    "source_transform": [
+      8.333333333333333e-05,
+      0.0,
+      98.0,
+      0.0,
+      -8.333333333333333e-05,
+      9.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "source_bounds": [
+      98.0,
+      8.0,
+      99.0,
+      9.0
+    ],
+    "source_band_order": [
+      "B02",
+      "B03",
+      "B04",
+      "B08"
+    ]
+  },
+  {
+    "site": "indonesia-sumatra",
+    "tile": "N00E103",
+    "split": "test",
+    "samples": 24,
+    "strata": {
+      "background": 6,
+      "foreground": 18
+    },
+    "image_reads": 24,
+    "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N00/ESA_WorldCover_10m_2020_v100_N00E103_S2RGBNIR.tif",
+    "label_member": "GMW_N01E103_v4019_mng.tif",
+    "crs": "EPSG:4326",
+    "source_transform": [
+      8.333333333333333e-05,
+      0.0,
+      103.0,
+      0.0,
+      -8.333333333333336e-05,
+      1.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "source_bounds": [
+      103.0,
+      -2.220446049250313e-16,
+      104.0,
+      1.0
+    ],
+    "source_band_order": [
+      "B02",
+      "B03",
+      "B04",
+      "B08"
+    ]
+  }
+]

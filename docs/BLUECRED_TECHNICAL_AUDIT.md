@@ -25,7 +25,7 @@ Optional existing submission evidence panel calls a Next stateless API bridge to
 | Medium, fixed Phase 1 | Duplicate impact/map request, leaked map instance/import lifetime and upload object URLs | Shared snapshot, ref/cancellation/cleanup retained; source/mocked request count 2→1. Actual browser maps/charts verified with fixtures |
 | Medium, fixed Phase 2 | Hero entrance waits for hydration; Chrome baseline LCP and first-commit evidence | Same fade/movement timing moved to CSS, retaining appearance and reduced-motion handling; before/after browser samples in performance report |
 | Medium, fixed Phase 2 | Same-content fixture PDF is 9,154,121 bytes without compression | Lossless PNG stream compression: 148,746 bytes with identical decoded image hash/dimensions; generation latency slightly higher, transparently reported. Later safety-label edits separately rendered/checked |
-| Data safety, fixed Phase 2 | Training/preparation can otherwise overwrite completed outputs | Refuse nonempty preparation output and existing weights without explicit resume; preservation tests. Data/weights remain Git-ignored |
+| Data safety, fixed Phase 2 | Training/preparation can otherwise overwrite completed outputs | Refuse nonempty preparation output and existing weights without explicit resume; preservation tests. Prepared pairs and trained checkpoints are included in Git |
 
 ## Security migration evidence
 
@@ -39,4 +39,4 @@ Remaining issues: default Appwrite list pagination can truncate large summaries,
 
 ## Recovery and safety
 
-No production records, buckets, permissions, contracts, wallets or deployed environment changed. No live RPC/gas, push or deployment. Reviewed changes are incremental on the existing feature branch; checkpoint/migration commits provide recovery. Review final manifest/diffs and reverse selected patches if required; do not reset/clean or discard unrelated future work. Local ignored source archives, paired data and weights are retained independently. All added tools/data/services are ₹0 as listed in BLUECRED_COST_REPORT.md.
+No production records, buckets, permissions, contracts, wallets or deployed environment changed. No live RPC/gas, push or deployment. Reviewed changes are incremental on the existing feature branch; checkpoint/migration commits provide recovery. Review final manifest/diffs and reverse selected patches if required; do not reset/clean or discard unrelated future work. Source archives remain local and ignored. Prepared pairs and trained checkpoints are included in Git. All added tools/data/services are ₹0 as listed in BLUECRED_COST_REPORT.md.

@@ -1,0 +1,3041 @@
+{
+  "source": "GMW 2020 v4.0.19 https://doi.org/10.5281/zenodo.12756047 + ESA WorldCover Sentinel-2 L2A 2020 annual median composites",
+  "license": "CC BY 4.0; Bunting et al./Global Mangrove Watch; ESA WorldCover consortium; Contains modified Copernicus Sentinel data (2020)",
+  "label_definition": "1 = GMW mapped mangrove extent, 0 = not mapped as mangrove; map-derived reference, not independently surveyed absence/presence",
+  "split_method": "Whole geographically disjoint sites: India/Myanmar train, Thailand validation, Indonesia final test; nonoverlapping 128px windows; stratified around GMW extents",
+  "seed": 42,
+  "year": 2020,
+  "gmw_md5": "a94b1600d891cda0e1ea0f17b312990b",
+  "sites": [
+    {
+      "site": "india-sundarbans",
+      "tile": "N21E088",
+      "split": "train",
+      "samples": 48,
+      "strata": {
+        "foreground": 36,
+        "background": 12
+      },
+      "image_reads": 48,
+      "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N21/ESA_WorldCover_10m_2020_v100_N21E088_S2RGBNIR.tif",
+      "label_member": "GMW_N22E088_v4019_mng.tif",
+      "crs": "EPSG:4326",
+      "source_transform": [
+        8.333333333333333e-05,
+        0.0,
+        88.0,
+        0.0,
+        -8.333333333333333e-05,
+        22.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_bounds": [
+        88.0,
+        21.0,
+        89.0,
+        22.0
+      ],
+      "source_band_order": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+      ]
+    },
+    {
+      "site": "myanmar-ayeyarwady",
+      "tile": "N15E095",
+      "split": "train",
+      "samples": 48,
+      "strata": {
+        "background": 12,
+        "foreground": 36
+      },
+      "image_reads": 48,
+      "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N15/ESA_WorldCover_10m_2020_v100_N15E095_S2RGBNIR.tif",
+      "label_member": "GMW_N16E095_v4019_mng.tif",
+      "crs": "EPSG:4326",
+      "source_transform": [
+        8.333333333333333e-05,
+        0.0,
+        95.0,
+        0.0,
+        -8.333333333333333e-05,
+        16.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_bounds": [
+        95.0,
+        15.0,
+        96.0,
+        16.0
+      ],
+      "source_band_order": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+      ]
+    },
+    {
+      "site": "thailand-phangnga",
+      "tile": "N08E098",
+      "split": "validation",
+      "samples": 24,
+      "strata": {
+        "foreground": 18,
+        "background": 6
+      },
+      "image_reads": 25,
+      "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N08/ESA_WorldCover_10m_2020_v100_N08E098_S2RGBNIR.tif",
+      "label_member": "GMW_N09E098_v4019_mng.tif",
+      "crs": "EPSG:4326",
+      "source_transform": [
+        8.333333333333333e-05,
+        0.0,
+        98.0,
+        0.0,
+        -8.333333333333333e-05,
+        9.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_bounds": [
+        98.0,
+        8.0,
+        99.0,
+        9.0
+      ],
+      "source_band_order": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+      ]
+    },
+    {
+      "site": "indonesia-sumatra",
+      "tile": "N00E103",
+      "split": "test",
+      "samples": 24,
+      "strata": {
+        "background": 6,
+        "foreground": 18
+      },
+      "image_reads": 24,
+      "imagery_url": "https://esa-worldcover-s2.s3.eu-central-1.amazonaws.com/rgbnir/2020/N00/ESA_WorldCover_10m_2020_v100_N00E103_S2RGBNIR.tif",
+      "label_member": "GMW_N01E103_v4019_mng.tif",
+      "crs": "EPSG:4326",
+      "source_transform": [
+        8.333333333333333e-05,
+        0.0,
+        103.0,
+        0.0,
+        -8.333333333333336e-05,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "source_bounds": [
+        103.0,
+        -2.220446049250313e-16,
+        104.0,
+        1.0
+      ],
+      "source_band_order": [
+        "B02",
+        "B03",
+        "B04",
+        "B08"
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "image": "images/india-sundarbans-1152-6784.tif",
+      "mask": "masks/india-sundarbans-1152-6784.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        6784,
+        1152,
+        128,
+        128
+      ],
+      "bounds": [
+        88.56533333333333,
+        21.893333333333334,
+        88.576,
+        21.904
+      ],
+      "foreground_fraction": 0.5943603515625
+    },
+    {
+      "image": "images/india-sundarbans-2688-2944.tif",
+      "mask": "masks/india-sundarbans-2688-2944.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        2944,
+        2688,
+        128,
+        128
+      ],
+      "bounds": [
+        88.24533333333333,
+        21.765333333333334,
+        88.256,
+        21.776
+      ],
+      "foreground_fraction": 0.00592041015625
+    },
+    {
+      "image": "images/india-sundarbans-1536-7552.tif",
+      "mask": "masks/india-sundarbans-1536-7552.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        7552,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        88.62933333333334,
+        21.861333333333334,
+        88.64,
+        21.872
+      ],
+      "foreground_fraction": 0.8701171875
+    },
+    {
+      "image": "images/india-sundarbans-4224-1792.tif",
+      "mask": "masks/india-sundarbans-4224-1792.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        1792,
+        4224,
+        128,
+        128
+      ],
+      "bounds": [
+        88.14933333333333,
+        21.637333333333334,
+        88.16,
+        21.648
+      ],
+      "foreground_fraction": 0.01861572265625
+    },
+    {
+      "image": "images/india-sundarbans-1536-8448.tif",
+      "mask": "masks/india-sundarbans-1536-8448.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8448,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        88.704,
+        21.861333333333334,
+        88.71466666666667,
+        21.872
+      ],
+      "foreground_fraction": 0.95147705078125
+    },
+    {
+      "image": "images/india-sundarbans-2816-5120.tif",
+      "mask": "masks/india-sundarbans-2816-5120.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        5120,
+        2816,
+        128,
+        128
+      ],
+      "bounds": [
+        88.42666666666666,
+        21.754666666666665,
+        88.43733333333333,
+        21.765333333333334
+      ],
+      "foreground_fraction": 0.00286865234375
+    },
+    {
+      "image": "images/india-sundarbans-3584-2688.tif",
+      "mask": "masks/india-sundarbans-3584-2688.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        2688,
+        3584,
+        128,
+        128
+      ],
+      "bounds": [
+        88.224,
+        21.690666666666665,
+        88.23466666666667,
+        21.701333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-4352-9984.tif",
+      "mask": "masks/india-sundarbans-4352-9984.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9984,
+        4352,
+        128,
+        128
+      ],
+      "bounds": [
+        88.832,
+        21.626666666666665,
+        88.84266666666667,
+        21.637333333333334
+      ],
+      "foreground_fraction": 0.8988037109375
+    },
+    {
+      "image": "images/india-sundarbans-2944-5504.tif",
+      "mask": "masks/india-sundarbans-2944-5504.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        5504,
+        2944,
+        128,
+        128
+      ],
+      "bounds": [
+        88.45866666666667,
+        21.744,
+        88.46933333333334,
+        21.754666666666665
+      ],
+      "foreground_fraction": 0.93096923828125
+    },
+    {
+      "image": "images/india-sundarbans-3456-4992.tif",
+      "mask": "masks/india-sundarbans-3456-4992.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4992,
+        3456,
+        128,
+        128
+      ],
+      "bounds": [
+        88.416,
+        21.701333333333334,
+        88.42666666666666,
+        21.712
+      ],
+      "foreground_fraction": 0.03802490234375
+    },
+    {
+      "image": "images/india-sundarbans-2048-3840.tif",
+      "mask": "masks/india-sundarbans-2048-3840.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        3840,
+        2048,
+        128,
+        128
+      ],
+      "bounds": [
+        88.32,
+        21.818666666666665,
+        88.33066666666667,
+        21.829333333333334
+      ],
+      "foreground_fraction": 0.11767578125
+    },
+    {
+      "image": "images/india-sundarbans-5248-6144.tif",
+      "mask": "masks/india-sundarbans-5248-6144.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        6144,
+        5248,
+        128,
+        128
+      ],
+      "bounds": [
+        88.512,
+        21.552,
+        88.52266666666667,
+        21.562666666666665
+      ],
+      "foreground_fraction": 0.9923095703125
+    },
+    {
+      "image": "images/india-sundarbans-4096-5248.tif",
+      "mask": "masks/india-sundarbans-4096-5248.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        5248,
+        4096,
+        128,
+        128
+      ],
+      "bounds": [
+        88.43733333333333,
+        21.648,
+        88.448,
+        21.658666666666665
+      ],
+      "foreground_fraction": 0.8804931640625
+    },
+    {
+      "image": "images/india-sundarbans-2944-4736.tif",
+      "mask": "masks/india-sundarbans-2944-4736.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4736,
+        2944,
+        128,
+        128
+      ],
+      "bounds": [
+        88.39466666666667,
+        21.744,
+        88.40533333333333,
+        21.754666666666665
+      ],
+      "foreground_fraction": 0.0679931640625
+    },
+    {
+      "image": "images/india-sundarbans-2560-4352.tif",
+      "mask": "masks/india-sundarbans-2560-4352.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4352,
+        2560,
+        128,
+        128
+      ],
+      "bounds": [
+        88.36266666666667,
+        21.776,
+        88.37333333333333,
+        21.786666666666665
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-3328-10624.tif",
+      "mask": "masks/india-sundarbans-3328-10624.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10624,
+        3328,
+        128,
+        128
+      ],
+      "bounds": [
+        88.88533333333334,
+        21.712,
+        88.896,
+        21.722666666666665
+      ],
+      "foreground_fraction": 0.98138427734375
+    },
+    {
+      "image": "images/india-sundarbans-5120-9088.tif",
+      "mask": "masks/india-sundarbans-5120-9088.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9088,
+        5120,
+        128,
+        128
+      ],
+      "bounds": [
+        88.75733333333334,
+        21.562666666666665,
+        88.768,
+        21.573333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-2176-10112.tif",
+      "mask": "masks/india-sundarbans-2176-10112.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10112,
+        2176,
+        128,
+        128
+      ],
+      "bounds": [
+        88.84266666666667,
+        21.808,
+        88.85333333333334,
+        21.818666666666665
+      ],
+      "foreground_fraction": 0.972900390625
+    },
+    {
+      "image": "images/india-sundarbans-4608-9088.tif",
+      "mask": "masks/india-sundarbans-4608-9088.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9088,
+        4608,
+        128,
+        128
+      ],
+      "bounds": [
+        88.75733333333334,
+        21.605333333333334,
+        88.768,
+        21.616
+      ],
+      "foreground_fraction": 0.95361328125
+    },
+    {
+      "image": "images/india-sundarbans-2560-7040.tif",
+      "mask": "masks/india-sundarbans-2560-7040.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        7040,
+        2560,
+        128,
+        128
+      ],
+      "bounds": [
+        88.58666666666667,
+        21.776,
+        88.59733333333334,
+        21.786666666666665
+      ],
+      "foreground_fraction": 0.6058349609375
+    },
+    {
+      "image": "images/india-sundarbans-512-6400.tif",
+      "mask": "masks/india-sundarbans-512-6400.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        6400,
+        512,
+        128,
+        128
+      ],
+      "bounds": [
+        88.53333333333333,
+        21.946666666666665,
+        88.544,
+        21.957333333333334
+      ],
+      "foreground_fraction": 0.105712890625
+    },
+    {
+      "image": "images/india-sundarbans-2432-11264.tif",
+      "mask": "masks/india-sundarbans-2432-11264.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        11264,
+        2432,
+        128,
+        128
+      ],
+      "bounds": [
+        88.93866666666666,
+        21.786666666666665,
+        88.94933333333333,
+        21.797333333333334
+      ],
+      "foreground_fraction": 0.4395751953125
+    },
+    {
+      "image": "images/india-sundarbans-384-8704.tif",
+      "mask": "masks/india-sundarbans-384-8704.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8704,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        88.72533333333334,
+        21.957333333333334,
+        88.736,
+        21.968
+      ],
+      "foreground_fraction": 0.99267578125
+    },
+    {
+      "image": "images/india-sundarbans-3712-2304.tif",
+      "mask": "masks/india-sundarbans-3712-2304.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        2304,
+        3712,
+        128,
+        128
+      ],
+      "bounds": [
+        88.192,
+        21.68,
+        88.20266666666667,
+        21.690666666666665
+      ],
+      "foreground_fraction": 0.0946044921875
+    },
+    {
+      "image": "images/india-sundarbans-2816-768.tif",
+      "mask": "masks/india-sundarbans-2816-768.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        768,
+        2816,
+        128,
+        128
+      ],
+      "bounds": [
+        88.064,
+        21.754666666666665,
+        88.07466666666667,
+        21.765333333333334
+      ],
+      "foreground_fraction": 0.18170166015625
+    },
+    {
+      "image": "images/india-sundarbans-1280-9344.tif",
+      "mask": "masks/india-sundarbans-1280-9344.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9344,
+        1280,
+        128,
+        128
+      ],
+      "bounds": [
+        88.77866666666667,
+        21.882666666666665,
+        88.78933333333333,
+        21.893333333333334
+      ],
+      "foreground_fraction": 0.96630859375
+    },
+    {
+      "image": "images/india-sundarbans-4096-10112.tif",
+      "mask": "masks/india-sundarbans-4096-10112.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10112,
+        4096,
+        128,
+        128
+      ],
+      "bounds": [
+        88.84266666666667,
+        21.648,
+        88.85333333333334,
+        21.658666666666665
+      ],
+      "foreground_fraction": 0.955078125
+    },
+    {
+      "image": "images/india-sundarbans-2688-4608.tif",
+      "mask": "masks/india-sundarbans-2688-4608.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4608,
+        2688,
+        128,
+        128
+      ],
+      "bounds": [
+        88.384,
+        21.765333333333334,
+        88.39466666666667,
+        21.776
+      ],
+      "foreground_fraction": 0.02288818359375
+    },
+    {
+      "image": "images/india-sundarbans-3968-9856.tif",
+      "mask": "masks/india-sundarbans-3968-9856.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9856,
+        3968,
+        128,
+        128
+      ],
+      "bounds": [
+        88.82133333333333,
+        21.658666666666665,
+        88.832,
+        21.669333333333334
+      ],
+      "foreground_fraction": 0.81243896484375
+    },
+    {
+      "image": "images/india-sundarbans-256-10752.tif",
+      "mask": "masks/india-sundarbans-256-10752.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10752,
+        256,
+        128,
+        128
+      ],
+      "bounds": [
+        88.896,
+        21.968,
+        88.90666666666667,
+        21.978666666666665
+      ],
+      "foreground_fraction": 0.79193115234375
+    },
+    {
+      "image": "images/india-sundarbans-2688-5376.tif",
+      "mask": "masks/india-sundarbans-2688-5376.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        5376,
+        2688,
+        128,
+        128
+      ],
+      "bounds": [
+        88.448,
+        21.765333333333334,
+        88.45866666666667,
+        21.776
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-2304-11776.tif",
+      "mask": "masks/india-sundarbans-2304-11776.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        11776,
+        2304,
+        128,
+        128
+      ],
+      "bounds": [
+        88.98133333333334,
+        21.797333333333334,
+        88.992,
+        21.808
+      ],
+      "foreground_fraction": 0.946533203125
+    },
+    {
+      "image": "images/india-sundarbans-384-10624.tif",
+      "mask": "masks/india-sundarbans-384-10624.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10624,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        88.88533333333334,
+        21.957333333333334,
+        88.896,
+        21.968
+      ],
+      "foreground_fraction": 0.91497802734375
+    },
+    {
+      "image": "images/india-sundarbans-3840-9472.tif",
+      "mask": "masks/india-sundarbans-3840-9472.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9472,
+        3840,
+        128,
+        128
+      ],
+      "bounds": [
+        88.78933333333333,
+        21.669333333333334,
+        88.8,
+        21.68
+      ],
+      "foreground_fraction": 0.939208984375
+    },
+    {
+      "image": "images/india-sundarbans-3328-8960.tif",
+      "mask": "masks/india-sundarbans-3328-8960.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8960,
+        3328,
+        128,
+        128
+      ],
+      "bounds": [
+        88.74666666666667,
+        21.712,
+        88.75733333333334,
+        21.722666666666665
+      ],
+      "foreground_fraction": 0.97210693359375
+    },
+    {
+      "image": "images/india-sundarbans-768-7424.tif",
+      "mask": "masks/india-sundarbans-768-7424.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        7424,
+        768,
+        128,
+        128
+      ],
+      "bounds": [
+        88.61866666666667,
+        21.925333333333334,
+        88.62933333333334,
+        21.936
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-1664-4096.tif",
+      "mask": "masks/india-sundarbans-1664-4096.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4096,
+        1664,
+        128,
+        128
+      ],
+      "bounds": [
+        88.34133333333334,
+        21.850666666666665,
+        88.352,
+        21.861333333333334
+      ],
+      "foreground_fraction": 0.20654296875
+    },
+    {
+      "image": "images/india-sundarbans-4224-4608.tif",
+      "mask": "masks/india-sundarbans-4224-4608.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        4608,
+        4224,
+        128,
+        128
+      ],
+      "bounds": [
+        88.384,
+        21.637333333333334,
+        88.39466666666667,
+        21.648
+      ],
+      "foreground_fraction": 0.1156005859375
+    },
+    {
+      "image": "images/india-sundarbans-5120-8576.tif",
+      "mask": "masks/india-sundarbans-5120-8576.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8576,
+        5120,
+        128,
+        128
+      ],
+      "bounds": [
+        88.71466666666667,
+        21.562666666666665,
+        88.72533333333334,
+        21.573333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-256-10624.tif",
+      "mask": "masks/india-sundarbans-256-10624.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10624,
+        256,
+        128,
+        128
+      ],
+      "bounds": [
+        88.88533333333334,
+        21.968,
+        88.896,
+        21.978666666666665
+      ],
+      "foreground_fraction": 0.94293212890625
+    },
+    {
+      "image": "images/india-sundarbans-640-8448.tif",
+      "mask": "masks/india-sundarbans-640-8448.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8448,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        88.704,
+        21.936,
+        88.71466666666667,
+        21.946666666666665
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/india-sundarbans-1664-6528.tif",
+      "mask": "masks/india-sundarbans-1664-6528.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        6528,
+        1664,
+        128,
+        128
+      ],
+      "bounds": [
+        88.544,
+        21.850666666666665,
+        88.55466666666666,
+        21.861333333333334
+      ],
+      "foreground_fraction": 0.93328857421875
+    },
+    {
+      "image": "images/india-sundarbans-4224-8704.tif",
+      "mask": "masks/india-sundarbans-4224-8704.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        8704,
+        4224,
+        128,
+        128
+      ],
+      "bounds": [
+        88.72533333333334,
+        21.637333333333334,
+        88.736,
+        21.648
+      ],
+      "foreground_fraction": 0.8875732421875
+    },
+    {
+      "image": "images/india-sundarbans-1536-10752.tif",
+      "mask": "masks/india-sundarbans-1536-10752.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        10752,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        88.896,
+        21.861333333333334,
+        88.90666666666667,
+        21.872
+      ],
+      "foreground_fraction": 0.861328125
+    },
+    {
+      "image": "images/india-sundarbans-2944-9344.tif",
+      "mask": "masks/india-sundarbans-2944-9344.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        9344,
+        2944,
+        128,
+        128
+      ],
+      "bounds": [
+        88.77866666666667,
+        21.744,
+        88.78933333333333,
+        21.754666666666665
+      ],
+      "foreground_fraction": 0.763427734375
+    },
+    {
+      "image": "images/india-sundarbans-1536-11392.tif",
+      "mask": "masks/india-sundarbans-1536-11392.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        11392,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        88.94933333333333,
+        21.861333333333334,
+        88.96,
+        21.872
+      ],
+      "foreground_fraction": 0.751953125
+    },
+    {
+      "image": "images/india-sundarbans-640-7296.tif",
+      "mask": "masks/india-sundarbans-640-7296.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        7296,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        88.608,
+        21.936,
+        88.61866666666667,
+        21.946666666666665
+      ],
+      "foreground_fraction": 0.33270263671875
+    },
+    {
+      "image": "images/india-sundarbans-384-11520.tif",
+      "mask": "masks/india-sundarbans-384-11520.tif",
+      "split": "train",
+      "group": "india-sundarbans",
+      "source_tile": "N21E088",
+      "window": [
+        11520,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        88.96,
+        21.957333333333334,
+        88.97066666666667,
+        21.968
+      ],
+      "foreground_fraction": 0.89215087890625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-3456-4352.tif",
+      "mask": "masks/myanmar-ayeyarwady-3456-4352.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4352,
+        3456,
+        128,
+        128
+      ],
+      "bounds": [
+        95.36266666666667,
+        15.701333333333334,
+        95.37333333333333,
+        15.712
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1536-2432.tif",
+      "mask": "masks/myanmar-ayeyarwady-1536-2432.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        2432,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        95.20266666666667,
+        15.861333333333333,
+        95.21333333333334,
+        15.872
+      ],
+      "foreground_fraction": 0.067626953125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2048-1408.tif",
+      "mask": "masks/myanmar-ayeyarwady-2048-1408.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1408,
+        2048,
+        128,
+        128
+      ],
+      "bounds": [
+        95.11733333333333,
+        15.818666666666667,
+        95.128,
+        15.829333333333333
+      ],
+      "foreground_fraction": 0.541015625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2688-0.tif",
+      "mask": "masks/myanmar-ayeyarwady-2688-0.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        0,
+        2688,
+        128,
+        128
+      ],
+      "bounds": [
+        95.0,
+        15.765333333333333,
+        95.01066666666667,
+        15.776
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1024-384.tif",
+      "mask": "masks/myanmar-ayeyarwady-1024-384.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        384,
+        1024,
+        128,
+        128
+      ],
+      "bounds": [
+        95.032,
+        15.904,
+        95.04266666666666,
+        15.914666666666667
+      ],
+      "foreground_fraction": 0.76177978515625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-640-4096.tif",
+      "mask": "masks/myanmar-ayeyarwady-640-4096.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4096,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        95.34133333333334,
+        15.936,
+        95.352,
+        15.946666666666667
+      ],
+      "foreground_fraction": 0.00640869140625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1152-6528.tif",
+      "mask": "masks/myanmar-ayeyarwady-1152-6528.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        6528,
+        1152,
+        128,
+        128
+      ],
+      "bounds": [
+        95.544,
+        15.893333333333333,
+        95.55466666666666,
+        15.904
+      ],
+      "foreground_fraction": 0.0521240234375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1792-768.tif",
+      "mask": "masks/myanmar-ayeyarwady-1792-768.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        768,
+        1792,
+        128,
+        128
+      ],
+      "bounds": [
+        95.064,
+        15.84,
+        95.07466666666667,
+        15.850666666666667
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1664-128.tif",
+      "mask": "masks/myanmar-ayeyarwady-1664-128.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        128,
+        1664,
+        128,
+        128
+      ],
+      "bounds": [
+        95.01066666666667,
+        15.850666666666667,
+        95.02133333333333,
+        15.861333333333333
+      ],
+      "foreground_fraction": 0.0404052734375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1536-4352.tif",
+      "mask": "masks/myanmar-ayeyarwady-1536-4352.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4352,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        95.36266666666667,
+        15.861333333333333,
+        95.37333333333333,
+        15.872
+      ],
+      "foreground_fraction": 0.58062744140625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1152-3584.tif",
+      "mask": "masks/myanmar-ayeyarwady-1152-3584.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        3584,
+        1152,
+        128,
+        128
+      ],
+      "bounds": [
+        95.29866666666666,
+        15.893333333333333,
+        95.30933333333333,
+        15.904
+      ],
+      "foreground_fraction": 0.0322265625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-768-5888.tif",
+      "mask": "masks/myanmar-ayeyarwady-768-5888.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        5888,
+        768,
+        128,
+        128
+      ],
+      "bounds": [
+        95.49066666666667,
+        15.925333333333333,
+        95.50133333333333,
+        15.936
+      ],
+      "foreground_fraction": 0.1876220703125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1280-4224.tif",
+      "mask": "masks/myanmar-ayeyarwady-1280-4224.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4224,
+        1280,
+        128,
+        128
+      ],
+      "bounds": [
+        95.352,
+        15.882666666666667,
+        95.36266666666667,
+        15.893333333333333
+      ],
+      "foreground_fraction": 0.0579833984375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-3200-640.tif",
+      "mask": "masks/myanmar-ayeyarwady-3200-640.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        640,
+        3200,
+        128,
+        128
+      ],
+      "bounds": [
+        95.05333333333333,
+        15.722666666666667,
+        95.064,
+        15.733333333333333
+      ],
+      "foreground_fraction": 0.498291015625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-3456-4224.tif",
+      "mask": "masks/myanmar-ayeyarwady-3456-4224.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4224,
+        3456,
+        128,
+        128
+      ],
+      "bounds": [
+        95.352,
+        15.701333333333334,
+        95.36266666666667,
+        15.712
+      ],
+      "foreground_fraction": 0.00848388671875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2304-128.tif",
+      "mask": "masks/myanmar-ayeyarwady-2304-128.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        128,
+        2304,
+        128,
+        128
+      ],
+      "bounds": [
+        95.01066666666667,
+        15.797333333333333,
+        95.02133333333333,
+        15.808
+      ],
+      "foreground_fraction": 0.52783203125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-3200-4480.tif",
+      "mask": "masks/myanmar-ayeyarwady-3200-4480.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4480,
+        3200,
+        128,
+        128
+      ],
+      "bounds": [
+        95.37333333333333,
+        15.722666666666667,
+        95.384,
+        15.733333333333333
+      ],
+      "foreground_fraction": 0.7301025390625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1152-1920.tif",
+      "mask": "masks/myanmar-ayeyarwady-1152-1920.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1920,
+        1152,
+        128,
+        128
+      ],
+      "bounds": [
+        95.16,
+        15.893333333333333,
+        95.17066666666666,
+        15.904
+      ],
+      "foreground_fraction": 0.7540283203125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-0-7808.tif",
+      "mask": "masks/myanmar-ayeyarwady-0-7808.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        7808,
+        0,
+        128,
+        128
+      ],
+      "bounds": [
+        95.65066666666667,
+        15.989333333333333,
+        95.66133333333333,
+        16.0
+      ],
+      "foreground_fraction": 0.16943359375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-896-7040.tif",
+      "mask": "masks/myanmar-ayeyarwady-896-7040.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        7040,
+        896,
+        128,
+        128
+      ],
+      "bounds": [
+        95.58666666666667,
+        15.914666666666667,
+        95.59733333333334,
+        15.925333333333333
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-768-1664.tif",
+      "mask": "masks/myanmar-ayeyarwady-768-1664.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1664,
+        768,
+        128,
+        128
+      ],
+      "bounds": [
+        95.13866666666667,
+        15.925333333333333,
+        95.14933333333333,
+        15.936
+      ],
+      "foreground_fraction": 0.60565185546875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1920-0.tif",
+      "mask": "masks/myanmar-ayeyarwady-1920-0.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        0,
+        1920,
+        128,
+        128
+      ],
+      "bounds": [
+        95.0,
+        15.829333333333333,
+        95.01066666666667,
+        15.84
+      ],
+      "foreground_fraction": 0.17156982421875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2432-4224.tif",
+      "mask": "masks/myanmar-ayeyarwady-2432-4224.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4224,
+        2432,
+        128,
+        128
+      ],
+      "bounds": [
+        95.352,
+        15.786666666666667,
+        95.36266666666667,
+        15.797333333333333
+      ],
+      "foreground_fraction": 0.7393798828125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-384-1024.tif",
+      "mask": "masks/myanmar-ayeyarwady-384-1024.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1024,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        95.08533333333334,
+        15.957333333333333,
+        95.096,
+        15.968
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1408-6272.tif",
+      "mask": "masks/myanmar-ayeyarwady-1408-6272.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        6272,
+        1408,
+        128,
+        128
+      ],
+      "bounds": [
+        95.52266666666667,
+        15.872,
+        95.53333333333333,
+        15.882666666666667
+      ],
+      "foreground_fraction": 0.5533447265625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-384-2432.tif",
+      "mask": "masks/myanmar-ayeyarwady-384-2432.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        2432,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        95.20266666666667,
+        15.957333333333333,
+        95.21333333333334,
+        15.968
+      ],
+      "foreground_fraction": 0.9072265625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-512-640.tif",
+      "mask": "masks/myanmar-ayeyarwady-512-640.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        640,
+        512,
+        128,
+        128
+      ],
+      "bounds": [
+        95.05333333333333,
+        15.946666666666667,
+        95.064,
+        15.957333333333333
+      ],
+      "foreground_fraction": 0.32232666015625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-3072-3712.tif",
+      "mask": "masks/myanmar-ayeyarwady-3072-3712.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        3712,
+        3072,
+        128,
+        128
+      ],
+      "bounds": [
+        95.30933333333333,
+        15.733333333333333,
+        95.32,
+        15.744
+      ],
+      "foreground_fraction": 0.472412109375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1920-5504.tif",
+      "mask": "masks/myanmar-ayeyarwady-1920-5504.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        5504,
+        1920,
+        128,
+        128
+      ],
+      "bounds": [
+        95.45866666666667,
+        15.829333333333333,
+        95.46933333333334,
+        15.84
+      ],
+      "foreground_fraction": 0.30328369140625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2560-1920.tif",
+      "mask": "masks/myanmar-ayeyarwady-2560-1920.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1920,
+        2560,
+        128,
+        128
+      ],
+      "bounds": [
+        95.16,
+        15.776,
+        95.17066666666666,
+        15.786666666666667
+      ],
+      "foreground_fraction": 0.585205078125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1664-3584.tif",
+      "mask": "masks/myanmar-ayeyarwady-1664-3584.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        3584,
+        1664,
+        128,
+        128
+      ],
+      "bounds": [
+        95.29866666666666,
+        15.850666666666667,
+        95.30933333333333,
+        15.861333333333333
+      ],
+      "foreground_fraction": 0.0565185546875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2432-1792.tif",
+      "mask": "masks/myanmar-ayeyarwady-2432-1792.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1792,
+        2432,
+        128,
+        128
+      ],
+      "bounds": [
+        95.14933333333333,
+        15.786666666666667,
+        95.16,
+        15.797333333333333
+      ],
+      "foreground_fraction": 0.43511962890625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2048-5248.tif",
+      "mask": "masks/myanmar-ayeyarwady-2048-5248.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        5248,
+        2048,
+        128,
+        128
+      ],
+      "bounds": [
+        95.43733333333333,
+        15.818666666666667,
+        95.448,
+        15.829333333333333
+      ],
+      "foreground_fraction": 0.5028076171875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2432-4352.tif",
+      "mask": "masks/myanmar-ayeyarwady-2432-4352.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4352,
+        2432,
+        128,
+        128
+      ],
+      "bounds": [
+        95.36266666666667,
+        15.786666666666667,
+        95.37333333333333,
+        15.797333333333333
+      ],
+      "foreground_fraction": 0.8819580078125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2304-3072.tif",
+      "mask": "masks/myanmar-ayeyarwady-2304-3072.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        3072,
+        2304,
+        128,
+        128
+      ],
+      "bounds": [
+        95.256,
+        15.797333333333333,
+        95.26666666666667,
+        15.808
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-512-7424.tif",
+      "mask": "masks/myanmar-ayeyarwady-512-7424.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        7424,
+        512,
+        128,
+        128
+      ],
+      "bounds": [
+        95.61866666666667,
+        15.946666666666667,
+        95.62933333333334,
+        15.957333333333333
+      ],
+      "foreground_fraction": 0.7906494140625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-896-4736.tif",
+      "mask": "masks/myanmar-ayeyarwady-896-4736.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4736,
+        896,
+        128,
+        128
+      ],
+      "bounds": [
+        95.39466666666667,
+        15.914666666666667,
+        95.40533333333333,
+        15.925333333333333
+      ],
+      "foreground_fraction": 0.03155517578125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1664-1280.tif",
+      "mask": "masks/myanmar-ayeyarwady-1664-1280.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1280,
+        1664,
+        128,
+        128
+      ],
+      "bounds": [
+        95.10666666666667,
+        15.850666666666667,
+        95.11733333333333,
+        15.861333333333333
+      ],
+      "foreground_fraction": 0.13458251953125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-384-384.tif",
+      "mask": "masks/myanmar-ayeyarwady-384-384.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        384,
+        384,
+        128,
+        128
+      ],
+      "bounds": [
+        95.032,
+        15.957333333333333,
+        95.04266666666666,
+        15.968
+      ],
+      "foreground_fraction": 0.031982421875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-512-7296.tif",
+      "mask": "masks/myanmar-ayeyarwady-512-7296.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        7296,
+        512,
+        128,
+        128
+      ],
+      "bounds": [
+        95.608,
+        15.946666666666667,
+        95.61866666666667,
+        15.957333333333333
+      ],
+      "foreground_fraction": 0.5303955078125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-256-1280.tif",
+      "mask": "masks/myanmar-ayeyarwady-256-1280.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1280,
+        256,
+        128,
+        128
+      ],
+      "bounds": [
+        95.10666666666667,
+        15.968,
+        95.11733333333333,
+        15.978666666666667
+      ],
+      "foreground_fraction": 0.064697265625
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2816-4096.tif",
+      "mask": "masks/myanmar-ayeyarwady-2816-4096.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4096,
+        2816,
+        128,
+        128
+      ],
+      "bounds": [
+        95.34133333333334,
+        15.754666666666667,
+        95.352,
+        15.765333333333333
+      ],
+      "foreground_fraction": 0.410888671875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2304-4736.tif",
+      "mask": "masks/myanmar-ayeyarwady-2304-4736.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        4736,
+        2304,
+        128,
+        128
+      ],
+      "bounds": [
+        95.39466666666667,
+        15.797333333333333,
+        95.40533333333333,
+        15.808
+      ],
+      "foreground_fraction": 0.8382568359375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-0-3200.tif",
+      "mask": "masks/myanmar-ayeyarwady-0-3200.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        3200,
+        0,
+        128,
+        128
+      ],
+      "bounds": [
+        95.26666666666667,
+        15.989333333333333,
+        95.27733333333333,
+        16.0
+      ],
+      "foreground_fraction": 0.44219970703125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2176-2176.tif",
+      "mask": "masks/myanmar-ayeyarwady-2176-2176.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        2176,
+        2176,
+        128,
+        128
+      ],
+      "bounds": [
+        95.18133333333333,
+        15.808,
+        95.192,
+        15.818666666666667
+      ],
+      "foreground_fraction": 0.57781982421875
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-640-1280.tif",
+      "mask": "masks/myanmar-ayeyarwady-640-1280.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1280,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        95.10666666666667,
+        15.936,
+        95.11733333333333,
+        15.946666666666667
+      ],
+      "foreground_fraction": 0.1220703125
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-2688-5760.tif",
+      "mask": "masks/myanmar-ayeyarwady-2688-5760.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        5760,
+        2688,
+        128,
+        128
+      ],
+      "bounds": [
+        95.48,
+        15.765333333333333,
+        95.49066666666667,
+        15.776
+      ],
+      "foreground_fraction": 0.25042724609375
+    },
+    {
+      "image": "images/myanmar-ayeyarwady-1024-1792.tif",
+      "mask": "masks/myanmar-ayeyarwady-1024-1792.tif",
+      "split": "train",
+      "group": "myanmar-ayeyarwady",
+      "source_tile": "N15E095",
+      "window": [
+        1792,
+        1024,
+        128,
+        128
+      ],
+      "bounds": [
+        95.14933333333333,
+        15.904,
+        95.16,
+        15.914666666666667
+      ],
+      "foreground_fraction": 0.975830078125
+    },
+    {
+      "image": "images/thailand-phangnga-9472-4096.tif",
+      "mask": "masks/thailand-phangnga-9472-4096.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        4096,
+        9472,
+        128,
+        128
+      ],
+      "bounds": [
+        98.34133333333334,
+        8.2,
+        98.352,
+        8.210666666666667
+      ],
+      "foreground_fraction": 0.5155029296875
+    },
+    {
+      "image": "images/thailand-phangnga-10624-6912.tif",
+      "mask": "masks/thailand-phangnga-10624-6912.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        6912,
+        10624,
+        128,
+        128
+      ],
+      "bounds": [
+        98.576,
+        8.104,
+        98.58666666666667,
+        8.114666666666666
+      ],
+      "foreground_fraction": 0.25518798828125
+    },
+    {
+      "image": "images/thailand-phangnga-7296-6784.tif",
+      "mask": "masks/thailand-phangnga-7296-6784.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        6784,
+        7296,
+        128,
+        128
+      ],
+      "bounds": [
+        98.56533333333333,
+        8.381333333333334,
+        98.576,
+        8.392
+      ],
+      "foreground_fraction": 0.551513671875
+    },
+    {
+      "image": "images/thailand-phangnga-8576-5760.tif",
+      "mask": "masks/thailand-phangnga-8576-5760.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        5760,
+        8576,
+        128,
+        128
+      ],
+      "bounds": [
+        98.48,
+        8.274666666666667,
+        98.49066666666667,
+        8.285333333333334
+      ],
+      "foreground_fraction": 0.0701904296875
+    },
+    {
+      "image": "images/thailand-phangnga-5248-2944.tif",
+      "mask": "masks/thailand-phangnga-5248-2944.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        2944,
+        5248,
+        128,
+        128
+      ],
+      "bounds": [
+        98.24533333333333,
+        8.552,
+        98.256,
+        8.562666666666667
+      ],
+      "foreground_fraction": 0.17584228515625
+    },
+    {
+      "image": "images/thailand-phangnga-7040-7552.tif",
+      "mask": "masks/thailand-phangnga-7040-7552.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7552,
+        7040,
+        128,
+        128
+      ],
+      "bounds": [
+        98.62933333333334,
+        8.402666666666667,
+        98.64,
+        8.413333333333334
+      ],
+      "foreground_fraction": 0.40667724609375
+    },
+    {
+      "image": "images/thailand-phangnga-11136-4864.tif",
+      "mask": "masks/thailand-phangnga-11136-4864.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        4864,
+        11136,
+        128,
+        128
+      ],
+      "bounds": [
+        98.40533333333333,
+        8.061333333333334,
+        98.416,
+        8.072
+      ],
+      "foreground_fraction": 0.0009765625
+    },
+    {
+      "image": "images/thailand-phangnga-6912-6656.tif",
+      "mask": "masks/thailand-phangnga-6912-6656.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        6656,
+        6912,
+        128,
+        128
+      ],
+      "bounds": [
+        98.55466666666666,
+        8.413333333333334,
+        98.56533333333333,
+        8.424
+      ],
+      "foreground_fraction": 0.60595703125
+    },
+    {
+      "image": "images/thailand-phangnga-6400-7552.tif",
+      "mask": "masks/thailand-phangnga-6400-7552.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7552,
+        6400,
+        128,
+        128
+      ],
+      "bounds": [
+        98.62933333333334,
+        8.456,
+        98.64,
+        8.466666666666667
+      ],
+      "foreground_fraction": 0.0216064453125
+    },
+    {
+      "image": "images/thailand-phangnga-10112-5376.tif",
+      "mask": "masks/thailand-phangnga-10112-5376.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        5376,
+        10112,
+        128,
+        128
+      ],
+      "bounds": [
+        98.448,
+        8.146666666666667,
+        98.45866666666667,
+        8.157333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/thailand-phangnga-10368-6912.tif",
+      "mask": "masks/thailand-phangnga-10368-6912.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        6912,
+        10368,
+        128,
+        128
+      ],
+      "bounds": [
+        98.576,
+        8.125333333333334,
+        98.58666666666667,
+        8.136
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/thailand-phangnga-8704-8832.tif",
+      "mask": "masks/thailand-phangnga-8704-8832.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        8832,
+        8704,
+        128,
+        128
+      ],
+      "bounds": [
+        98.736,
+        8.264,
+        98.74666666666667,
+        8.274666666666667
+      ],
+      "foreground_fraction": 0.68072509765625
+    },
+    {
+      "image": "images/thailand-phangnga-6912-7296.tif",
+      "mask": "masks/thailand-phangnga-6912-7296.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7296,
+        6912,
+        128,
+        128
+      ],
+      "bounds": [
+        98.608,
+        8.413333333333334,
+        98.61866666666667,
+        8.424
+      ],
+      "foreground_fraction": 0.59051513671875
+    },
+    {
+      "image": "images/thailand-phangnga-8832-5376.tif",
+      "mask": "masks/thailand-phangnga-8832-5376.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        5376,
+        8832,
+        128,
+        128
+      ],
+      "bounds": [
+        98.448,
+        8.253333333333334,
+        98.45866666666667,
+        8.264
+      ],
+      "foreground_fraction": 0.95965576171875
+    },
+    {
+      "image": "images/thailand-phangnga-7040-8192.tif",
+      "mask": "masks/thailand-phangnga-7040-8192.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        8192,
+        7040,
+        128,
+        128
+      ],
+      "bounds": [
+        98.68266666666666,
+        8.402666666666667,
+        98.69333333333333,
+        8.413333333333334
+      ],
+      "foreground_fraction": 0.00592041015625
+    },
+    {
+      "image": "images/thailand-phangnga-11264-11520.tif",
+      "mask": "masks/thailand-phangnga-11264-11520.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        11520,
+        11264,
+        128,
+        128
+      ],
+      "bounds": [
+        98.96,
+        8.050666666666666,
+        98.97066666666667,
+        8.061333333333334
+      ],
+      "foreground_fraction": 0.52166748046875
+    },
+    {
+      "image": "images/thailand-phangnga-10880-11648.tif",
+      "mask": "masks/thailand-phangnga-10880-11648.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        11648,
+        10880,
+        128,
+        128
+      ],
+      "bounds": [
+        98.97066666666667,
+        8.082666666666666,
+        98.98133333333334,
+        8.093333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/thailand-phangnga-6784-6912.tif",
+      "mask": "masks/thailand-phangnga-6784-6912.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        6912,
+        6784,
+        128,
+        128
+      ],
+      "bounds": [
+        98.576,
+        8.424,
+        98.58666666666667,
+        8.434666666666667
+      ],
+      "foreground_fraction": 0.6630859375
+    },
+    {
+      "image": "images/thailand-phangnga-1024-3712.tif",
+      "mask": "masks/thailand-phangnga-1024-3712.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        3712,
+        1024,
+        128,
+        128
+      ],
+      "bounds": [
+        98.30933333333333,
+        8.904,
+        98.32,
+        8.914666666666667
+      ],
+      "foreground_fraction": 0.85186767578125
+    },
+    {
+      "image": "images/thailand-phangnga-9728-4864.tif",
+      "mask": "masks/thailand-phangnga-9728-4864.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        4864,
+        9728,
+        128,
+        128
+      ],
+      "bounds": [
+        98.40533333333333,
+        8.178666666666667,
+        98.416,
+        8.189333333333334
+      ],
+      "foreground_fraction": 0.6209716796875
+    },
+    {
+      "image": "images/thailand-phangnga-1408-3712.tif",
+      "mask": "masks/thailand-phangnga-1408-3712.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        3712,
+        1408,
+        128,
+        128
+      ],
+      "bounds": [
+        98.30933333333333,
+        8.872,
+        98.32,
+        8.882666666666667
+      ],
+      "foreground_fraction": 0.0858154296875
+    },
+    {
+      "image": "images/thailand-phangnga-7168-7936.tif",
+      "mask": "masks/thailand-phangnga-7168-7936.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7936,
+        7168,
+        128,
+        128
+      ],
+      "bounds": [
+        98.66133333333333,
+        8.392,
+        98.672,
+        8.402666666666667
+      ],
+      "foreground_fraction": 0.8463134765625
+    },
+    {
+      "image": "images/thailand-phangnga-7552-7680.tif",
+      "mask": "masks/thailand-phangnga-7552-7680.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7680,
+        7552,
+        128,
+        128
+      ],
+      "bounds": [
+        98.64,
+        8.36,
+        98.65066666666667,
+        8.370666666666667
+      ],
+      "foreground_fraction": 0.10491943359375
+    },
+    {
+      "image": "images/thailand-phangnga-6400-7168.tif",
+      "mask": "masks/thailand-phangnga-6400-7168.tif",
+      "split": "validation",
+      "group": "thailand-phangnga",
+      "source_tile": "N08E098",
+      "window": [
+        7168,
+        6400,
+        128,
+        128
+      ],
+      "bounds": [
+        98.59733333333334,
+        8.456,
+        98.608,
+        8.466666666666667
+      ],
+      "foreground_fraction": 0.229736328125
+    },
+    {
+      "image": "images/indonesia-sumatra-5632-6912.tif",
+      "mask": "masks/indonesia-sumatra-5632-6912.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6912,
+        5632,
+        128,
+        128
+      ],
+      "bounds": [
+        103.576,
+        0.5199999999999998,
+        103.58666666666667,
+        0.5306666666666665
+      ],
+      "foreground_fraction": 0.001953125
+    },
+    {
+      "image": "images/indonesia-sumatra-4480-8192.tif",
+      "mask": "masks/indonesia-sumatra-4480-8192.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        8192,
+        4480,
+        128,
+        128
+      ],
+      "bounds": [
+        103.68266666666666,
+        0.6159999999999999,
+        103.69333333333333,
+        0.6266666666666665
+      ],
+      "foreground_fraction": 0.0032958984375
+    },
+    {
+      "image": "images/indonesia-sumatra-2176-8192.tif",
+      "mask": "masks/indonesia-sumatra-2176-8192.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        8192,
+        2176,
+        128,
+        128
+      ],
+      "bounds": [
+        103.68266666666666,
+        0.8079999999999999,
+        103.69333333333333,
+        0.8186666666666667
+      ],
+      "foreground_fraction": 0.0367431640625
+    },
+    {
+      "image": "images/indonesia-sumatra-512-10112.tif",
+      "mask": "masks/indonesia-sumatra-512-10112.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        10112,
+        512,
+        128,
+        128
+      ],
+      "bounds": [
+        103.84266666666667,
+        0.9466666666666667,
+        103.85333333333334,
+        0.9573333333333334
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/indonesia-sumatra-11776-6784.tif",
+      "mask": "masks/indonesia-sumatra-11776-6784.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6784,
+        11776,
+        128,
+        128
+      ],
+      "bounds": [
+        103.56533333333333,
+        0.007999999999999674,
+        103.576,
+        0.018666666666666387
+      ],
+      "foreground_fraction": 0.992431640625
+    },
+    {
+      "image": "images/indonesia-sumatra-1792-10368.tif",
+      "mask": "masks/indonesia-sumatra-1792-10368.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        10368,
+        1792,
+        128,
+        128
+      ],
+      "bounds": [
+        103.864,
+        0.84,
+        103.87466666666667,
+        0.8506666666666667
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/indonesia-sumatra-8704-2944.tif",
+      "mask": "masks/indonesia-sumatra-8704-2944.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        2944,
+        8704,
+        128,
+        128
+      ],
+      "bounds": [
+        103.24533333333333,
+        0.2639999999999998,
+        103.256,
+        0.2746666666666665
+      ],
+      "foreground_fraction": 0.0
+    },
+    {
+      "image": "images/indonesia-sumatra-1536-9088.tif",
+      "mask": "masks/indonesia-sumatra-1536-9088.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        9088,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        103.75733333333334,
+        0.8613333333333333,
+        103.768,
+        0.872
+      ],
+      "foreground_fraction": 0.20159912109375
+    },
+    {
+      "image": "images/indonesia-sumatra-8320-6656.tif",
+      "mask": "masks/indonesia-sumatra-8320-6656.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6656,
+        8320,
+        128,
+        128
+      ],
+      "bounds": [
+        103.55466666666666,
+        0.2959999999999998,
+        103.56533333333333,
+        0.3066666666666664
+      ],
+      "foreground_fraction": 0.13336181640625
+    },
+    {
+      "image": "images/indonesia-sumatra-11776-7168.tif",
+      "mask": "masks/indonesia-sumatra-11776-7168.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        7168,
+        11776,
+        128,
+        128
+      ],
+      "bounds": [
+        103.59733333333334,
+        0.007999999999999674,
+        103.608,
+        0.018666666666666387
+      ],
+      "foreground_fraction": 0.86962890625
+    },
+    {
+      "image": "images/indonesia-sumatra-11392-6400.tif",
+      "mask": "masks/indonesia-sumatra-11392-6400.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6400,
+        11392,
+        128,
+        128
+      ],
+      "bounds": [
+        103.53333333333333,
+        0.0399999999999997,
+        103.544,
+        0.050666666666666416
+      ],
+      "foreground_fraction": 0.922607421875
+    },
+    {
+      "image": "images/indonesia-sumatra-2176-9728.tif",
+      "mask": "masks/indonesia-sumatra-2176-9728.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        9728,
+        2176,
+        128,
+        128
+      ],
+      "bounds": [
+        103.81066666666666,
+        0.8079999999999999,
+        103.82133333333333,
+        0.8186666666666667
+      ],
+      "foreground_fraction": 0.43304443359375
+    },
+    {
+      "image": "images/indonesia-sumatra-2560-6144.tif",
+      "mask": "masks/indonesia-sumatra-2560-6144.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6144,
+        2560,
+        128,
+        128
+      ],
+      "bounds": [
+        103.512,
+        0.7759999999999999,
+        103.52266666666667,
+        0.7866666666666666
+      ],
+      "foreground_fraction": 0.06964111328125
+    },
+    {
+      "image": "images/indonesia-sumatra-7040-6656.tif",
+      "mask": "masks/indonesia-sumatra-7040-6656.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6656,
+        7040,
+        128,
+        128
+      ],
+      "bounds": [
+        103.55466666666666,
+        0.4026666666666665,
+        103.56533333333333,
+        0.4133333333333331
+      ],
+      "foreground_fraction": 0.2530517578125
+    },
+    {
+      "image": "images/indonesia-sumatra-640-4992.tif",
+      "mask": "masks/indonesia-sumatra-640-4992.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        4992,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        103.416,
+        0.9359999999999999,
+        103.42666666666666,
+        0.9466666666666667
+      ],
+      "foreground_fraction": 0.16827392578125
+    },
+    {
+      "image": "images/indonesia-sumatra-11776-5120.tif",
+      "mask": "masks/indonesia-sumatra-11776-5120.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        5120,
+        11776,
+        128,
+        128
+      ],
+      "bounds": [
+        103.42666666666666,
+        0.007999999999999674,
+        103.43733333333333,
+        0.018666666666666387
+      ],
+      "foreground_fraction": 0.24029541015625
+    },
+    {
+      "image": "images/indonesia-sumatra-1408-9984.tif",
+      "mask": "masks/indonesia-sumatra-1408-9984.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        9984,
+        1408,
+        128,
+        128
+      ],
+      "bounds": [
+        103.832,
+        0.872,
+        103.84266666666667,
+        0.8826666666666666
+      ],
+      "foreground_fraction": 0.4345703125
+    },
+    {
+      "image": "images/indonesia-sumatra-128-9984.tif",
+      "mask": "masks/indonesia-sumatra-128-9984.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        9984,
+        128,
+        128,
+        128
+      ],
+      "bounds": [
+        103.832,
+        0.9786666666666667,
+        103.84266666666667,
+        0.9893333333333333
+      ],
+      "foreground_fraction": 0.25054931640625
+    },
+    {
+      "image": "images/indonesia-sumatra-3456-4480.tif",
+      "mask": "masks/indonesia-sumatra-3456-4480.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        4480,
+        3456,
+        128,
+        128
+      ],
+      "bounds": [
+        103.37333333333333,
+        0.7013333333333333,
+        103.384,
+        0.712
+      ],
+      "foreground_fraction": 0.165283203125
+    },
+    {
+      "image": "images/indonesia-sumatra-640-11776.tif",
+      "mask": "masks/indonesia-sumatra-640-11776.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        11776,
+        640,
+        128,
+        128
+      ],
+      "bounds": [
+        103.98133333333334,
+        0.9359999999999999,
+        103.992,
+        0.9466666666666667
+      ],
+      "foreground_fraction": 0.052001953125
+    },
+    {
+      "image": "images/indonesia-sumatra-6784-2048.tif",
+      "mask": "masks/indonesia-sumatra-6784-2048.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        2048,
+        6784,
+        128,
+        128
+      ],
+      "bounds": [
+        103.17066666666666,
+        0.4239999999999998,
+        103.18133333333333,
+        0.43466666666666653
+      ],
+      "foreground_fraction": 0.10858154296875
+    },
+    {
+      "image": "images/indonesia-sumatra-3456-8320.tif",
+      "mask": "masks/indonesia-sumatra-3456-8320.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        8320,
+        3456,
+        128,
+        128
+      ],
+      "bounds": [
+        103.69333333333333,
+        0.7013333333333333,
+        103.704,
+        0.712
+      ],
+      "foreground_fraction": 0.1131591796875
+    },
+    {
+      "image": "images/indonesia-sumatra-1536-5376.tif",
+      "mask": "masks/indonesia-sumatra-1536-5376.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        5376,
+        1536,
+        128,
+        128
+      ],
+      "bounds": [
+        103.448,
+        0.8613333333333333,
+        103.45866666666667,
+        0.872
+      ],
+      "foreground_fraction": 0.10614013671875
+    },
+    {
+      "image": "images/indonesia-sumatra-2944-6016.tif",
+      "mask": "masks/indonesia-sumatra-2944-6016.tif",
+      "split": "test",
+      "group": "indonesia-sumatra",
+      "source_tile": "N00E103",
+      "window": [
+        6016,
+        2944,
+        128,
+        128
+      ],
+      "bounds": [
+        103.50133333333333,
+        0.744,
+        103.512,
+        0.7546666666666666
+      ],
+      "foreground_fraction": 0.3829345703125
+    }
+  ]
+}

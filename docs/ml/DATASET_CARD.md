@@ -39,4 +39,4 @@ Source URLs, bounds, grid offsets, exact split assignments and foreground fracti
 - The prior 62.4 MB Allen AI archive contains annotations/time-series task metadata without paired imagery. Not used for this segmentation experiment.
 - Suggested [nikolkoo/SatelliteSegmentation](https://huggingface.co/datasets/nikolkoo/SatelliteSegmentation): public CC BY 4.0; 790 256px RGB/ESA-WorldCover mask pairs for Norway. A bounded 93,617,398-byte Parquet download was inspected (SHA256 `e0a9daaabce24a9fa256d21aa7c2991897e3efd964b56a3063bb769f315f8176`), then left unused because mangrove-specific pairs became feasible. It is not mangrove training data.
 
-All data/weights remain local and ignored by Git. The trained CNN's poor held-out precision is reported in MODEL_CARD.md; it must not support automatic certification or area verification.
+The 144 prepared pairs and trained checkpoints are included in Git. Large source archives remain local and ignored. The trained CNN's poor held-out precision is reported in MODEL_CARD.md; it must not support automatic certification or area verification.

@@ -31,7 +31,7 @@ Current npm audit: **0 critical, 31 high, 29 moderate, 2 low (62 total)**. Next'
 | Best validation | IoU **0.426927**, Dice/F1 **0.598387**, precision **0.432370**, recall **0.971358**, loss **1.219472** |
 | Held-out final test | IoU **0.291602**, Dice/F1 **0.451535**, precision **0.296220**, recall **0.949253**, loss **1.462316** |
 | Fixed NDVI test baseline | IoU **0.320630** — **better than CNN**, not concealed |
-| Checkpoint | **ml/artifacts/run1/best.pt**, genuinely exists, **496,608 bytes**, ignored by Git |
+| Checkpoint | **ml/artifacts/run1/best.pt**, genuinely exists, **496,608 bytes**, included in Git |
 | Checkpoint SHA256 | `774e78749f2bdd608076625138be1d4abd6046141b8a2e4e2be0b5267b86ff45` |
 | CPU warmed pipeline | median **35.440 ms**, p95 **39.274 ms**, 30 repeats; GPU N/A |
 
@@ -94,17 +94,17 @@ Set-Location -LiteralPath 'C:\projects\Carbon credit transfer system\bluecred\te
 .\scripts\start-local-ml.ps1
 ```
 
-The helper shares a random ephemeral token, verifies actual local model readiness and starts the existing frontend bound to 127.0.0.1; Ctrl+C cleans up its own service. It does not create an account or change production auth. Ordinary frontend independently: `npm --prefix frontend run dev`. Verified offline real-CNN UI test (with auth/data fixtures): change to frontend and run `node tests/browser-validation.cjs e2e final`. Detailed manual setup/training/resume/eval commands are in the updated training/integration guides. Existing weights/data stay local and Git-ignored.
+The helper shares a random ephemeral token, verifies actual local model readiness and starts the existing frontend bound to 127.0.0.1; Ctrl+C cleans up its own service. It does not create an account or change production auth. Ordinary frontend independently: `npm --prefix frontend run dev`. Verified offline real-CNN UI test (with auth/data fixtures): change to frontend and run `node tests/browser-validation.cjs e2e final`. Detailed manual setup/training/resume/eval commands are in the updated training/integration guides. Prepared pairs and trained checkpoints are included in Git.
 
 ## Safety / cost / rollback
 
 **₹0 additional expenditure. No new billable resource introduced.** Full free dependencies, datasets, tools, hosting-access distinctions and costs: BLUECRED_COST_REPORT.md; exact Python versions: ml-environment-lock.txt; exact JS: frontend/package-lock.json. No billing, paid GPU/API, upgrade, purchase, automatic upload, production mutation, contract change, deployment or push. No real wallet key or payment details requested. Existing production data/contracts/user files were not destroyed; external state was preserved by executing no mutation, not by pretending a remote audit passed.
 
-Recovery commits a7c7c42 / ffa8911 remain available; the ignored detached baseline worktree is retained for reproducibility using a dependency junction (no duplicate install). No cleanup/delete command is required. Review final Git diffs/manifest; reverse selected patches only after preserving future work. Local source datasets/checkpoints/large fixture PDFs remain intact and separate from Git.
+Recovery commits a7c7c42 / ffa8911 remain available; the ignored detached baseline worktree is retained for reproducibility using a dependency junction (no duplicate install). No cleanup/delete command is required. Review final Git diffs/manifest; reverse selected patches only after preserving future work. Large source archives and fixture PDFs remain local and ignored. Prepared pairs and trained checkpoints are included in Git.
 
 ## Exact Phase 2 changed-file manifest
 
-Compared with recovery checkpoint a7c7c42, including the isolated migration and newly added evidence. Downloaded data, weights, caches, environment, large fixture PDFs and the benchmark worktree are excluded. `docs/performance/changed-files.json` contains cumulative/Phase2 machine-readable lists.
+Compared with recovery checkpoint a7c7c42, including the isolated migration and newly added evidence. Large source archives, caches, environment, fixture PDFs and the benchmark worktree are excluded. Prepared pairs and trained checkpoints are included. `docs/performance/changed-files.json` contains cumulative/Phase2 machine-readable lists.
 
 | File | Reason |
 | --- | --- |

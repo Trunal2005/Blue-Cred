@@ -115,7 +115,12 @@ def main():
         model, ck = load_checkpoint(args.resume)
         if ck['manifest_sha256'] != data_hash or ck['config'] != c:
             raise ValueError('Resume requires identical config and manifest')
-        if ck['samples'] != manifest['samples']:
+        # Check file contents and provenance without tying resume to one machine's path.
+        def sample_metadata(samples):
+            return [{key: value for key, value in sample.items() if key not in ('image', 'mask')}
+                    for sample in samples]
+
+        if sample_metadata(ck['samples']) != sample_metadata(manifest['samples']):
             raise ValueError('Dataset content changed since checkpoint')
         model.to(args.device); optimizer.load_state_dict(ck['optimizer'])
         scheduler.load_state_dict(ck['scheduler'])

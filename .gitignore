@@ -38,8 +38,18 @@ yarn-error.log*
 
 # Local ML environment, source data and generated weights
 /ml/.venv/
-/ml/data/
-/ml/artifacts/
+/ml/data/*
+!/ml/data/gmw2020/
+/ml/data/gmw2020/*
+!/ml/data/gmw2020/pairs/
+/ml/artifacts/*
+!/ml/artifacts/run1/
+/ml/artifacts/run1/*
+!/ml/artifacts/run1/best.pt
+!/ml/artifacts/run1/last.pt
+!/ml/artifacts/run1/config.json
+!/ml/artifacts/run1/history.json
+!/ml/artifacts/run1/test_metrics.json
 __pycache__/
 *.pyc
 /.local-validation/

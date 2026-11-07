@@ -1,6 +1,6 @@
 # Reproduce local GMW2020 training (Windows PowerShell)
 
-Run from `C:/projects/Carbon credit transfer system/bluecred/team-nitrix`. All tools/data are free; no GPU rental, account, API key or cloud compute. The genuine trained checkpoint and paired data already exist locally in this workspace. They are ignored by Git; a Git checkout alone does not contain them.
+Run from `C:/projects/Carbon credit transfer system/bluecred/team-nitrix`. All tools/data are free; no GPU rental, account, API key or cloud compute. The trained checkpoint, experiment records and 144 prepared image-mask pairs are included in the repository. The original large source archives and virtual environment remain local.
 
 ## Environment and genuine source data
 
@@ -10,7 +10,7 @@ if (!(Test-Path ml/.venv/Scripts/python.exe)) { python -m venv ml/.venv }
 ml/.venv/Scripts/python -m pip install -r docs/ml-environment-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
 # Verify the existing GMW archive, or download this one public CC BY 4.0 file with a 185 MB cap.
 ml/.venv/Scripts/python -m ml.download_gmw
-# Only when no prepared dataset exists. Existing nonempty output is protected.
+# Only when regenerating data into a fresh output directory. The included pairs directory is protected.
 ml/.venv/Scripts/python -m ml.prepare_gmw --archive ml/data/gmw2020/source.zip --output ml/data/gmw2020/pairs
 ```
 

@@ -8,7 +8,7 @@ Existing PyTorch U-Net reused: two encoder stages, bottleneck, bilinear decoder,
 
 Dataset: 144 real GMW 2020/WorldCover image-map pairs; 96 train (India/Myanmar), 24 validation (Thailand), 24 held-out test (Indonesia). Read DATASET_CARD.md for map-label, sample-selection, cloud and spatial limitations. Sensor B02/B03/B04/B08; CNN channels 3/2/1 / 10000; foreground is **GMW mapped mangrove reference extent**, not independently established mangrove presence.
 
-Checkpoint: `ml/artifacts/run1/best.pt` — **exists locally**, 496,608 bytes including optimizer/provenance. SHA256 `774e78749f2bdd608076625138be1d4abd6046141b8a2e4e2be0b5267b86ff45`. Weights/data are ignored by Git; retain them separately if moving the workspace. `last.pt`, full history, config and final test metrics exist alongside it. Selected checkpoint was loaded in a fresh process and in the actual local FastAPI service.
+Checkpoint: `ml/artifacts/run1/best.pt` — **exists locally**, 496,608 bytes including optimizer/provenance. SHA256 `774e78749f2bdd608076625138be1d4abd6046141b8a2e4e2be0b5267b86ff45`. The trained checkpoints, experiment records and prepared pairs are included in Git. `last.pt`, full history, config and final test metrics exist alongside it. Selected checkpoint was loaded in a fresh process and in the actual local FastAPI service.
 
 ## Training actually performed
 
